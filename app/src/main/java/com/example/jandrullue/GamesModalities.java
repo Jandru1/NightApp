@@ -15,16 +15,15 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class GamesModalities extends AppCompatActivity {
-/*
     private Button VerdadoReto;
     private Button LaMoneda;
     private Button YoNunca;
 
- */
-
+/*
     private ImageView VerdadoReto;
     private ImageView LaMoneda;
     private ImageView YoNunca;
+ */
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)

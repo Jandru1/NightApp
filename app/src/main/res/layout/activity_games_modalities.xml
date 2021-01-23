@@ -4,42 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".GamesModalities">
 
-    <!--
-      <Button
-          android:id="@+id/VerdadoReto2"
-          android:layout_width="195dp"
-          android:layout_height="76dp"
-          android:layout_marginTop="68dp"
-          android:layout_marginBottom="189dp"
-          android:text="¿Verdad o Reto?"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/YoNunca"
-          tools:text="¿Verdad o Reto?" />
 
+    <Button
+        android:id="@+id/VerdadoReto"
+        android:layout_width="195dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginBottom="189dp"
+        android:text="¿Verdad o Reto?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YoNunca"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="¿Verdad o Reto?" />
 
     <Button
         android:id="@+id/YoNunca"
         android:layout_width="195dp"
         android:layout_height="76dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="68dp"
         android:text="YoNunca"
+        app:layout_constraintBottom_toTopOf="@+id/VerdadoReto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LaMoneda"
         tools:text="YoNunca" />
 
-
     <Button
         android:id="@+id/LaMoneda"
         android:layout_width="195dp"
         android:layout_height="76dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="189dp"
         android:layout_marginBottom="47dp"
         android:text="La Moneda"
         app:layout_constraintBottom_toTopOf="@+id/YoNunca"
@@ -48,8 +49,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="La Moneda" />
-        -->
 
+    <!--
 
     <ImageView
         android:id="@+id/YoNunca"
@@ -90,5 +91,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.174"
         app:srcCompat="@drawable/v_r_def"/>
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
