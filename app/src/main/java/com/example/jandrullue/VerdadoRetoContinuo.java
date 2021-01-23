@@ -12,21 +12,23 @@ import java.util.ArrayList;
 
 public class VerdadoRetoContinuo extends AppCompatActivity {
 
-    private ArrayList<String> Players = new ArrayList<String>();
-    private String Verdad_o_Reto;
-    private ArrayList <String> VerdadList = new ArrayList<String>();;
+    private ArrayList<String> PlayersList = new ArrayList<String>();
+    private ArrayList<String> VerdadList = new ArrayList<String>();;
     private ArrayList<String> RetosList = new ArrayList<String>();;
-    private TextView SiguienteJugador;
-    private TextView JugadorJugando;
-    private TextView Texto;
-    private View layout;
+
     private ArrayList<String> numeross_Player = new ArrayList<>();
     private ArrayList<String> numeross_Verdad = new ArrayList<>();
     private ArrayList<String> numeross_Reto = new ArrayList<>();
 
+    private TextView SiguienteJugador;
+    private TextView JugadorJugando;
+    private TextView Texto;
+
     private int n_Player;
     private int n_Verdad;
     private int n_Reto;
+
+    private String Verdad_o_Reto;
     private String Primer_jugador;
 
     private Button VerdadButton;
@@ -45,13 +47,15 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         VerdadList = VoR.getVerdades();
         RetosList = VoR.getRetos();
 
-        Players = getIntent().getStringArrayListExtra("jugadores");
+        PlayersList = getIntent().getStringArrayListExtra("jugadores");
         Verdad_o_Reto = getIntent().getExtras().getString("VerdadOReto");
         Primer_jugador = getIntent().getExtras().getString("PrimerJugador");
         SiguienteJugador = findViewById(R.id.JugadorSiguiente);
         JugadorJugando = findViewById(R.id.JugadorJugando);
         Texto = findViewById(R.id.RetoOVerdad);
-        layout = findViewById(R.id.Layout);
+
+        Log.d("El Primer jugador es", ""+ Primer_jugador);
+        Log.d("El Primer VoR es:", ""+ Verdad_o_Reto);
 
         VerdadButton = findViewById(R.id.verdadButton);
         RetoButton = findViewById(R.id.retoButton);
@@ -64,6 +68,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         else {
             generarRandomReto();
             String reto = VoR.getVerdades().get(n_Reto);
+            ComprobarReto(reto);
             Texto.setText(reto);
         }
 
@@ -78,6 +83,10 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
             if(es_un_reto){
                 generarRandomReto();
                 String reto = VoR.getRetos().get(n_Reto);
+                if (ComprobarReto(reto)){
+                    String nuevo_reto = JugadorX(reto);
+                    reto = nuevo_reto;
+                };
                 Texto.setText(reto);
             }
             else {
@@ -87,13 +96,14 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
             }
         }
         ++i;
-        SiguienteJugador.setText(Players.get(n_Player));
+
+        SiguienteJugador.setText(PlayersList.get(n_Player));
         JugadorJugando.setText(Primer_jugador);
 
         VerdadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Primer_jugador = Players.get(n_Player);
+                Primer_jugador = PlayersList.get(n_Player);
                 es_un_reto = false;
                 init();
             }
@@ -102,20 +112,48 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         RetoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Primer_jugador = Players.get(n_Player);
+                Primer_jugador = PlayersList.get(n_Player);
                 es_un_reto = true;
                 init();
             }
         });
     }
 
+    private boolean ComprobarReto(String reto) {
+        boolean jugador_x = false;
+        if(reto.startsWith("NEPUI")){
+            Log.d("Accedemos bien a NEPUI", ""+ "JEJEJEJEJE");
+            jugador_x = true;
+        }
+
+        if (jugador_x) return true;
+        else return false;
+    }
+
+
+    private String JugadorX(String reto) {
+        String nuevo_reto = "";
+        for(int i = 0; i < reto.length();++i){
+            if(reto.startsWith("JUGADORX", i)){
+                double m = Math.random()*PlayersList.size()+0;
+                int n = (int) m;
+                String Player_X = PlayersList.get(n);
+                //String b =
+                nuevo_reto = reto.substring(6,i) + Player_X + reto.substring(i+8);
+                Log.d("nuevo reto :", ""+ nuevo_reto);
+            }
+        }
+        return nuevo_reto;
+    }
+
+
     public void generarRandomPlayer() {
         boolean ha_salido = false;
-        double m = Math.random()*Players.size()+0;
+        double m = Math.random()*PlayersList.size()+0;
         n_Player = (int) m;
         String n_string = Integer.toString(n_Player);
 
-        if(numeross_Player.size()==Players.size()) {
+        if(numeross_Player.size()==PlayersList.size()) {
             ha_salido=false;
             ArrayList<String> VaciamosList = new ArrayList<String >();
             numeross_Player = VaciamosList;

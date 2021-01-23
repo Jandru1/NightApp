@@ -70,19 +70,19 @@ public class VerdadoRetoClass {
         Verdades.add("¿Alguna vez te metiste relleno en el sujetador?");
         Verdades.add("¿A quién de aquí NO invitarías en la próxima fiesta?");
 
-        Retos.add("Haz un striptease a JUGADOR  (con ropa o sin a gusto ,el jugador que lo reciba deberá esta en una silla sentado sin tocar) ");
+        Retos.add("NEPUI Haz un striptease a JUGADORX  (con ropa o sin a gusto , deberá esta en una silla sentado sin tocar) ");
         Retos.add("Enséñales a los demás el último video porno que hayas visto");
-        Retos.add("Utiliza la lengua para escribir una palabra sobre la espalda de JUGADOR y déjalo/a que lo adivine.");
-        Retos.add("Invéntate un poema corto de cuatro líneas declarando tu amor a JUGADOR ");
-        Retos.add("Lámele la oreja sexualmente a  JUGADOR ");
+        Retos.add("NEPUI Utiliza la lengua para escribir una palabra sobre la espalda de JUGADORX y déjalo/a que lo adivine ");
+        Retos.add("NEPUI Invéntate un poema corto de cuatro líneas declarando tu amor a JUGADORX ");
+        Retos.add("NEPUI Lámele la oreja sexualmente a  JUGADORX ");
         Retos.add("Dale una nalgada al jugador de tu derecha");
         Retos.add("Elige dos personas y pídeles que se intercambien su ropa interior ");
         Retos.add("Imita como gritas en la cama ");
         Retos.add("Debes bailar  twerk durante diez segundos ");
-        Retos.add("Siéntate en el regazo de Jugador durante 3 rondas ");
+        Retos.add("NEPUI Siéntate en el regazo de JUGADORX durante 3 rondas ");
         Retos.add("Haz tu cara de orgasmo");
-        Retos.add("Ponte el sujetador de una de las jugadores y después sal a la calle así");
-        Retos.add("Reta a otro jugador a una pelea de gallos el que pierda ,bebe 2 chupitos");
+        Retos.add("Ponte el sujetador de una de las jugadoras y después sal a la calle así");
+        Retos.add("Reta a otro jugador a una pelea de gallos, el que pierda bebe 2 chupitos");
         Retos.add("Enseña todos los tatuajes y pircings de tu cuerpo");
         Retos.add("Compórtate como un/a prostituto/a e intenta que alguien te compre.");
         Retos.add("Haz una foto erótica con alguien de tu elección y envíala  por el grupo de whatsapp");
@@ -90,10 +90,10 @@ public class VerdadoRetoClass {
         Retos.add("Posa 1 minuto como un culturista.");
         Retos.add("Haz 10 flexiones");
         Retos.add("Muestra los músculos de tus brazos.");
-        Retos.add("Lanza a la persona una mirada seductora a tu izquierda.");
+        Retos.add("NEPUI Lanza al JUGADORX una mirada seductora a tu izquierda ");
         Retos.add("Quítate la parte de arriba");
-        Retos.add("Cuenta tu último polvo lo más  sucio y explícito posible .");
-
+        Retos.add("Cuenta tu último polvo lo más  sucio y explícito posible ");
+        Retos.add("Escoge a 3 personas. 2 seran con las que harías un trío. La otra... que le vaya bien, pero no digas quien es quien");
         this.VerdadesFinal = Verdades;
         this.RetosFinal = Retos;
     }

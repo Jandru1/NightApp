@@ -33,6 +33,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
 
         VerdadButton = findViewById(R.id.VerdadButton);
         RetoButton = findViewById(R.id.RetoButton);
+        Log.d("YOU Primer Jugador es :", ""+ Jugadores.get(n));
 
         VerdadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
                 Intent intent = new Intent(VerdadoRetoCasoInicial.this, VerdadoRetoContinuo.class);
                 intent.putExtra("VerdadOReto", "reto");
                 intent.putStringArrayListExtra("jugadores", Jugadores);
+                intent.putExtra("PrimerJugador", Jugadores.get(n));
                 startActivity(intent);
             }
         });

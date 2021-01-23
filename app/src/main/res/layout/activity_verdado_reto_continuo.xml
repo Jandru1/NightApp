@@ -70,7 +70,9 @@
         tools:text="Siguiente:" />
 
     <TextView
+
         android:id="@+id/RetoOVerdad"
+        android:gravity="center"
         android:layout_width="356dp"
         android:layout_height="219dp"
         android:layout_centerHorizontal="true"
