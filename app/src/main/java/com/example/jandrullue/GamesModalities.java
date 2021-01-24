@@ -36,6 +36,10 @@ public class GamesModalities extends AppCompatActivity {
         LaMoneda = findViewById(R.id.LaMoneda);
         YoNunca = findViewById(R.id.YoNunca);
 
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        VerdadoReto.setTypeface(robotoLight);
+        LaMoneda.setTypeface(robotoLight);
+        YoNunca.setTypeface(robotoLight);
 
         VerdadoReto.setOnClickListener(new View.OnClickListener() {
             @Override

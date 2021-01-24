@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ChoosePlayers">
 
-    <ListView
-        android:id="@+id/players"
-        android:layout_width="228dp"
-        android:layout_height="464dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginBottom="153dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ListView
+            android:id="@+id/players"
+            android:layout_width="228dp"
+            android:layout_height="464dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="114dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginBottom="153dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/addPlayer"
@@ -28,10 +30,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/players"
         app:layout_constraintEnd_toStartOf="@+id/AddButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/players"
+        />
 
     <ImageButton
         android:id="@+id/AddButton"
@@ -41,11 +44,13 @@
         android:layout_marginTop="42dp"
         android:layout_marginEnd="82dp"
         android:layout_marginBottom="21dp"
-        app:layout_constraintBottom_toTopOf="@+id/players"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addPlayer"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@android:drawable/ic_menu_add"
+        app:layout_constraintBottom_toTopOf="@+id/players"
+    />
+
 
     <Button
         android:id="@+id/StartButton"

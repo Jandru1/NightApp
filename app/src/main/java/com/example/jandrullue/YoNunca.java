@@ -5,6 +5,7 @@ import java.util.Random;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -85,6 +86,8 @@ public class YoNunca extends AppCompatActivity {
         Log.d("el tamaño es:", "el tamaño es : "+ YoNuncaPreguntas.size());
 
         Preguntas = (TextView) findViewById(R.id.Preguntas);
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        Preguntas.setTypeface(robotoLight);
         Preguntas.setText(YoNuncaPreguntas.get(n));
         Preguntas.setTextColor(Color.parseColor("#000000"));
         layout = findViewById(R.id.Layout);

@@ -2,6 +2,7 @@ package com.example.jandrullue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
     private TextView SiguienteJugador;
     private TextView JugadorJugando;
     private TextView Texto;
+    private TextView nada;
 
     private int n_Player;
     private int n_Verdad;
@@ -50,15 +52,26 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         PlayersList = getIntent().getStringArrayListExtra("jugadores");
         Verdad_o_Reto = getIntent().getExtras().getString("VerdadOReto");
         Primer_jugador = getIntent().getExtras().getString("PrimerJugador");
+
         SiguienteJugador = findViewById(R.id.JugadorSiguiente);
         JugadorJugando = findViewById(R.id.JugadorJugando);
         Texto = findViewById(R.id.RetoOVerdad);
+        nada = findViewById(R.id.nada);
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        SiguienteJugador.setTypeface(robotoLight);
+        JugadorJugando.setTypeface(robotoLight);
+        Texto.setTypeface(robotoLight);
+        nada.setTypeface(robotoLight);
 
         Log.d("El Primer jugador es", ""+ Primer_jugador);
         Log.d("El Primer VoR es:", ""+ Verdad_o_Reto);
 
         VerdadButton = findViewById(R.id.verdadButton);
         RetoButton = findViewById(R.id.retoButton);
+
+        VerdadButton.setTypeface(robotoLight);
+        RetoButton.setTypeface(robotoLight);
 
         if(Verdad_o_Reto.equals("verdad")){
             generarRandomVerdad();

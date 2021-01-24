@@ -3,6 +3,7 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -35,13 +37,17 @@ public class ChoosePlayers extends AppCompatActivity {
         startgame = findViewById(R.id.StartButton);
         startgame.setBackgroundColor(0xFF00FF00);
         startgame.setText("Start Game!!");
+
         players = findViewById(R.id.players);
+        et1 = findViewById(R.id.addPlayer);
 
         playersList = new ArrayList<String>();
         adaptador1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, playersList);
         players.setAdapter(adaptador1);
 
-        et1 = findViewById(R.id.addPlayer);
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        et1.setTypeface(robotoLight);
+        startgame.setTypeface(robotoLight);
 
         addButton = findViewById(R.id.AddButton);
 

@@ -3,6 +3,7 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,9 @@ public class YoNuncaLevels extends AppCompatActivity {
        // MediumLevel = findViewById(R.id.MediumLevelButton);
         HotLevel = findViewById(R.id.HotLevelButton);
 
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        ChillLevel.setTypeface(robotoLight);
+        HotLevel.setTypeface(robotoLight);
 
         ChillLevel.setOnClickListener(new View.OnClickListener() {
             @Override

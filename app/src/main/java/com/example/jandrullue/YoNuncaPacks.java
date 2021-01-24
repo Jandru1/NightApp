@@ -3,6 +3,7 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,10 @@ public class YoNuncaPacks extends AppCompatActivity {
 
         Pack1Button = findViewById(R.id.Pack1Button);
         Pack2Button = findViewById(R.id.Pack2Button);
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        Pack1Button.setTypeface(robotoLight);
+        Pack2Button.setTypeface(robotoLight);
 
         Level = getIntent().getExtras().getString("Level");
 
