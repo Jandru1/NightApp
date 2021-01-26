@@ -8,19 +8,23 @@
 
 
     <Button
+        app:backgroundTint="#353535"
+        android:textColor="@color/white"
         android:id="@+id/YoNunca"
         android:layout_width="195dp"
         android:layout_height="76dp"
         android:layout_marginTop="84dp"
         android:layout_marginBottom="68dp"
-        android:text="YoNunca"
+        android:text="Yo Nunca"
         app:layout_constraintBottom_toTopOf="@+id/VerdadoReto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LaMoneda"
-        tools:text="YoNunca" />
+        tools:text="Yo Nunca" />
 
     <Button
+        app:backgroundTint="#353535"
+        android:textColor="@color/white"
         android:id="@+id/VerdadoReto"
         android:layout_width="195dp"
         android:layout_height="76dp"
@@ -35,6 +39,8 @@
         tools:text="¿Verdad o Reto?" />
 
     <Button
+        app:backgroundTint="#353535"
+        android:textColor="@color/white"
         android:id="@+id/LaMoneda"
         android:layout_width="195dp"
         android:layout_height="76dp"

@@ -6,18 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ChoosePlayers">
 
-        <ListView
-            android:id="@+id/players"
-            android:layout_width="228dp"
-            android:layout_height="464dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="114dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginBottom="153dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ListView
+        android:id="@+id/players"
+        android:layout_width="228dp"
+        android:layout_height="464dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="153dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+       />
+
+        />
 
     <EditText
         android:id="@+id/addPlayer"
@@ -53,6 +58,8 @@
 
 
     <Button
+        app:backgroundTint="#353535"
+        android:textColor="@color/white"
         android:id="@+id/StartButton"
         android:layout_width="166dp"
         android:layout_height="40dp"
@@ -62,7 +69,6 @@
         android:layout_marginBottom="95dp"
         android:background="@color/black"
         android:shadowColor="@color/white"
-        android:textColor="#FFFFFF"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
         android:textColorLink="@color/white"

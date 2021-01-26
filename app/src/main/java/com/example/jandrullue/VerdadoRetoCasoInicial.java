@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -20,9 +22,13 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
     private TextView SiguienteJugador;
 
     private ArrayList<String> Jugadores;
+    private ArrayList<String> numeross = new ArrayList<>();
+
     private Button VerdadButton;
     private Button RetoButton;
-    private ArrayList<String> numeross = new ArrayList<>();
+
+    private ImageView HomeButton;
+
     private int n;
 
     @Override
@@ -45,6 +51,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
 
         VerdadButton = findViewById(R.id.VerdadButton);
         RetoButton = findViewById(R.id.RetoButton);
+        HomeButton = findViewById(R.id.HomeButton);
 
         VerdadButton.setTypeface(robotoLight);
         RetoButton.setTypeface(robotoLight);
@@ -69,6 +76,14 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
                 intent.putExtra("VerdadOReto", "reto");
                 intent.putStringArrayListExtra("jugadores", Jugadores);
                 intent.putExtra("PrimerJugador", Jugadores.get(n));
+                startActivity(intent);
+            }
+        });
+
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VerdadoRetoCasoInicial.this, GamesModalities.class);
                 startActivity(intent);
             }
         });

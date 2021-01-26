@@ -2,11 +2,14 @@ package com.example.jandrullue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,6 +28,8 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
     private TextView JugadorJugando;
     private TextView Texto;
     private TextView nada;
+
+    private ImageView HomeButton;
 
     private int n_Player;
     private int n_Verdad;
@@ -69,6 +74,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
 
         VerdadButton = findViewById(R.id.verdadButton);
         RetoButton = findViewById(R.id.retoButton);
+        HomeButton = findViewById(R.id.HomeButton);
 
         VerdadButton.setTypeface(robotoLight);
         RetoButton.setTypeface(robotoLight);
@@ -128,6 +134,14 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 Primer_jugador = PlayersList.get(n_Player);
                 es_un_reto = true;
                 init();
+            }
+        });
+
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VerdadoRetoContinuo.this, GamesModalities.class);
+                startActivity(intent);
             }
         });
     }

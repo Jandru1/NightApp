@@ -7,6 +7,8 @@
     tools:context=".Fin">
 
     <Button
+        app:backgroundTint="#353535"
+        android:textColor="@color/white"
         android:id="@+id/Volver"
         android:layout_width="117dp"
         android:layout_height="80dp"

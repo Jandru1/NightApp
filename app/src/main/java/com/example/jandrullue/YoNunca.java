@@ -11,6 +11,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class YoNunca extends AppCompatActivity {
 
     private View layout;
     private TextView Preguntas;
+    private ImageView HomeButton;
     private int i;
     private int n;
     private ArrayList<String> YoNuncaPreguntasPrivate;
@@ -85,6 +87,7 @@ public class YoNunca extends AppCompatActivity {
         Log.d("el numero random es: ", "el numero random es: "+ n);
         Log.d("el tamaño es:", "el tamaño es : "+ YoNuncaPreguntas.size());
 
+        HomeButton = findViewById(R.id.HomeButton);
         Preguntas = (TextView) findViewById(R.id.Preguntas);
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         Preguntas.setTypeface(robotoLight);
@@ -100,6 +103,13 @@ public class YoNunca extends AppCompatActivity {
                 }
                 ++i;
                 init(YoNuncaPreguntas);
+            }
+        });
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(YoNunca.this, GamesModalities.class);
+                startActivity(intent);
             }
         });
     }

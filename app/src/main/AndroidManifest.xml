@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JandruLlue">
-        <activity android:name=".YoNuncaPacks"></activity>
+        <activity android:name=".YoNuncaPacks" />
         <activity android:name=".YoNuncaLevels" />
         <activity android:name=".Fin" />
         <activity android:name=".VerdadoRetoContinuo" />
