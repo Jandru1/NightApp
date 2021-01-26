@@ -45,6 +45,7 @@ public class GamesModalities extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (GamesModalities.this, ChoosePlayers.class);
+                intent.putExtra("Modalidad", "VerdadOReto");
                 startActivity(intent);
             }
         });
@@ -53,6 +54,7 @@ public class GamesModalities extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (GamesModalities.this, ChoosePlayers.class);
+                intent.putExtra("Modalidad", "LaMoneda");
                 startActivity(intent);
             }
         });
@@ -61,6 +63,7 @@ public class GamesModalities extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GamesModalities.this, YoNuncaLevels.class);
+                intent.putExtra("Modalidad", "YoNunca");
                 startActivity(intent);
             }
         });

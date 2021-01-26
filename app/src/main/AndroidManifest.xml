@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JandruLlue">
+        <activity android:name=".ElCamino_1_3"></activity>
+        <activity android:name=".ElCamino_1_2" />
+        <activity android:name=".ElCamino_1_1" />
         <activity android:name=".YoNuncaPacks" />
         <activity android:name=".YoNuncaLevels" />
         <activity android:name=".Fin" />

@@ -157,7 +157,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         else return false;
     }
 
-
     private String JugadorX(String reto) {
         String nuevo_reto = "";
         for(int i = 0; i < reto.length();++i){
@@ -172,7 +171,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         }
         return nuevo_reto;
     }
-
 
     public void generarRandomPlayer() {
         boolean ha_salido = false;

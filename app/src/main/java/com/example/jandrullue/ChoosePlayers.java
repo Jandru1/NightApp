@@ -61,9 +61,17 @@ public class ChoosePlayers extends AppCompatActivity {
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
-                intent.putStringArrayListExtra("playerList", playersList);
-                startActivity(intent);
+                String modality = getIntent().getExtras().getString("Modalidad");
+                if (modality.equals("VerdadOReto")) {
+                    Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
+                    intent.putStringArrayListExtra("playerList", playersList);
+                    startActivity(intent);
+                }
+                else if (modality.equals("LaMoneda")){
+                    Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
+                    intent.putStringArrayListExtra("playerList", playersList);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startgame = findViewById(R.id.startgame);
-        startgame.setBackgroundColor(0xFF00FF00);
 
         textView = findViewById(R.id.textView);
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
