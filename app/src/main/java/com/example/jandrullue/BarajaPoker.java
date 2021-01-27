@@ -97,4 +97,14 @@ public class BarajaPoker {
 
          */
     }
+
+    public String get_palo(int n) {
+        String palo = null;
+        String s = this.Baraja.get(n);
+        if(s.startsWith("10", 0)) {
+            palo = s.substring(6);
+        }
+        else palo = s.substring(5);
+        return palo;
+    }
 }

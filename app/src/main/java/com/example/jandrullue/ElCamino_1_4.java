@@ -11,17 +11,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ElCamino_1_2 extends AppCompatActivity {
+public class ElCamino_1_4 extends AppCompatActivity {
 
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
 
-    private Button MayorButton;
-    private Button MenorButton;
+    private Button DiamanteButton;
+    private Button CorazonesButton;
+    private Button PicasButton;
+    private Button TrebolesButton;
     private Button SiguienteButtonn;
 
     private TextView pregunta;
-    private TextView anterior_carta_fue;
+    private TextView ultima_carta;
 
     private TextView jugador_jugando;
     private TextView cartaTextView;
@@ -32,7 +34,8 @@ public class ElCamino_1_2 extends AppCompatActivity {
     private BarajaPoker Baraja = new BarajaPoker();
     private Bundle bundle;
 
-    private String carta_anterior = null;
+    private String carta_anterior1 = null;
+    private String carta_anterior2 = null;
 
     private Intent intent;
 
@@ -43,99 +46,100 @@ public class ElCamino_1_2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_el_camino_1_2);
+        setContentView(R.layout.activity_el_camino_1_4);
 
-        MayorButton = findViewById(R.id.MayorButton);
-        MenorButton = findViewById(R.id.MenorButton);
-        SiguienteButtonn = findViewById(R.id.Siguiente);
+        DiamanteButton = findViewById(R.id.DiamanteButton);
+        PicasButton = findViewById(R.id.PicasButton);
+        CorazonesButton = findViewById(R.id.CorazonesButton);
+        TrebolesButton = findViewById(R.id.TrebolesButton);
+        SiguienteButtonn = findViewById(R.id.SigBut);
 
-        anterior_carta_fue = findViewById(R.id.TextView);
-        pregunta = findViewById(R.id.TextView2);
-
-        jugador_jugando = findViewById(R.id.PlaerText);
-        cartaTextView = findViewById(R.id.Carta);
+        ultima_carta = findViewById(R.id.UltimaCartaTextView);
+        pregunta = findViewById(R.id.PaloTextView);
+        jugador_jugando = findViewById(R.id.jugadorTextView);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
 
-        intent = new Intent(ElCamino_1_2.this, ElCamino_1_3.class);
+        intent = new Intent(ElCamino_1_4.this, ElCamino_2_1.class);
 
         Primer_caso();
     }
 
     private void Primer_caso() {
         jugador_jugando.setText(Jugadores.get(k));
-        pregunta.setText("¿La siguiente es mayor o menor?");
-        anterior_carta_fue.setText("Tu anterior carte fue:");
+        pregunta.setText("¿A qué palo pertenece?");
+        ultima_carta.setText("Tu última carta!");
         bundle = getIntent().getExtras().getBundle("BarajaPers "+k);
 
         if(bundle!=null) {
             BP = (BarajaPersonalizada) bundle.getSerializable("BarajaPersonalizada");
-            carta_anterior = BP.getBaraja().get(0);
-            cartaTextView.setText(carta_anterior);
         }
 
-        MayorButton.setVisibility(View.VISIBLE);
-        MenorButton.setVisibility(View.VISIBLE);
+        DiamanteButton.setVisibility(View.VISIBLE);
+        CorazonesButton.setVisibility(View.VISIBLE);
+        TrebolesButton.setVisibility(View.VISIBLE);
+        PicasButton.setVisibility(View.VISIBLE);
         SiguienteButtonn.setVisibility(View.INVISIBLE);
 
-        MayorButton.setOnClickListener(new View.OnClickListener() {
+        DiamanteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mayor_o_menor = "mayor";
-                enseñar_carta(mayor_o_menor);
+                String palo = "diamantes";
+                enseñar_carta(palo);
             }
         });
 
-        MenorButton.setOnClickListener(new View.OnClickListener() {
+        CorazonesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mayor_o_menor = "menor";
-                enseñar_carta(mayor_o_menor);
+                String palo = "corazones";
+                enseñar_carta(palo);
+            }
+        });
+
+        PicasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String palo = "picas";
+                enseñar_carta(palo);
+            }
+        });
+
+        TrebolesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String palo = "treboles";
+                enseñar_carta(palo);
             }
         });
 
 
     }
 
-    private void enseñar_carta(String mayor_o_menor) {
+    private void enseñar_carta(String palo) {
         generarRandom(); //Hay que descartar los que ya salieron antes!!!!
         String carta = Baraja.getBaraja().get(n);
-        Log.d("CARTA 2: ", carta);
-        String num_nuevo = Baraja.get_num(n);
-        String num_antiguo = Baraja.get_num_por_carta(carta_anterior);
+        Log.d("CARTA 4: ", ""+carta);
 
-        MayorButton.setVisibility(View.INVISIBLE);
-        MenorButton.setVisibility(View.INVISIBLE);
+        String palo_final = Baraja.get_palo(n);
+
+        if(palo.equals(palo_final)) {
+            pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
+        }
+        else pregunta.setText("Lástima! La carta es un " + carta + "!");
+
+        DiamanteButton.setVisibility(View.INVISIBLE);
+        CorazonesButton.setVisibility(View.INVISIBLE);
+        TrebolesButton.setVisibility(View.INVISIBLE);
+        PicasButton.setVisibility(View.INVISIBLE);
         SiguienteButtonn.setVisibility(View.VISIBLE);
 
-        int num_antiguo_int = Integer.parseInt(transform_JQK(num_antiguo));
-        int num_nuevo_int = Integer.parseInt(transform_JQK(num_nuevo));
+        BP.añadir_carta(carta);
+        Bundle b = new Bundle();
+        b.putSerializable("BarajaPersonalizada", BP);
 
-        boolean soniguales = false;
-
-        if (num_antiguo.equals(num_nuevo)){
-            soniguales = true;
-            enseñar_carta(mayor_o_menor);
-        }
-        else if(mayor_o_menor.equals("mayor") & num_antiguo_int>num_nuevo_int){
-            pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
-        }
-        else if(mayor_o_menor.equals("menor") & num_antiguo_int<num_nuevo_int){
-            pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
-        }
-        else if(mayor_o_menor.equals("mayor") & num_antiguo_int<num_nuevo_int){
-            pregunta.setText("Felicidades! Un " + num_nuevo + ". Repartes 2 tragos");
-        }
-        else if(mayor_o_menor.equals("menor") & num_antiguo_int>num_nuevo_int){
-            pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 2 tragos");
-        }
-        if(!soniguales) {
-            BP.añadir_carta(carta);
-            Bundle b = new Bundle();
-            b.putSerializable("BarajaPersonalizada", BP);
-            intent.putExtra("BarajaPers " + k, b);
-        }
+        intent.putExtra("BarajaPers " + k , b);
 
         SiguienteButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,12 +147,11 @@ public class ElCamino_1_2 extends AppCompatActivity {
                 if(k+1 == Jugadores.size()) {
                     intent.putStringArrayListExtra("Players", Jugadores);
                     intent.putStringArrayListExtra("numeross", numeross);
+                    intent.putExtra("Ronda", 1);
                     startActivity(intent);
                 }
                 else {
-
                     ++k;
-
                     Primer_caso();
                 }
             }

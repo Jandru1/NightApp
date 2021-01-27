@@ -103,7 +103,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 generarRandomReto();
                 String reto = VoR.getRetos().get(n_Reto);
                 if (ComprobarReto(reto)){
-                    String nuevo_reto = JugadorX(reto);
+                    String nuevo_reto = JugadorX(reto, n_Player);
                     reto = nuevo_reto;
                 };
                 Texto.setText(reto);
@@ -157,19 +157,25 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         else return false;
     }
 
-    private String JugadorX(String reto) {
+    private String JugadorX(String reto, int num_player) {
         String nuevo_reto = "";
         for(int i = 0; i < reto.length();++i){
             if(reto.startsWith("JUGADORX", i)){
-                double m = Math.random()*PlayersList.size()+0;
-                int n = (int) m;
-                String Player_X = PlayersList.get(n);
-                //String b =
+                String Player_X = generarRandomJugadorX(num_player);
                 nuevo_reto = reto.substring(6,i) + Player_X + reto.substring(i+8);
                 Log.d("nuevo reto :", ""+ nuevo_reto);
             }
         }
         return nuevo_reto;
+    }
+
+    public String generarRandomJugadorX(int np) {
+        String Player_X = null;
+        double m = Math.random()*PlayersList.size()+0;
+        int n = (int) m;
+        if(n == np) generarRandomJugadorX(np);
+        else Player_X = PlayersList.get(n);
+        return Player_X;
     }
 
     public void generarRandomPlayer() {

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JandruLlue">
-        <activity android:name=".ElCamino_1_3"></activity>
+        <activity android:name=".ElCamino3"></activity>
+        <activity android:name=".ElCaminoPerdedor" />
+        <activity android:name=".ElCamino2_Aux" />
+        <activity android:name=".ElCamino_2_1" />
+        <activity android:name=".ElCamino_1_4" />
+        <activity android:name=".ElCamino_1_3" />
         <activity android:name=".ElCamino_1_2" />
         <activity android:name=".ElCamino_1_1" />
         <activity android:name=".YoNuncaPacks" />

@@ -78,9 +78,8 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private void enseñar_carta(String color) {
         generarRandom();
 
-        Log.d("El numero random es:", ""+n);
-
         String carta = Baraja.getBaraja().get(n);
+        Log.d("CARTA 1: ", ""+carta);
 
         String color_carta = getColorCarta(carta);
         RojoButton.setVisibility(View.INVISIBLE);
@@ -129,7 +128,6 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private String getColorCarta(String carta) {
         String color = null;
         String tipo = null;
-        Log.d("La carta es:", ""+carta);
 
         for(int i = 0; i < carta.length(); ++i) {
             if (carta.startsWith("de", i)){
@@ -157,7 +155,6 @@ public class ElCamino_1_1 extends AppCompatActivity {
                 if (numeross.get(k).equals(n_string)) ha_salido = true;
             }
         }
-        Log.d("tamaño de NUMEROS es:", ""+ numeross.size());
         if(ha_salido) generarRandom();
         else numeross.add(n_string);
 

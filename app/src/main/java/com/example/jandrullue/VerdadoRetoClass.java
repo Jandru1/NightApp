@@ -114,7 +114,7 @@ public class VerdadoRetoClass {
         Retos.add("NEPUI Muérdele la nalga izquierda senusalmente  JUGADORX ");
         Retos.add("El grupo elige donde le darás un beso a JUGADORX ");
         Retos.add("Si eres un chico todas las chicas te dan un pico si eres chica viceversa");
-        Retos.add("NEPUI Date un beso a tres con JUGADORX Y JUGADORX  ");
+       // Retos.add("NEPUI Date un beso a tres con JUGADORX Y JUGADORX  ");
         Retos.add("Acábate la copa  ");
         Retos.add("Pide una pizza , más alcohol o tabaco por Globo  ,máx 10 euros pagás tu  ");
         Retos.add("Bebe 1 trago por cada persona con la que tendrías relaciones ");
