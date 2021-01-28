@@ -44,6 +44,8 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
     private boolean es_un_reto;
     private int i;
 
+    private String Player_X;
+
     private VerdadoRetoClass VoR = new VerdadoRetoClass();
 
 
@@ -90,7 +92,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
             ComprobarReto(reto);
             Texto.setText(reto);
         }
-
         i = 0;
         init();
     }
@@ -103,7 +104,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 generarRandomReto();
                 String reto = VoR.getRetos().get(n_Reto);
                 if (ComprobarReto(reto)){
-                    String nuevo_reto = JugadorX(reto, n_Player);
+                    String nuevo_reto = JugadorX(reto, Primer_jugador);
                     reto = nuevo_reto;
                 };
                 Texto.setText(reto);
@@ -157,11 +158,14 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         else return false;
     }
 
-    private String JugadorX(String reto, int num_player) {
+    private String JugadorX(String reto, String jugador) {
         String nuevo_reto = "";
         for(int i = 0; i < reto.length();++i){
             if(reto.startsWith("JUGADORX", i)){
-                String Player_X = generarRandomJugadorX(num_player);
+                double m = Math.random()*PlayersList.size()+0;
+                int n = (int) m;
+                //String Player_X = PlayersList.get(n);
+                String Player_X = generarRandomJugadorX(jugador);
                 nuevo_reto = reto.substring(6,i) + Player_X + reto.substring(i+8);
                 Log.d("nuevo reto :", ""+ nuevo_reto);
             }
@@ -169,12 +173,20 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         return nuevo_reto;
     }
 
-    public String generarRandomJugadorX(int np) {
-        String Player_X = null;
+    public String generarRandomJugadorX(String jugador) {
+        Player_X = "ASDFF";
         double m = Math.random()*PlayersList.size()+0;
         int n = (int) m;
-        if(n == np) generarRandomJugadorX(np);
-        else Player_X = PlayersList.get(n);
+        Log.d("El jugador jugando es:", ""+jugador);
+        Log.d("El jugadorX es:", ""+n);
+        Log.d("Con nombre:", ""+PlayersList.get(n));
+        if(PlayersList.get(n).equals(jugador)) generarRandomJugadorX(jugador);
+        else {
+            String a  = PlayersList.get(n);
+            Log.d("PlayerList en "+n+" es:", ""+Player_X);
+            Player_X = a;
+            return Player_X;
+        }
         return Player_X;
     }
 

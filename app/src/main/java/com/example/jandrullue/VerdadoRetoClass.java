@@ -91,7 +91,7 @@ public class VerdadoRetoClass {
         Retos.add("Posa 1 minuto como un culturista.");
         Retos.add("Haz 10 flexiones");
         Retos.add("Muestra los músculos de tus brazos.");
-        Retos.add("NEPUI Lanza al JUGADORX una mirada seductora a tu izquierda ");
+        Retos.add("NEPUI Lanza a JUGADORX una mirada seductora sin camiseta");
         Retos.add("Quítate la parte de arriba");
         Retos.add("Cuenta tu último polvo lo más  sucio y explícito posible ");
         Retos.add("Escoge a 3 personas. 2 seran con las que harías un trío. La otra... que le vaya bien, pero no digas quien es quien");
@@ -99,7 +99,7 @@ public class VerdadoRetoClass {
         Retos.add("Excita a alguien del grupo con la ayuda de otra persona.");
         Retos.add("NEPUI  Toma un chupito del ombligo de  JUGADORX   ");
         Retos.add("NEPUI Utiliza las manos  JUGADORX y enséñale cómo te gusta recibir sexo oral.   ");
-        Retos.add("NEPUI  JUGADORX y NEPUI  JUGADORX 4 minutos en el labavo con la pelicula porno que el grupo escoja   ");
+        Retos.add("NEPUI Pásate con JUGADORX 4 minutos en el labavo con la pelicula porno que el grupo escoja   ");
         Retos.add("NEPUI Haz una lista de las partes del cuerpo que más te gustan de JUGADORX  y justifica tu respuesta.   ");
         Retos.add("NEPUI Utiliza las manos de  JUGADORX y enséñale cómo te gusta recibir sexo oral.   ");
         Retos.add("NEPUI Excita a JUGADORX vale todo,si no lo consigues bebes 4 chupitos  ");
@@ -112,7 +112,7 @@ public class VerdadoRetoClass {
         Retos.add("Tira un dado si aciertas el número repartes esa cantidad de tragos,sino bebes lo que te toque +2) ");
         Retos.add("NEPUI Dale un beso en el culo a JUGADORX ");
         Retos.add("NEPUI Muérdele la nalga izquierda senusalmente  JUGADORX ");
-        Retos.add("El grupo elige donde le darás un beso a JUGADORX ");
+        Retos.add("NEPUI El grupo elige donde le darás un beso a JUGADORX ");
         Retos.add("Si eres un chico todas las chicas te dan un pico si eres chica viceversa");
        // Retos.add("NEPUI Date un beso a tres con JUGADORX Y JUGADORX  ");
         Retos.add("Acábate la copa  ");
@@ -120,13 +120,11 @@ public class VerdadoRetoClass {
         Retos.add("Bebe 1 trago por cada persona con la que tendrías relaciones ");
         Retos.add("NEPUI Hazle un chupetón en el cuello a JUGADORX ");
         Retos.add("Sácate la camiseta durante 3 rondas ");
-        Retos.add("NEPUI reta a JUGADORX a un piedra ,papel,tijeras si ganás JUGADORX te hace un verse de 3 €   ");
+        Retos.add("NEPUI reta a JUGADORX a un piedra ,papel,tijeras si ganas te hace un verse de 3 €, si pierdes se lo haces tu ");
         Retos.add("Sube una historia del copeo a tu historia durante 24 h  con el hastag @DRINKTOTDIE  ");
         Retos.add("NEPUI JUGADORX te explicará un chiste si te ríes enseñas las tetas o el culo durante 5 seguntos ");
         Retos.add("NEPUI  Toma un chupito del ombligo de  JUGADORX   ");
         Retos.add("Tapate los ojos y ponte a 4 ,te darán un azote alguien del grupo en el culo,sino adivinas quien ha sido se repite hasta que se adivine  ");
-        Retos.add("Tira un dado si aciertas el número repartes esa cantidad de tragos,sino bebes lo que te toque +2) ");
-        Retos.add("Todos los jugadores se  llenan una copa hasta arriba a la vez se hace un santilari(beber hastya vaciar la copa)los 2 últimos en terminarse la copa se besan durante 30 segundos entre ellos   ");
         Retos.add("Tira un dado si aciertas el número repartes esa cantidad de tragos,sino bebes lo que te toque +2) ");
 
         this.VerdadesFinal = Verdades;
