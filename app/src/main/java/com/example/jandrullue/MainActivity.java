@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
         startgame.setTypeface(robotoLight);
 
         startgame.setText("Start Game!!");
+
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GamesModalities.class);
+                Intent intent = new Intent(MainActivity.this, ElCamino3_Nuevo.class);
                 startActivity(intent);
+               // overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
     }

@@ -8,11 +8,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
 
 public class GamesModalities extends AppCompatActivity {
     private Button VerdadoReto;
@@ -36,6 +32,12 @@ public class GamesModalities extends AppCompatActivity {
         LaMoneda = findViewById(R.id.LaMoneda);
         YoNunca = findViewById(R.id.YoNunca);
 
+/*      ESCONDER BARRA DE ARRIBA
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+ */
+
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         VerdadoReto.setTypeface(robotoLight);
         LaMoneda.setTypeface(robotoLight);
@@ -46,7 +48,12 @@ public class GamesModalities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (GamesModalities.this, ChoosePlayers.class);
                 intent.putExtra("Modalidad", "VerdadOReto");
+                ShotsCounter Shots = new ShotsCounter();
+                intent.putExtra("Shots", Shots);
                 startActivity(intent);
+                //ANIMACIÓN
+                //overridePendingTransition(R.anim.top_in, R.anim.top_out);
+
             }
         });
 
@@ -55,7 +62,12 @@ public class GamesModalities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (GamesModalities.this, ChoosePlayers.class);
                 intent.putExtra("Modalidad", "LaMoneda");
+                ShotsCounter Shots = new ShotsCounter();
+                intent.putExtra("Shots", Shots);
                 startActivity(intent);
+                //ANIMACIÓN
+                //overridePendingTransition(R.anim.top_in, R.anim.top_out);
+
             }
         });
 
@@ -65,6 +77,8 @@ public class GamesModalities extends AppCompatActivity {
                 Intent intent = new Intent(GamesModalities.this, YoNuncaLevels.class);
                 intent.putExtra("Modalidad", "YoNunca");
                 startActivity(intent);
+                //ANIMACIÓN
+                //overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
 

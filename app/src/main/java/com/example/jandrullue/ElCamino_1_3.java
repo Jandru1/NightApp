@@ -1,12 +1,18 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,8 +44,9 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private Intent intent;
 
     private BarajaPersonalizada BP = null;
+    private ImageView HomeButton;
 
-
+    private ShotsCounter Shots = new ShotsCounter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,9 @@ public class ElCamino_1_3 extends AppCompatActivity {
         DentroButton = findViewById(R.id.DentroButton);
         FueraButton = findViewById(R.id.FueraButton);
         SiguienteButtonn = findViewById(R.id.SiguienteBut);
+        HomeButton = findViewById(R.id.HomeButton1_3);
+
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
         anteriores_cartas_fueron = findViewById(R.id.TextView3);
         pregunta = findViewById(R.id.TextView4);
@@ -56,10 +66,37 @@ public class ElCamino_1_3 extends AppCompatActivity {
         jugador_jugando = findViewById(R.id.PlayerText);
         cartaTextView = findViewById(R.id.Cartas);
 
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        pregunta.setTypeface(robotoLight);
+        jugador_jugando.setTypeface(robotoLight);
+        cartaTextView.setTypeface(robotoLight);
+        anteriores_cartas_fueron.setTypeface(robotoLight);
+
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
 
         intent = new Intent(ElCamino_1_3.this, ElCamino_1_4.class);
+
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino_1_3.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCamino_1_3.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
 
         Primer_caso();
     }
@@ -103,7 +140,6 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private void enseñar_carta(String dentro_o_fuera) {
         generarRandom(); //Hay que descartar los que ya salieron antes!!!!
         String carta = Baraja.getBaraja().get(n);
-        Log.d("CARTA 3: "+ carta + "Jugador", " "+Jugadores.get(k));
 
         String num_nuevo = Baraja.get_num(n);
         String num_antiguo1 = Baraja.get_num_por_carta(carta_anterior1);
@@ -125,24 +161,35 @@ public class ElCamino_1_3 extends AppCompatActivity {
         }
         else if (dentro_o_fuera.equals("dentro")) {
             if (num_antiguo1_int > num_nuevo_int & num_antiguo2_int < num_nuevo_int) {
-                pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 3 tragos");
+                pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
             }
             else if (num_antiguo1_int < num_nuevo_int & num_antiguo2_int > num_nuevo_int) {
-                pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 3 tragos");
+                pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
             }
-            else pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
+            else {
+                Shots.SumShot(Jugadores.get(k));
+                Shots.SumShot(Jugadores.get(k));
+                Shots.SumShot(Jugadores.get(k));
+                pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 3 tragos!");
+            }
 
         }
         else if (dentro_o_fuera.equals("fuera")) {
             if (num_antiguo1_int > num_nuevo_int & num_antiguo2_int > num_nuevo_int) {
-                pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 3 tragos");
+                pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
             }
             else if (num_antiguo1_int < num_nuevo_int & num_antiguo2_int < num_nuevo_int) {
-                pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 3 tragos");
+                pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
             }
-            else pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
+            else {
+                pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 3 tragos!");
+                Shots.SumShot(Jugadores.get(k));
+                Shots.SumShot(Jugadores.get(k));
+                Shots.SumShot(Jugadores.get(k));
+            }
         }
         if(!soniguales) {
+            Log.d("CARTA 3: "+ carta + "Jugador", " "+Jugadores.get(k));
             BP.añadir_carta(carta);
             Bundle b = new Bundle();
             b.putSerializable("BarajaPersonalizada", BP);
@@ -154,6 +201,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
                 if(k+1 == Jugadores.size()) {
                     intent.putStringArrayListExtra("Players", Jugadores);
                     intent.putStringArrayListExtra("numeross", numeross);
+                    intent.putExtra("Shots", Shots);
                     startActivity(intent);
                 }
                 else {

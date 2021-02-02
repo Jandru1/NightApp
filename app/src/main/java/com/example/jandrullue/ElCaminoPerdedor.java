@@ -1,12 +1,18 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,6 +36,8 @@ public class ElCaminoPerdedor extends AppCompatActivity {
     private TextView PerdedoresTV;
     private TextView TextView;
 
+    private ImageView HomeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,34 +46,95 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
 
-        PerdedoresTV=findViewById(R.id.PerdedorTV);
-        TextView=findViewById(R.id.PerdedorTV2);
+        PerdedoresTV = findViewById(R.id.PerdedorTV);
+        TextView = findViewById(R.id.PerdedorTV2);
+        HomeButton = findViewById(R.id.HomeButton3P);
 
         CartaButton = findViewById(R.id.Cartabutton);
         SiguienteButton = findViewById(R.id.Siguien);
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
 
-        int min = 5;
-        for(int i = 0; i < Jugadores.size();++i) {
+        PerdedoresTV.setTypeface(robotoLight);
+        TextView.setTypeface(robotoLight);
+        int max = -1;
+        for (int i = 0; i < Jugadores.size(); ++i) {
             bundle = getIntent().getExtras().getBundle("BarajaPers " + i);
             if (bundle != null) {
                 BP = (BarajaPersonalizada) bundle.getSerializable("BarajaPersonalizada");
-                for(int j = 0; j < BP.getBaraja().size();++j) {
-                    Log.d("PERD Carta"+j+"JUG"+i, ""+BP.getBaraja().get(j));
+                for (int j = 0; j < BP.getBaraja().size(); ++j) {
+                    Log.d("PERD Carta" + j + "JUG" + i, "" + BP.getBaraja().get(j));
                 }
-
-                if (BP.getBaraja().size() < min) {
-                    min = BP.getBaraja().size();
-                    if (Perdedores.size()!=0) Perdedores.clear();
+                if (BP.getBaraja().size() > max) {
+                    max = BP.getBaraja().size();
+                    if (Perdedores.size() != 0) Perdedores.clear();
                     Perdedores.add(BP);
-                }
-                else if (BP.getBaraja().size()== min) {
+                } else if (BP.getBaraja().size() == max) {
                     Perdedores.add(BP);
                 }
             }
         }
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCaminoPerdedor.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCaminoPerdedor.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
+        todos_tienen_la_misma_carta();
         get_perdedor();
     }
+//REPASAR MUCHISIMO
+    private void todos_tienen_la_misma_carta() {
+        boolean la_tienen = false;
+        BarajaPersonalizada b1 = Perdedores.get(0);
+        ArrayList<String> Coordenadas_a_borrar = new ArrayList<>();
+        for (int j = 0; j < b1.getBaraja().size(); ++j) {
+            String carta = b1.get_num(j);
+            ArrayList<String> Todos = new ArrayList<>();
+            for (int i = 1; i < Perdedores.size(); ++i) {
+                BarajaPersonalizada b2 = Perdedores.get(i);
+                boolean este_lo_tiene = false;
+                for (int k = 0; k < b2.getBaraja().size(); ++k) {
+                    boolean nomas = false;
+                    if (b2.get_num(k).equals(carta) & nomas) {
+                        este_lo_tiene = true;
+                        Todos.add(String.valueOf(j)+String.valueOf(i) + String.valueOf(k));
+                        nomas = true;
+                    }
+                }
+                if (!este_lo_tiene) la_tienen = false;
+            }
+            if (Todos.size() == Perdedores.size()) {
+                la_tienen = true;
+                for (int i = 0; i < Todos.size(); ++i) {
+                    Coordenadas_a_borrar.add(Todos.get(i));
+                }
+            }
+        }
+        for(int i = 0; i < Coordenadas_a_borrar.size();++i) {
+            String a = Coordenadas_a_borrar.get(i).substring(0,1);
+            String b = Coordenadas_a_borrar.get(i).substring(1,2);
+            String c = Coordenadas_a_borrar.get(i).substring(2);
 
+            if (i==0) Perdedores.get(0).getBaraja().remove(Integer.parseInt(a));
+            Perdedores.get(Integer.parseInt(b)).getBaraja().remove(Integer.parseInt(c));
+        }
+    }
+
+//HASTA AQUI
     private void get_perdedor() {
         Log.d("PERDEDORES", ""+Perdedores.size());
         if(Perdedores.size()==1)  {
@@ -75,6 +144,10 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3.class);
+                    intent.putExtra("Level", 1);
+                    intent.putStringArrayListExtra("Jugadores", Jugadores);
+                    String Perdedor = Perdedores.get(0).getplayer();
+                    intent.putExtra("Perdedor", Perdedor);
                     startActivity(intent);
                 }
             });

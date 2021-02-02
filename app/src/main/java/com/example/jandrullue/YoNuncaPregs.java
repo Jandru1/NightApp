@@ -3,13 +3,16 @@ package com.example.jandrullue;
 import java.util.ArrayList;
 
 public class YoNuncaPregs {
-    private ArrayList<String> PregsHotPack1 = new ArrayList<String>();
-    private ArrayList<String> PregsHotPack2 = new ArrayList<String>();
-    private ArrayList<String> PregsChillPack1 = new ArrayList<String>();
-    private ArrayList<String> PregsChillPack2 = new ArrayList<String>();
+
+    private ArrayList<String> PregsHotPack1;
+    private ArrayList<String> PregsHotPack2;
+    private ArrayList<String> PregsChillPack1;
+    private ArrayList<String> PregsChillPack2;
     private ArrayList<String> PregsMediumPack1 = new ArrayList<String>();
     private ArrayList<String> PregsMediumPack2 = new ArrayList<String>();
+
     public YoNuncaPregs(){
+
         ArrayList<String> HotPack1 = new ArrayList<String>();
         HotPack1.add("Yo nunca he tenido sexo en la cocina ");
         HotPack1.add("Yo nunca he tenido sexo en casa de otra persona ");

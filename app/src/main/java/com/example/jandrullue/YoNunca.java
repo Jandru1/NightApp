@@ -1,8 +1,10 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -108,8 +110,21 @@ public class YoNunca extends AppCompatActivity {
         HomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(YoNunca.this, GamesModalities.class);
-                startActivity(intent);
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(YoNunca.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(YoNunca.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
             }
         });
     }

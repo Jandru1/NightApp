@@ -4,12 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/addbutton"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/addbutton"
         android:supportsRtl="true"
         android:theme="@style/Theme.JandruLlue">
-        <activity android:name=".ElCamino3"></activity>
+        <activity android:name=".ElCamino3_Nuevo"></activity>
+        <activity android:name=".Prueba" />
+        <activity android:name=".ElCaminoCampeon" />
+        <activity android:name=".ElCamino3" />
         <activity android:name=".ElCaminoPerdedor" />
         <activity android:name=".ElCamino2_Aux" />
         <activity android:name=".ElCamino_2_1" />

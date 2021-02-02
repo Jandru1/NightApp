@@ -20,6 +20,7 @@ public class BarajaPersonalizada implements Serializable {
     public String getplayer() {
         return this.player_name;
     }
+
     public String get_num(int n) {
         String s = this.Baraja.get(n);
         return get_num_por_carta(s);

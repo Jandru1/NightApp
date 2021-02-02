@@ -23,14 +23,11 @@
 
     <ImageView
         android:id="@+id/HomeButton"
-        android:layout_width="118dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="37dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_width="73dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VerdadButton"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_cropped__1_" />
 </androidx.constraintlayout.widget.ConstraintLayout>

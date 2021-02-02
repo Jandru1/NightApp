@@ -1,12 +1,18 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +32,6 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private TextView ultima_carta;
 
     private TextView jugador_jugando;
-    private TextView cartaTextView;
 
     private int k = 0;
     private int n;
@@ -34,29 +39,35 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private BarajaPoker Baraja = new BarajaPoker();
     private Bundle bundle;
 
-    private String carta_anterior1 = null;
-    private String carta_anterior2 = null;
-
     private Intent intent;
 
     private BarajaPersonalizada BP = null;
+    private ImageView HomeButton;
 
-
+    private ShotsCounter Shots = new ShotsCounter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_1_4);
 
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+
         DiamanteButton = findViewById(R.id.DiamanteButton);
         PicasButton = findViewById(R.id.PicasButton);
         CorazonesButton = findViewById(R.id.CorazonesButton);
         TrebolesButton = findViewById(R.id.TrebolesButton);
         SiguienteButtonn = findViewById(R.id.SigBut);
+        HomeButton = findViewById(R.id.HomeButton1_4);
 
         ultima_carta = findViewById(R.id.UltimaCartaTextView);
         pregunta = findViewById(R.id.PaloTextView);
         jugador_jugando = findViewById(R.id.jugadorTextView);
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        jugador_jugando.setTypeface(robotoLight);
+        pregunta.setTypeface(robotoLight);
+        ultima_carta.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -67,6 +78,26 @@ public class ElCamino_1_4 extends AppCompatActivity {
     }
 
     private void Primer_caso() {
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino_1_4.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCamino_1_4.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
         jugador_jugando.setText(Jugadores.get(k));
         pregunta.setText("¿A qué palo pertenece?");
         ultima_carta.setText("Tu última carta!");
@@ -125,9 +156,15 @@ public class ElCamino_1_4 extends AppCompatActivity {
         String palo_final = Baraja.get_palo(n);
 
         if(palo.equals(palo_final)) {
-            pregunta.setText("Felicidades! Un "+ carta +". Repartes 3 tragos");
+            pregunta.setText("Felicidades! Un "+ carta +". Repartes 4 tragos");
         }
-        else pregunta.setText("Lástima! La carta es un " + carta + "!");
+        else {
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
+            pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 4 tragos!");
+        }
 
         DiamanteButton.setVisibility(View.INVISIBLE);
         CorazonesButton.setVisibility(View.INVISIBLE);
@@ -148,6 +185,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
                     intent.putStringArrayListExtra("Players", Jugadores);
                     intent.putStringArrayListExtra("numeross", numeross);
                     intent.putExtra("Ronda", 1);
+                    intent.putExtra("Shots", Shots);
                     startActivity(intent);
                 }
                 else {

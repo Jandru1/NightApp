@@ -1,20 +1,26 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChoosePlayers extends AppCompatActivity {
 
@@ -22,7 +28,7 @@ public class ChoosePlayers extends AppCompatActivity {
     private ArrayList<String> playersList;
     private ArrayAdapter<String> adaptador1;
     private EditText et1;
-    private ImageButton addButton;
+    private ImageView addButton;
     private Button startgame;
 
 
@@ -58,19 +64,57 @@ public class ChoosePlayers extends AppCompatActivity {
             }
         });
 
+        players.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final int posicion=i;
+
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ChoosePlayers.this);
+                dialogo1.setMessage("¿ Eliminar este jugador ?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        playersList.remove(posicion);
+                        adaptador1.notifyDataSetChanged();
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+                return false;
+            }
+        });
+
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+                for(int i = 0; i < playersList.size();++i) {
+                    Shots.getShotsMap().put(playersList.get(i),0);
+                }
+
                 String modality = getIntent().getExtras().getString("Modalidad");
                 if (modality.equals("VerdadOReto")) {
-                    Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
-                    intent.putStringArrayListExtra("playerList", playersList);
-                    startActivity(intent);
+                    if (playersList.size() < 2) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 2 jugadores", Toast.LENGTH_SHORT).show();
+                    else {
+                        Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
+                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    }
                 }
                 else if (modality.equals("LaMoneda")){
-                    Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
-                    intent.putStringArrayListExtra("playerList", playersList);
-                    startActivity(intent);
+                    if (playersList.size() < 1) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
+                    else {
+                        Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
+                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    }
                 }
             }
         });

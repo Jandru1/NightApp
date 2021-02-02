@@ -8,27 +8,25 @@
 
     <Button
         android:id="@+id/VerdadButton"
-        android:layout_width="60pt"
-        android:layout_height="60pt"
-        android:layout_marginStart="40dp"
+        android:layout_width="154dp"
+        android:layout_height="129dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="532dp"
-        android:layout_marginEnd="15dp"
         android:text="V"
         android:textColor="@color/white"
         android:textSize="36sp"
         app:backgroundTint="#353535"
-        app:layout_constraintEnd_toStartOf="@+id/RetoButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="V" />
 
     <Button
         android:id="@+id/RetoButton"
-        android:layout_width="60pt"
-        android:layout_height="60pt"
-        android:layout_marginStart="15dp"
+        android:layout_width="154dp"
+        android:layout_height="129dp"
+        android:layout_marginStart="49dp"
         android:layout_marginTop="532dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="27dp"
         android:text="R"
         android:textColor="@color/white"
         android:textSize="36sp"
@@ -38,12 +36,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:id="@+id/SiguienteJugador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="177dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="174dp"
         android:text="Siguiente Jugador:"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -54,21 +54,22 @@
         tools:text="Siguiente Jugador:" />
 
     <TextView
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:id="@+id/Jugador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="293dp"
+        android:layout_height="147dp"
         android:layout_marginTop="44dp"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SiguienteJugador" />
 
     <ImageView
         android:id="@+id/HomeButton"
-        android:layout_width="30pt"
-        android:layout_height="30pt"
+        android:layout_width="73dp"
+        android:layout_height="66dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"

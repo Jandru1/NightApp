@@ -1,15 +1,21 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino_1_1 extends AppCompatActivity {
 
@@ -23,14 +29,21 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private Button NegroButton;
     private Button SiguienteButton;
 
+    private ImageView HomeButton;
+
     private TextView pregunta;
     private TextView player;
 
     private Intent intent;
     private BarajaPoker Baraja = new BarajaPoker();
 
+    private ShotsCounter Shots = new ShotsCounter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_1_1);
 
@@ -39,9 +52,13 @@ public class ElCamino_1_1 extends AppCompatActivity {
         RojoButton = findViewById(R.id.RojoButton);
         NegroButton = findViewById(R.id.NegroButton);
         SiguienteButton = findViewById(R.id.SiguienteButton);
-
+        HomeButton = findViewById(R.id.HomeButton1_1);
         pregunta = findViewById(R.id.RojoONegro);
         player = findViewById(R.id.Player);
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        pregunta.setTypeface(robotoLight);
+        player.setTypeface(robotoLight);
 
         intent = new Intent(ElCamino_1_1.this, ElCamino_1_2.class);
 
@@ -49,6 +66,26 @@ public class ElCamino_1_1 extends AppCompatActivity {
     }
 
     private void Primer_caso() {
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino_1_1.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCamino_1_1.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
 
         player.setText(Jugadores.get(k));
         pregunta.setText("¿De qué color es la carta?");
@@ -91,7 +128,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
             if (color.equals("negro")) color_respuesta = "rojo";
             if (color.equals("rojo")) color_respuesta = "negro";
             pregunta.setText("Lástima!" + "   " + "Tu carta es un " + carta + ". Bebes 1 trago!");
-
+            Shots.SumShot(Jugadores.get(k));
         }
 
         else {
@@ -112,6 +149,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
                 if(k+1 == Jugadores.size()) {
                     intent.putStringArrayListExtra("Players", Jugadores);
                     intent.putStringArrayListExtra("numeross", numeross);
+                    intent.putExtra("Shots", Shots);
                     startActivity(intent);
                 }
                 else {
@@ -157,8 +195,6 @@ public class ElCamino_1_1 extends AppCompatActivity {
         }
         if(ha_salido) generarRandom();
         else numeross.add(n_string);
-
-
     }
 
 }

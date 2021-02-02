@@ -1,15 +1,22 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino_1_2 extends AppCompatActivity {
 
@@ -22,7 +29,6 @@ public class ElCamino_1_2 extends AppCompatActivity {
 
     private TextView pregunta;
     private TextView anterior_carta_fue;
-
     private TextView jugador_jugando;
     private TextView cartaTextView;
 
@@ -37,23 +43,38 @@ public class ElCamino_1_2 extends AppCompatActivity {
     private Intent intent;
 
     private BarajaPersonalizada BP = null;
+    private ImageView HomeButton;
 
+    private ShotsCounter Shots = new ShotsCounter();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+        for (Map.Entry<String, Integer> entry : Shots.getShotsMap().entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            Log.d("Hashmap "+ key, ""+value);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_1_2);
 
         MayorButton = findViewById(R.id.MayorButton);
         MenorButton = findViewById(R.id.MenorButton);
         SiguienteButtonn = findViewById(R.id.Siguiente);
-
+        HomeButton = findViewById(R.id.HomeButton1_2);
         anterior_carta_fue = findViewById(R.id.TextView);
         pregunta = findViewById(R.id.TextView2);
 
         jugador_jugando = findViewById(R.id.PlaerText);
         cartaTextView = findViewById(R.id.Carta);
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        jugador_jugando.setTypeface(robotoLight);
+        cartaTextView.setTypeface(robotoLight);
+        anterior_carta_fue.setTypeface(robotoLight);
+        cartaTextView.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -64,6 +85,26 @@ public class ElCamino_1_2 extends AppCompatActivity {
     }
 
     private void Primer_caso() {
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino_1_2.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCamino_1_2.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
         jugador_jugando.setText(Jugadores.get(k));
         pregunta.setText("¿La siguiente es mayor o menor?");
         anterior_carta_fue.setText("Tu anterior carte fue:");
@@ -119,16 +160,24 @@ public class ElCamino_1_2 extends AppCompatActivity {
             enseñar_carta(mayor_o_menor);
         }
         else if(mayor_o_menor.equals("mayor") & num_antiguo_int>num_nuevo_int){
-            pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
+            pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 2 tragos!");
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
         }
         else if(mayor_o_menor.equals("menor") & num_antiguo_int<num_nuevo_int){
-            pregunta.setText("Lástima! La carta es un " + num_nuevo + "!");
+            pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 2 tragos!");
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
         }
         else if(mayor_o_menor.equals("mayor") & num_antiguo_int<num_nuevo_int){
-            pregunta.setText("Felicidades! Un " + num_nuevo + ". Repartes 2 tragos");
+            pregunta.setText("Felicidades! Un " + carta + ". Repartes 2 tragos!");
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
         }
         else if(mayor_o_menor.equals("menor") & num_antiguo_int>num_nuevo_int){
-            pregunta.setText("Felicidades! Un "+ num_nuevo +". Repartes 2 tragos");
+            pregunta.setText("Felicidades! Un "+ carta +". Repartes 2 tragos!");
+            Shots.SumShot(Jugadores.get(k));
+            Shots.SumShot(Jugadores.get(k));
         }
         if(!soniguales) {
             BP.añadir_carta(carta);
@@ -143,6 +192,7 @@ public class ElCamino_1_2 extends AppCompatActivity {
                 if(k+1 == Jugadores.size()) {
                     intent.putStringArrayListExtra("Players", Jugadores);
                     intent.putStringArrayListExtra("numeross", numeross);
+                    intent.putExtra("Shots", Shots);
                     startActivity(intent);
                 }
                 else {

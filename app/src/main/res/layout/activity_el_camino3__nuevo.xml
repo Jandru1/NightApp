@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ElCamino3"
+    android:id="@+id/ElCamino3L2"
+    android:fillViewport="true">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/C1L7"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="171dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C2L6" />
+
+    <Button
+        android:id="@+id/C2L6"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="120dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C1L6"
+        app:layout_constraintTop_toBottomOf="@+id/C3L5" />
+
+    <Button
+        android:id="@+id/C1L6"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C2L6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C2L5" />
+
+    <Button
+        android:id="@+id/C3L5"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="81dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C2L5"
+        app:layout_constraintTop_toBottomOf="@+id/C4L4" />
+
+    <Button
+        android:id="@+id/C2L5"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C3L5"
+        app:layout_constraintStart_toEndOf="@+id/C1L5"
+        app:layout_constraintTop_toBottomOf="@+id/C2L4" />
+
+    <Button
+        android:id="@+id/C1L5"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C2L5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C2L4" />
+
+    <Button
+        android:id="@+id/C1L4"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C2L4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+
+    <Button
+        android:id="@+id/C3L4"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C4L4"
+        app:layout_constraintStart_toEndOf="@+id/C2L4"
+        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+
+    <Button
+        android:id="@+id/C2L4"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C3L4"
+        app:layout_constraintStart_toEndOf="@+id/C1L4"
+        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+
+    <Button
+        android:id="@+id/C1L3"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C2L3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+
+    <Button
+        android:id="@+id/C3L3"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="81dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C2L3"
+        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+
+    <Button
+        android:id="@+id/C4L4"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="44dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C3L4"
+        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+
+    <Button
+        android:id="@+id/C2L3"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C3L3"
+        app:layout_constraintStart_toEndOf="@+id/C1L3"
+        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+
+    <Button
+        android:id="@+id/C1L1"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="171dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/C2L2"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="120dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C1L2"
+        app:layout_constraintTop_toBottomOf="@+id/C1L1" />
+
+    <ImageView
+        android:id="@+id/HomeButton32"
+        android:layout_width="73dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle_cropped__1_" />
+
+    <Button
+        android:id="@+id/C1L2"
+        android:layout_width="68dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/C2L2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/C1L1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

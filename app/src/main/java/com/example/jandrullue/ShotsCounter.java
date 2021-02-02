@@ -1,20 +1,27 @@
 package com.example.jandrullue;
 
-public class ShotsCounter {
+import java.io.Serializable;
+import java.util.HashMap;
 
-    private int Shots;
-    private String Player;
+public class ShotsCounter implements Serializable {
+
+    private HashMap<String, Integer> Shots = new HashMap<String, Integer>();
 
     public ShotsCounter() { }
 
-    public int getShots() { return this.Shots; }
+    public int getShots(String player) { return this.Shots.get(player); }
 
-    public String getPlayer() { return this.Player; }
+    public void SumShot(String player) {
+        int a = this.Shots.get(player);
+        ++a;
+        this.Shots.put(player,a);
+        }
 
-    public void setShots(int shots) { this.Shots = shots; }
+    public HashMap<String, Integer> getShotsMap() {
+        return this.Shots;
+    }
+    public void addPlayer(String player) {
 
-    public void setPlayer(String player) { this.Player = player; }
-
-    public void SumShot() { Shots++; }
+    }
 
 }

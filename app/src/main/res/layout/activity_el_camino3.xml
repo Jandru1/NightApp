@@ -4,6 +4,183 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ElCamino3">
+    tools:context=".ElCamino3"
+    android:id="@+id/ElCamino3L">
+    <ImageView
+        android:id="@+id/HomeButton3"
+        android:layout_width="73dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle_cropped__1_" />
+    <Button
+        android:id="@+id/C5Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="Carta2"
+        app:layout_constraintBottom_toTopOf="@+id/Avanzar_o_noTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C1Button" />
 
+    <Button
+        android:id="@+id/C1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="Carta2"
+        app:layout_constraintBottom_toTopOf="@+id/Avanzar_o_noTV"
+        app:layout_constraintEnd_toStartOf="@+id/C5Button"
+        app:layout_constraintStart_toEndOf="@+id/C4Button" />
+
+    <Button
+        android:id="@+id/C4Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="Carta2"
+        app:layout_constraintBottom_toTopOf="@+id/Avanzar_o_noTV"
+        app:layout_constraintEnd_toStartOf="@+id/C1Button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/C6Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="323dp"
+        android:layout_marginEnd="7dp"
+        android:text="Carta1"
+        app:layout_constraintEnd_toStartOf="@+id/C2Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/C7Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="323dp"
+        android:layout_marginEnd="7dp"
+        android:text="Carta4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/C3Button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/C2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="323dp"
+        android:layout_marginEnd="7dp"
+        android:text="Carta2"
+        app:layout_constraintEnd_toStartOf="@+id/C3Button"
+        app:layout_constraintStart_toEndOf="@+id/C6Button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/C3Button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="323dp"
+        android:layout_marginEnd="7dp"
+        android:text="Carta3"
+        app:layout_constraintEnd_toStartOf="@+id/C7Button"
+        app:layout_constraintStart_toEndOf="@+id/C2Button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/player"
+        android:layout_width="158dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="124dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/CartaFinalTV"
+        android:layout_width="303dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FoLTV" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/FoLTV"
+        android:layout_width="262dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="72dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player" />
+
+    <TextView
+        android:id="@+id/Avanzar_o_noTV"
+        android:layout_width="291dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/SiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginBottom="51dp"
+        android:text="Si"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/NoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="51dp"
+        android:text="No"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="177dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/TraspasarButton"
+        android:layout_width="138dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="150dp"
+        android:text="Traspasar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
