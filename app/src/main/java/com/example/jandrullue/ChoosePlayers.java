@@ -121,8 +121,13 @@ public class ChoosePlayers extends AppCompatActivity {
 
     }
     public void agregar(View v) {
-        playersList.add(et1.getText().toString());
-        adaptador1.notifyDataSetChanged();
-        et1.setText("");
+        if(et1.getText().toString().isEmpty()){
+            Toast.makeText(ChoosePlayers.this, "Introduce un nombre válido!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            playersList.add(et1.getText().toString());
+            adaptador1.notifyDataSetChanged();
+            et1.setText("");
+        }
     }
 }

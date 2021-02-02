@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,17 +19,22 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private boolean level3_superado = false;
     private boolean level4_superado = false;
 
-    private Button Carta1;
-    private Button Carta2;
-    private Button Carta3;
-    private Button Carta4;
-    private Button Carta5;
-    private Button Carta6;
-    private Button Carta7;
-    private Button Carta8;
-    private Button Carta9;
-    private Button Carta10;
-    private Button Carta11;
+    private ImageView Carta1L1;
+    private ImageView Carta1L2;
+    private ImageView Carta2L1;
+    private ImageView Carta1L3;
+    private ImageView Carta2L3;
+    private ImageView Carta3L3;
+    private ImageView Carta1L4;
+    private ImageView Carta2L4;
+    private ImageView Carta3L4;
+    private ImageView Carta4L4;
+    private ImageView Carta1L5;
+    private ImageView Carta2L5;
+    private ImageView Carta3L5;
+    private ImageView Carta1L6;
+    private ImageView Carta2L6;
+    private ImageView Carta1L7;
 
     private ArrayList<String> Jugadores;
 
@@ -59,7 +65,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino3__nuevo);
 
-        Carta1 = findViewById(R.id.C1L2);
+        //Carta1 = findViewById(R.id.C1L1);
         /*
         Carta2 = findViewById(R.id.C2Button2);
         Carta3 = findViewById(R.id.C3Button2);
@@ -138,7 +144,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
             startActivity(intent);
         }
         */
-        Carta1.setOnClickListener(new View.OnClickListener() {
+        Carta1L1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generarRandom();
@@ -175,7 +181,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
             }
         });
     }
-
+/*
     private void Level7() {
         Level1();
     }
@@ -321,6 +327,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
             }
         });
     }
+
+ */
 
     private void onClickCarta() {
         CartaFinal.setVisibility(View.VISIBLE);

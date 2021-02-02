@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ElCamino3_Nuevo.class);
+                Intent intent = new Intent(MainActivity.this, GamesModalities.class);
                 startActivity(intent);
                // overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <Button
+    <ImageView
         android:id="@+id/C1L7"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -24,9 +24,10 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C2L6" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L6"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+    <ImageView
         android:id="@+id/C2L6"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -37,9 +38,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/C1L6"
-        app:layout_constraintTop_toBottomOf="@+id/C3L5" />
+        app:layout_constraintTop_toBottomOf="@+id/C3L5"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C1L6"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -50,9 +53,10 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C2L6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C2L5" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L5"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+    <ImageView
         android:id="@+id/C3L5"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -63,9 +67,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/C2L5"
-        app:layout_constraintTop_toBottomOf="@+id/C4L4" />
+        app:layout_constraintTop_toBottomOf="@+id/C4L4"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C2L5"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -76,9 +82,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C3L5"
         app:layout_constraintStart_toEndOf="@+id/C1L5"
-        app:layout_constraintTop_toBottomOf="@+id/C2L4" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L4"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C1L5"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -89,9 +97,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C2L5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C2L4" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L4"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C1L4"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -102,9 +112,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C2L4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L3"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C3L4"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -115,9 +127,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C4L4"
         app:layout_constraintStart_toEndOf="@+id/C2L4"
-        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L3"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C2L4"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -128,9 +142,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C3L4"
         app:layout_constraintStart_toEndOf="@+id/C1L4"
-        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L3"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C1L3"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -141,9 +157,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C2L3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+        app:layout_constraintTop_toBottomOf="@+id/C1L2"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C3L3"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -154,9 +172,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/C2L3"
-        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+        app:layout_constraintTop_toBottomOf="@+id/C1L2"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C4L4"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -167,9 +187,11 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/C3L4"
-        app:layout_constraintTop_toBottomOf="@+id/C2L3" />
+        app:layout_constraintTop_toBottomOf="@+id/C2L3"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C2L3"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -180,22 +202,26 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C3L3"
         app:layout_constraintStart_toEndOf="@+id/C1L3"
-        app:layout_constraintTop_toBottomOf="@+id/C1L2" />
+        app:layout_constraintTop_toBottomOf="@+id/C1L2"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C1L1"
         android:layout_width="68dp"
         android:layout_height="119dp"
         android:layout_marginStart="171dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="171dp"
         android:text="Carta1"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/C2L2"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -206,7 +232,9 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/C1L2"
-        app:layout_constraintTop_toBottomOf="@+id/C1L1" />
+        app:layout_constraintTop_toBottomOf="@+id/C1L1"
+        app:srcCompat="@drawable/cartapordetras" />
+
 
     <ImageView
         android:id="@+id/HomeButton32"
@@ -218,7 +246,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_cropped__1_" />
 
-    <Button
+    <ImageView
         android:id="@+id/C1L2"
         android:layout_width="68dp"
         android:layout_height="119dp"
@@ -229,7 +257,8 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@+id/C2L2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/C1L1" />
+        app:layout_constraintTop_toBottomOf="@+id/C1L1"
+        app:srcCompat="@drawable/cartapordetras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
