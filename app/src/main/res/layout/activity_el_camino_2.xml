@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ElCamino_2_1">
+
     <ImageView
         android:id="@+id/HomeButton2"
         android:layout_width="73dp"
@@ -14,81 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_cropped__1_" />
-    <TextView
-        android:id="@+id/Carta1_3TV"
-        android:layout_width="323dp"
-        android:layout_height="56dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="104dp"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Carta1_2TV" />
-
-    <TextView
-        android:id="@+id/Carta1_2TV"
-        android:layout_width="323dp"
-        android:layout_height="56dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Carta1_3Button"
-        android:layout_width="128dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="170dp"
-        android:text="Carta3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Carta1_2Button" />
-
-    <Button
-        android:id="@+id/Carta1_2Button"
-        android:layout_width="128dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="159dp"
-        android:text="Carta2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Carta1_1Button" />
-
-    <Button
-        android:id="@+id/Carta1_1Button"
-        android:layout_width="128dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="159dp"
-        android:text="Carta1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Carta1_1TV"
-        android:layout_width="323dp"
-        android:layout_height="56dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="177dp"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Sig"
@@ -114,14 +40,14 @@
 
     <TextView
         android:id="@+id/ShotsText"
-        android:layout_width="306dp"
-        android:layout_height="481dp"
+        android:layout_width="235dp"
+        android:layout_height="400dp"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <TextView
         android:id="@+id/RondaTV"
@@ -134,5 +60,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Carta1"
+        android:layout_width="123dp"
+        android:layout_height="161dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="5dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Carta2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
+
+
+    <ImageView
+        android:id="@+id/Carta3"
+        android:layout_width="123dp"
+        android:layout_height="161dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="15dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Carta2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
+
+    <ImageView
+        android:id="@+id/Carta2"
+        android:layout_width="123dp"
+        android:layout_height="161dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="Carta1"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Carta3"
+        app:layout_constraintStart_toEndOf="@+id/Carta1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

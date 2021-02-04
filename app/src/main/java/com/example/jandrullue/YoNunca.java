@@ -124,7 +124,6 @@ public class YoNunca extends AppCompatActivity {
                     }
                 });
                 dialogo1.show();
-
             }
         });
     }

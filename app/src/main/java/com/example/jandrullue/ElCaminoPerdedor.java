@@ -143,7 +143,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
             SiguienteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3.class);
+                    Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3_Nuevo.class);
                     intent.putExtra("Level", 1);
                     intent.putStringArrayListExtra("Jugadores", Jugadores);
                     String Perdedor = Perdedores.get(0).getplayer();

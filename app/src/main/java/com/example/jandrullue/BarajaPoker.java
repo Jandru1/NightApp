@@ -1,5 +1,7 @@
 package com.example.jandrullue;
 
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 public class BarajaPoker {
 
     private ArrayList<String> Baraja = new ArrayList<>();
+    private ArrayList<String> Cartas = new ArrayList<>();
 
     public BarajaPoker() {
 
@@ -75,9 +78,77 @@ public class BarajaPoker {
         this.Baraja.add("K de treboles");
         this.Baraja.add("K de picas");
 
+
+
+        this.Cartas.add("ascorazones");
+        this.Cartas.add("asdiamantes");
+        this.Cartas.add("astreboles");
+        this.Cartas.add("aspicas");
+
+        this.Cartas.add("doscorazones");
+        this.Cartas.add("dosdiamantes");
+        this.Cartas.add("dostreboles");
+        this.Cartas.add("dospicas");
+
+        this.Cartas.add("trescorazones");
+        this.Cartas.add("tresdiamantes");
+        this.Cartas.add("trestreboles");
+        this.Cartas.add("trespicas");
+
+        this.Cartas.add("cuatrocorazones");
+        this.Cartas.add("cuatrodiamantes");
+        this.Cartas.add("cuatrotreboles");
+        this.Cartas.add("cuatropicas");
+
+        this.Cartas.add("cincocorazones");
+        this.Cartas.add("cincodiamantes");
+        this.Cartas.add("cincotreboles");
+        this.Cartas.add("cincopicas");
+
+        this.Cartas.add("seiscorazones");
+        this.Cartas.add("seisdiamantes");
+        this.Cartas.add("seistreboles");
+        this.Cartas.add("seispicas");
+
+        this.Cartas.add("sietecorazones");
+        this.Cartas.add("sietediamantes");
+        this.Cartas.add("sietetreboles");
+        this.Cartas.add("sietepicas");
+
+        this.Cartas.add("ochocorazones");
+        this.Cartas.add("ochodiamantes");
+        this.Cartas.add("ochotreboles");
+        this.Cartas.add("ochopicas");
+
+        this.Cartas.add("nuevecorazones");
+        this.Cartas.add("nuevediamantes");
+        this.Cartas.add("nuevetreboles");
+        this.Cartas.add("nuevepicas");
+
+        this.Cartas.add("diezcorazones");
+        this.Cartas.add("diezdiamantes");
+        this.Cartas.add("dieztreboles");
+        this.Cartas.add("diezpicas");
+
+        this.Cartas.add("jcorazones");
+        this.Cartas.add("jdiamantes");
+        this.Cartas.add("jtreboles");
+        this.Cartas.add("jpicas");
+
+        this.Cartas.add("qcorazones");
+        this.Cartas.add("qdiamantes");
+        this.Cartas.add("qtreboles");
+        this.Cartas.add("qpicas");
+
+        this.Cartas.add("kcorazones");
+        this.Cartas.add("kdiamantes");
+        this.Cartas.add("ktreboles");
+        this.Cartas.add("kpicas");
     }
 
     public ArrayList<String> getBaraja(){ return this.Baraja; }
+
+    public ArrayList<String> getCartas(){ return this.Cartas; }
 
     public String get_num(int n) {
         String s = this.Baraja.get(n);

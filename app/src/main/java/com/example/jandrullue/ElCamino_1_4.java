@@ -22,6 +22,8 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
 
+    private ImageView CartaIV;
+
     private Button DiamanteButton;
     private Button CorazonesButton;
     private Button PicasButton;
@@ -30,6 +32,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
 
     private TextView pregunta;
     private TextView ultima_carta;
+    private TextView LastimaTV;
 
     private TextView jugador_jugando;
 
@@ -60,14 +63,18 @@ public class ElCamino_1_4 extends AppCompatActivity {
         SiguienteButtonn = findViewById(R.id.SigBut);
         HomeButton = findViewById(R.id.HomeButton1_4);
 
+        CartaIV = findViewById(R.id.Cartatv);
+
         ultima_carta = findViewById(R.id.UltimaCartaTextView);
         pregunta = findViewById(R.id.PaloTextView);
         jugador_jugando = findViewById(R.id.jugadorTextView);
+        LastimaTV = findViewById(R.id.LastimaTV);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         jugador_jugando.setTypeface(robotoLight);
         pregunta.setTypeface(robotoLight);
         ultima_carta.setTypeface(robotoLight);
+        LastimaTV.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -156,16 +163,18 @@ public class ElCamino_1_4 extends AppCompatActivity {
         String palo_final = Baraja.get_palo(n);
 
         if(palo.equals(palo_final)) {
-            pregunta.setText("Felicidades! Un "+ carta +". Repartes 4 tragos");
+            LastimaTV.setText("Felicidades!"+/* Un "+ carta +"*/" Repartes 4 tragos");
+            pregunta.setVisibility(View.INVISIBLE);
         }
         else {
             Shots.SumShot(Jugadores.get(k));
             Shots.SumShot(Jugadores.get(k));
             Shots.SumShot(Jugadores.get(k));
             Shots.SumShot(Jugadores.get(k));
-            pregunta.setText("Lástima! La carta es un " + carta + ". Bebes 4 tragos!");
+            LastimaTV.setText("Lástima!"+/* La carta es un " + carta + */". Bebes 4 tragos!");
+            pregunta.setVisibility(View.INVISIBLE);
         }
-
+        SetImageInCarta(carta, CartaIV);
         DiamanteButton.setVisibility(View.INVISIBLE);
         CorazonesButton.setVisibility(View.INVISIBLE);
         TrebolesButton.setVisibility(View.INVISIBLE);
@@ -194,6 +203,18 @@ public class ElCamino_1_4 extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void SetImageInCarta(String carta, ImageView CartaIV) {
+        Log.d("Entro en SetImageCarta","aaa");
+        BarajaPoker Baraja = new BarajaPoker();
+        int aux = 0;
+        for(int i = 0; i < Baraja.getBaraja().size();++i) {
+            if(Baraja.getBaraja().get(i).equals(carta)) aux = i;
+        }
+        String imagen_carta = Baraja.getCartas().get(aux);
+        int resID = getResources().getIdentifier(imagen_carta , "drawable", getPackageName());
+        CartaIV.setImageResource(resID);
     }
 
     private String transform_JQK(String s) {

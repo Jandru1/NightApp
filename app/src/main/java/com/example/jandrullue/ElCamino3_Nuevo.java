@@ -1,14 +1,22 @@
 package com.example.jandrullue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,10 +26,13 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private boolean level2_superado = false;
     private boolean level3_superado = false;
     private boolean level4_superado = false;
+    private boolean level5_superado = false;
+    private boolean level6_superado = false;
+    private boolean level7_superado = false;
 
     private ImageView Carta1L1;
     private ImageView Carta1L2;
-    private ImageView Carta2L1;
+    private ImageView Carta2L2;
     private ImageView Carta1L3;
     private ImageView Carta2L3;
     private ImageView Carta3L3;
@@ -36,6 +47,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ImageView Carta2L6;
     private ImageView Carta1L7;
 
+    private ScrollView ScrollView;
+
     private ArrayList<String> Jugadores;
 
     private Button SiButton;
@@ -43,10 +56,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
     private Button TraspasarButton;
 
-    private TextView JugadorTV;
-    private TextView CartaFinal;
-    private TextView Avanzar_o_no;
-    private TextView F_o_L;
+    private TextView TragosTV;
+    private TextView PlayerTV;
 
     private int Level;
     private int n;
@@ -60,25 +71,47 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
     private Spinner spinner;
 
+    private ArrayList<ImageView> Cartas = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino3__nuevo);
-
+        Level = 1;
         //Carta1 = findViewById(R.id.C1L1);
-        /*
-        Carta2 = findViewById(R.id.C2Button2);
-        Carta3 = findViewById(R.id.C3Button2);
-        Carta4 = findViewById(R.id.C4Button2);
-        Carta5 = findViewById(R.id.C7Button2);
-        Carta6 = findViewById(R.id.c7Button3);
-        Carta7 = findViewById(R.id.C8Button2);
-        Carta8 = findViewById(R.id.C9Button2);
-        Carta9 = findViewById(R.id.C10Button2);
-        Carta10 = findViewById(R.id.C11Button2);
 
-         */
-/*
+        Carta1L1 = findViewById(R.id.C1L1);
+        Carta1L2 = findViewById(R.id.C1L2);
+        Carta1L3 = findViewById(R.id.C1L3);
+        Carta1L4 = findViewById(R.id.C1L4);
+        Carta1L5 = findViewById(R.id.C1L5);
+        Carta1L6 = findViewById(R.id.C1L6);
+        Carta1L7 = findViewById(R.id.C1L7);
+        Carta2L2 = findViewById(R.id.C2L2);
+        Carta2L3 = findViewById(R.id.C2L3);
+        Carta2L4 = findViewById(R.id.C2L4);
+        Carta2L5 = findViewById(R.id.C2L5);
+        Carta2L6 = findViewById(R.id.C2L6);
+        Carta3L3 = findViewById(R.id.C3L3);
+        Carta3L4 = findViewById(R.id.C3L4);
+        Carta3L5 = findViewById(R.id.C3L5);
+        Carta4L4 = findViewById(R.id.C4L4);
+        
+        Cartas_ArrayList();
+        
+        layout = findViewById(R.id.ElCamino3L2);
+        ScrollView = findViewById(R.id.ElCaminoScrollView);
+
+        TragosTV = findViewById(R.id.TragosTV);
+        PlayerTV = findViewById(R.id.playerTV);
+
+        Jugadores = getIntent().getStringArrayListExtra("Jugadores");
+        Perdedor = getIntent().getExtras().getString("Perdedor");
+
+        Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
+        TragosTV.setTypeface(robotoLight);
+        PlayerTV.setTypeface(robotoLight);
+        /*
         SiButton = findViewById(R.id.SiButton2);
         NoButton = findViewById(R.id.NoButton2);
         TraspasarButton = findViewById(R.id.TraspasarButton2);
@@ -92,9 +125,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Avanzar_o_no = findViewById(R.id.Avanzar_o_noTV2);
         F_o_L = findViewById(R.id.FoLTV2);
 
-        layout = findViewById(R.id.ElCamino3L2);
 
-        Jugadores = getIntent().getStringArrayListExtra("Jugadores");
 
         // String[] valores = {"Soy una persona mayor", "Problemas inmunológicos", "Otros"};
         String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
@@ -102,295 +133,508 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
         layout = findViewById(R.id.ElCamino3L2);
 
-        Perdedor = getIntent().getExtras().getString("Perdedor");
         Level = getIntent().getExtras().getInt("Level");
 
         init(Level);
 
- */
+*/
+        init2(Level);
+    }
+
+    private void Cartas_ArrayList() {
+        Cartas.add(Carta1L1);
+        Cartas.add(Carta1L2);
+        Cartas.add(Carta2L2);
+        Cartas.add(Carta1L3);
+        Cartas.add(Carta2L3);
+        Cartas.add(Carta3L3);
+        Cartas.add(Carta1L4);
+        Cartas.add(Carta2L4);
+        Cartas.add(Carta3L4);
+        Cartas.add(Carta4L4);
+        Cartas.add(Carta1L5);
+        Cartas.add(Carta2L5);
+        Cartas.add(Carta3L5);
+        Cartas.add(Carta1L6);
+        Cartas.add(Carta2L6);
+        Cartas.add(Carta1L7);
 
     }
 
-    private void init(int level) {
-        Log.d ("Perdedor:", ""+Perdedor);
-/*
-        JugadorTV.setText(Perdedor);
-        Carta1.setVisibility(View.INVISIBLE);
-        Carta2.setVisibility(View.INVISIBLE);
-        Carta3.setVisibility(View.INVISIBLE);
-        Carta4.setVisibility(View.INVISIBLE);
-        Carta5.setVisibility(View.INVISIBLE);
-        Carta6.setVisibility(View.INVISIBLE);
-        Carta7.setVisibility(View.INVISIBLE);
-        SiButton.setVisibility(View.INVISIBLE);
-        NoButton.setVisibility(View.INVISIBLE);
-        TraspasarButton.setVisibility(View.INVISIBLE);
-        spinner.setVisibility(View.INVISIBLE);
-        CartaFinal.setVisibility(View.INVISIBLE);
-        Avanzar_o_no.setVisibility(View.INVISIBLE);
-        F_o_L.setVisibility(View.INVISIBLE);
-        Avanzar_o_no.setTextSize(38);
+    private void enable_all() {
+        Carta1L1.setEnabled(true);
+        Carta1L2.setEnabled(true);
+        Carta2L2.setEnabled(true);
+        Carta1L3.setEnabled(true);
+        Carta2L3.setEnabled(true);
+        Carta3L3.setEnabled(true);
+        Carta1L4.setEnabled(true);
+        Carta2L4.setEnabled(true);
+        Carta3L4.setEnabled(true);
+        Carta4L4.setEnabled(true);
+        Carta1L5.setEnabled(true);
+        Carta2L5.setEnabled(true);
+        Carta3L5.setEnabled(true);
+        Carta1L6.setEnabled(true);
+        Carta2L6.setEnabled(true);
+        Carta1L7.setEnabled(true);
+    }
 
-        if(level==1) Level1();
-        else if (level == 2) Level2();
-        else if (level == 3) Level3();
-        else if (level == 4) Level4();
-        else if (level == 5) Level5();
-        else if (level == 6) Level6();
-        else if (level == 7) Level7();
-        else {
-            Intent intent = new Intent(ElCamino3_Nuevo.this, ElCaminoCampeon.class);
-            intent.putExtra("Ganador", ""+Perdedor);
-            startActivity(intent);
+    private void enable_level1() {
+        Carta1L1.setEnabled(true);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level2() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(true);
+        Carta2L2.setEnabled(true);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level3() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(true);
+        Carta2L3.setEnabled(true);
+        Carta3L3.setEnabled(true);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level4() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(true);
+        Carta2L4.setEnabled(true);
+        Carta3L4.setEnabled(true);
+        Carta4L4.setEnabled(true);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level5() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(true);
+        Carta2L5.setEnabled(true);
+        Carta3L5.setEnabled(true);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level6() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(true);
+        Carta2L6.setEnabled(true);
+        Carta1L7.setEnabled(false);
+    }
+
+    private void enable_level7() {
+        Carta1L1.setEnabled(false);
+        Carta1L2.setEnabled(false);
+        Carta2L2.setEnabled(false);
+        Carta1L3.setEnabled(false);
+        Carta2L3.setEnabled(false);
+        Carta3L3.setEnabled(false);
+        Carta1L4.setEnabled(false);
+        Carta2L4.setEnabled(false);
+        Carta3L4.setEnabled(false);
+        Carta4L4.setEnabled(false);
+        Carta1L5.setEnabled(false);
+        Carta2L5.setEnabled(false);
+        Carta3L5.setEnabled(false);
+        Carta1L6.setEnabled(false);
+        Carta2L6.setEnabled(false);
+        Carta1L7.setEnabled(true);
+    }
+
+    private void init2(int level) {
+        TragosTV.setVisibility(View.INVISIBLE);
+        PlayerTV.setText(Perdedor);
+        if(level==1) {
+            enable_level1();
+            Level1();
         }
-        */
-        Carta1L1.setOnClickListener(new View.OnClickListener() {
+        else if(level==2) {
+            enable_level2();
+            Level2();
+        }
+        else if (level==3) {
+            enable_level3();
+            Level3();
+        }
+        else if (level==4) {
+            enable_level4();
+            Level4();
+        }
+        else if (level==5) {
+            enable_level5();
+            Level5();
+        }
+        else if (level==6) {
+            enable_level6();
+            Level6();
+        }
+        else if (level==7) {
+            enable_level7();
+            Level7();
+        }
+    }
+
+    private void AllImagesToBegin() {
+        Carta1L1.setImageResource(R.drawable.cartapordetras);
+        Carta1L2.setImageResource(R.drawable.cartapordetras);
+        Carta2L2.setImageResource(R.drawable.cartapordetras);
+        Carta1L3.setImageResource(R.drawable.cartapordetras);
+        Carta2L3.setImageResource(R.drawable.cartapordetras);
+        Carta3L3.setImageResource(R.drawable.cartapordetras);
+        Carta1L4.setImageResource(R.drawable.cartapordetras);
+        Carta2L4.setImageResource(R.drawable.cartapordetras);
+        Carta3L4.setImageResource(R.drawable.cartapordetras);
+        Carta4L4.setImageResource(R.drawable.cartapordetras);
+        Carta1L5.setImageResource(R.drawable.cartapordetras);
+        Carta2L5.setImageResource(R.drawable.cartapordetras);
+        Carta3L5.setImageResource(R.drawable.cartapordetras);
+        Carta1L6.setImageResource(R.drawable.cartapordetras);
+        Carta2L6.setImageResource(R.drawable.cartapordetras);
+        Carta1L7.setImageResource(R.drawable.cartapordetras);
+    }
+
+    private void Nivel_Superado(int level) {
+        if(level == 1)level1_superado = true;
+        else if(level == 2)level2_superado = true;
+        else if(level == 3)level3_superado = true;
+        else if(level == 4)level4_superado = true;
+        else if(level == 5)level5_superado = true;
+        else if(level == 6)level6_superado = true;
+        else if(level == 7)level7_superado = true;
+    }
+
+    private void Level7() {
+        Carta1L7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generarRandom();
-                String carta = Baraja.getBaraja().get(n);
-                boolean Figura = es_Figura(carta);
-                if(Figura){
-                    F_o_L.setText("Lástima!");
-                    Avanzar_o_no.setText("Debes volver a empezar");
-                    Level = 1;
-                    layout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            init(Level);
-                        }
-                    });
-                }
-                else {
-                    boolean es_7 = es_7(carta);
-                    if (es_7) {
-                        traspasar_El_Camino();
-                    }
-                    else {
-                        F_o_L.setText("Felicidades!");
-                        Avanzar_o_no.setText("Puedes avanzar al nivel " + (Level + 1) + "!");
-                        ++Level;
-                        layout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                init(Level);
-                            }
-                        });
-                    }
-                }
+                onClickCarta(Carta1L7);
             }
         });
-    }
-/*
-    private void Level7() {
-        Level1();
     }
 
     private void Level6() {
-        Level2();
+        Carta1L6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCarta(Carta1L6);
+
+            }
+        });
+
+        Carta2L6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCarta(Carta2L6);
+            }
+        });
     }
 
     private void Level5() {
-        Level3();
+        Carta1L5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCarta(Carta1L5);
+
+            }
+        });
+
+        Carta2L5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCarta(Carta2L5);
+            }
+        });
+
+        Carta3L5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCarta(Carta3L5);
+            }
+        });
     }
 
     private void Level4() {
-        Carta6.setVisibility(View.VISIBLE);
-        Carta2.setVisibility(View.VISIBLE);
-        Carta3.setVisibility(View.VISIBLE);
-        Carta7.setVisibility(View.VISIBLE);
-        Carta6.setText("Carta 1");
-        Carta2.setText("Carta 2");
-        Carta3.setText("Carta 3");
-        Carta7.setText("Carta 3");
-
-        Carta6.setOnClickListener(new View.OnClickListener() {
+        Carta1L4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta6.setVisibility(View.INVISIBLE);
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-                Carta7.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta1L4);
 
             }
         });
-        Carta2.setOnClickListener(new View.OnClickListener() {
+        Carta2L4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta6.setVisibility(View.INVISIBLE);
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-                Carta7.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta2L4);
             }
         });
-        Carta3.setOnClickListener(new View.OnClickListener() {
+        Carta3L4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta6.setVisibility(View.INVISIBLE);
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-                Carta7.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta3L4);
             }
         });
-        Carta7.setOnClickListener(new View.OnClickListener() {
+        Carta4L4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta6.setVisibility(View.INVISIBLE);
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-                Carta7.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta4L4);
             }
         });
     }
 
     private void Level3() {
-        Carta4.setVisibility(View.VISIBLE);
-        Carta1.setVisibility(View.VISIBLE);
-        Carta5.setVisibility(View.VISIBLE);
-        Carta4.setText("Carta 1");
-        Carta1.setText("Carta 2");
-        Carta5.setText("Carta 3");
-
-        Carta4.setOnClickListener(new View.OnClickListener() {
+        Carta1L3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta4.setVisibility(View.INVISIBLE);
-                Carta5.setVisibility(View.INVISIBLE);
-                Carta1.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta1L3);
 
             }
         });
 
-        Carta5.setOnClickListener(new View.OnClickListener() {
+        Carta2L3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta4.setVisibility(View.INVISIBLE);
-                Carta5.setVisibility(View.INVISIBLE);
-                Carta1.setVisibility(View.INVISIBLE);
-                onClickCarta();
-
+                onClickCarta(Carta2L3);
             }
         });
 
-        Carta1.setOnClickListener(new View.OnClickListener() {
+        Carta3L3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta4.setVisibility(View.INVISIBLE);
-                Carta5.setVisibility(View.INVISIBLE);
-                Carta1.setVisibility(View.INVISIBLE);
-                onClickCarta();
-
+                onClickCarta(Carta3L3);
             }
         });
-
-
     }
 
     private void Level2() {
-        Carta2.setVisibility(View.VISIBLE);
-        Carta3.setVisibility(View.VISIBLE);
-        Carta2.setText("Carta 1");
-        Carta3.setText("Carta 2");
-
-        Carta2.setOnClickListener(new View.OnClickListener() {
+        Carta1L2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-
-                onClickCarta();
+                onClickCarta(Carta1L2);
             }
         });
-        Carta3.setOnClickListener(new View.OnClickListener() {
+        Carta2L2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta2.setVisibility(View.INVISIBLE);
-                Carta3.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta2L2);
             }
         });
     }
 
     private void Level1() {
-        Carta1.setVisibility(View.VISIBLE);
-        Carta1.setText("Carta 1");
-        Carta1.setOnClickListener(new View.OnClickListener() {
+
+        Carta1L1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta1.setVisibility(View.INVISIBLE);
-                onClickCarta();
+                onClickCarta(Carta1L1);
             }
         });
     }
 
- */
-
-    private void onClickCarta() {
-        CartaFinal.setVisibility(View.VISIBLE);
-        Avanzar_o_no.setVisibility(View.VISIBLE);
-        F_o_L.setVisibility(View.VISIBLE);
+    private void onClickCarta(ImageView Carta) {
         generarRandom();
         String carta = Baraja.getBaraja().get(n);
-        CartaFinal.setText(carta);
+        SetImageInCarta(carta, Carta);
+        Log.d("La carta es un: ", ""+carta);
         boolean Figura = es_Figura(carta);
         if(Figura){
-            F_o_L.setText("Lástima!");
-            Avanzar_o_no.setText("Debes volver a empezar");
+           // TragosTV.setVisibility(View.VISIBLE);
+          //  TragosTV.setText("Bebes "+Level+ " tragos!!");
+            Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_LONG).show();
+            level1_superado = false;
             Level = 1;
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    init(Level);
-                }
-            });
+            All_Cartas_Do_Begin();
         }
         else {
+
             boolean es_7 = es_7(carta);
             if (es_7) {
                 traspasar_El_Camino();
             }
             else {
-                F_o_L.setText("Felicidades!");
-                Avanzar_o_no.setText("Puedes avanzar al nivel " + (Level + 1) + "!");
+                Nivel_Superado(Level);
                 ++Level;
-                layout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        init(Level);
-                    }
-                });
+                // Carta.setImageResource(R.drawable.homebutton);
+                init2(Level);
             }
         }
     }
 
-    private void traspasar_El_Camino() {
-        SiButton.setVisibility(View.VISIBLE);
-        NoButton.setVisibility(View.VISIBLE);
-        F_o_L.setText("Felicidades!");
-        Avanzar_o_no.setTextSize(28);
-        Avanzar_o_no.setText("Puedes traspasar El Camino! ¿Quieres hacerlo? Sino, puedes avanzar al nivel " + (Level + 1) + "!");
+    private void SetImageInCarta(String carta, ImageView CartaIV) {
+        Log.d("Entro en SetImageCarta","aaa");
+        BarajaPoker Baraja = new BarajaPoker();
+        int aux = 0;
+        for(int i = 0; i < Baraja.getBaraja().size();++i) {
+            if(Baraja.getBaraja().get(i).equals(carta)) aux = i;
+        }
+        String imagen_carta = Baraja.getCartas().get(aux);
+        int resID = getResources().getIdentifier(imagen_carta , "drawable", getPackageName());
+        CartaIV.setImageResource(resID);
+    }
 
-        NoButton.setOnClickListener(new View.OnClickListener() {
+    private void All_Cartas_Do_Begin() {
+        enable_all();
+        for(int i = 0; i < Cartas.size();++i) {
+            Cartas.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AllImagesToBegin();
+                    init2(Level);
+                }
+            });
+        }
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ++Level;
-                init(Level);
+                AllImagesToBegin();
+                init2(Level);
             }
         });
+    }
 
-        SiButton.setOnClickListener(new View.OnClickListener() {
+    private void traspasar_El_Camino() {
+        enable_all();
+        for(int i = 0; i < Cartas.size();++i) {
+            Cartas.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino3_Nuevo.this);
+                    dialogo1.setMessage("¿A quien quieres traspasar El Camino?");
+                    dialogo1.setCancelable(false);
+                    View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+                    dialogo1.setTitle("Un 7!");
+                    Spinner spinner = view.findViewById(R.id.SpinnerDialog);
+                    String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
+                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
+                    dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            if (!spinner.getSelectedItem().toString().equals("")) {
+                                Level = 1;
+                                Perdedor =  spinner.getSelectedItem().toString();
+                                AllImagesToBegin();
+                                Log.d("Dentro de Spiner", ""+Perdedor);
+                                init2(Level);
+                            }
+                        }
+                    });
+                    dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            Nivel_Superado(Level);
+                            ++Level;
+                            // Carta.setImageResource(R.drawable.homebutton);
+                            init2(Level);
+                        }
+                    });
+                    dialogo1.setView(view);
+                    AlertDialog ad = dialogo1.create();
+                    ad.show();
+                }
+            });
+        }
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                F_o_L.setVisibility(View.INVISIBLE);
-                CartaFinal.setVisibility(View.INVISIBLE);
-                Avanzar_o_no.setVisibility(View.INVISIBLE);
-                spinner.setVisibility(View.VISIBLE);
-                SpinnerSelected();
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino3_Nuevo.this);
+                dialogo1.setMessage("¿A quien quieres traspasar El Camino?");
+                dialogo1.setCancelable(false);
+                View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+                dialogo1.setTitle("Un 7!");
+                Spinner spinner = view.findViewById(R.id.SpinnerDialog);
+                String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
+                spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
+                dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        if (!spinner.getSelectedItem().toString().equals("")) {
+                            Level = 1;
+                            Perdedor =  spinner.getSelectedItem().toString();
+                            AllImagesToBegin();
+                            Log.d("Dentro de Spiner", ""+Perdedor);
+                            init2(Level);
+                        }
+                    }
+                });
+                dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Nivel_Superado(Level);
+                        ++Level;
+                        // Carta.setImageResource(R.drawable.homebutton);
+                        init2(Level);
+                    }
+                });
+                dialogo1.setView(view);
+                AlertDialog ad = dialogo1.create();
+                ad.show();
             }
         });
     }
@@ -403,7 +647,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 public void onClick(View v) {
                     Level = 1;
                     Perdedor =  spinner.getSelectedItem().toString();
-                    init(Level);
+                    init2(Level);
                 }
             });
         }
@@ -425,10 +669,9 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         if(s.substring(0,1).equals("1")) { b = s.substring(0,2);}
         else b = s.substring(0,1);
         if(b.equals("A") || b.equals("J") || b.equals("K") || b.equals("Q")) a = true;
-        Log.d("El numero es un :", ""+b);
+        //Log.d("El numero es un :", ""+b);
         return a;
     }
-
 
     public void generarRandom() {
         boolean ha_salido = false;
