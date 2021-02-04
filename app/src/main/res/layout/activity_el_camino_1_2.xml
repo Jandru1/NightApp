@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ElCamino_1_2">
 
+    <ImageView
+        android:id="@+id/CIV2"
+        android:layout_width="104dp"
+        android:layout_height="153dp"
+        android:layout_marginBottom="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
+
     <TextView
 
         android:id="@+id/PlaerText"
@@ -40,31 +50,17 @@
 
     <TextView
 
-        android:id="@+id/Carta"
-        android:layout_width="319dp"
-        android:layout_height="53dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextView" />
-
-    <TextView
-
         android:id="@+id/TextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="¿Cómo será la siguiente?"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Carta" />
+        app:layout_constraintTop_toBottomOf="@+id/CIV1" />
 
     <Button
         android:id="@+id/MayorButton"
@@ -107,5 +103,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_cropped__1_" />
+
+    <ImageView
+        android:id="@+id/CIV1"
+        android:layout_width="88dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextView"
+        app:srcCompat="@drawable/cartapordetras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,15 +46,11 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ImageView Carta1L6;
     private ImageView Carta2L6;
     private ImageView Carta1L7;
+    private ImageView HomeButton;
 
     private ScrollView ScrollView;
 
     private ArrayList<String> Jugadores;
-
-    private Button SiButton;
-    private Button NoButton;
-
-    private Button TraspasarButton;
 
     private TextView TragosTV;
     private TextView PlayerTV;
@@ -69,7 +65,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
     private View layout;
 
-    private Spinner spinner;
+    private boolean quefuncioneellayout;
 
     private ArrayList<ImageView> Cartas = new ArrayList<>();
 
@@ -96,7 +92,9 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Carta3L4 = findViewById(R.id.C3L4);
         Carta3L5 = findViewById(R.id.C3L5);
         Carta4L4 = findViewById(R.id.C4L4);
-        
+
+        HomeButton = findViewById(R.id.HomeButton32);
+
         Cartas_ArrayList();
         
         layout = findViewById(R.id.ElCamino3L2);
@@ -111,33 +109,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         TragosTV.setTypeface(robotoLight);
         PlayerTV.setTypeface(robotoLight);
-        /*
-        SiButton = findViewById(R.id.SiButton2);
-        NoButton = findViewById(R.id.NoButton2);
-        TraspasarButton = findViewById(R.id.TraspasarButton2);
-        JugadorTV = findViewById(R.id.player2);
-        CartaFinal = findViewById(R.id.CartaFinalTV2);
-        Avanzar_o_no = findViewById(R.id.Avanzar_o_noTV2);
-        F_o_L = findViewById(R.id.FoLTV2);
-        spinner = (Spinner) findViewById(R.id.spinner2);
-        JugadorTV = findViewById(R.id.player2);
-        CartaFinal = findViewById(R.id.CartaFinalTV2);
-        Avanzar_o_no = findViewById(R.id.Avanzar_o_noTV2);
-        F_o_L = findViewById(R.id.FoLTV2);
 
-
-
-        // String[] valores = {"Soy una persona mayor", "Problemas inmunológicos", "Otros"};
-        String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
-
-        layout = findViewById(R.id.ElCamino3L2);
-
-        Level = getIntent().getExtras().getInt("Level");
-
-        init(Level);
-
-*/
         init2(Level);
     }
 
@@ -314,6 +286,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     }
 
     private void init2(int level) {
+        HomeBut();
+        quefuncioneellayout = false;
         TragosTV.setVisibility(View.INVISIBLE);
         PlayerTV.setText(Perdedor);
         if(level==1) {
@@ -344,6 +318,29 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
             enable_level7();
             Level7();
         }
+    }
+
+    private void HomeBut() {
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino3_Nuevo.this);
+                dialogo1.setMessage("¿Deseas abandonar la partida?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        Intent intent = new Intent(ElCamino3_Nuevo.this, GamesModalities.class);
+                        startActivity(intent);
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+
+            }
+        });
     }
 
     private void AllImagesToBegin() {
@@ -458,10 +455,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickCarta(Carta1L3);
-
             }
         });
-
         Carta2L3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -493,7 +488,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     }
 
     private void Level1() {
-
         Carta1L1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -511,13 +505,13 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         if(Figura){
            // TragosTV.setVisibility(View.VISIBLE);
           //  TragosTV.setText("Bebes "+Level+ " tragos!!");
-            Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_LONG).show();
+            Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_SHORT).show();
             level1_superado = false;
             Level = 1;
+            quefuncioneellayout = true;
             All_Cartas_Do_Begin();
         }
         else {
-
             boolean es_7 = es_7(carta);
             if (es_7) {
                 traspasar_El_Camino();
@@ -554,13 +548,15 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 }
             });
         }
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AllImagesToBegin();
-                init2(Level);
-            }
-        });
+        if (quefuncioneellayout) {
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AllImagesToBegin();
+                    init2(Level);
+                }
+            });
+        }
     }
 
     private void traspasar_El_Camino() {
@@ -637,21 +633,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 ad.show();
             }
         });
-    }
-
-    private void SpinnerSelected() {
-        if (!spinner.getSelectedItem().toString().equals("")) {
-            TraspasarButton.setVisibility(View.VISIBLE);
-            TraspasarButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Level = 1;
-                    Perdedor =  spinner.getSelectedItem().toString();
-                    init2(Level);
-                }
-            });
-        }
-
     }
 
     private boolean es_7(String s) {

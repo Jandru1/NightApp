@@ -10,27 +10,27 @@
         android:id="@+id/RojoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="42dp"
         android:text="Rojo"
         app:layout_constraintBottom_toTopOf="@+id/NegroButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RojoONegro" />
+        app:layout_constraintTop_toBottomOf="@+id/CIV" />
 
     <TextView
 
         android:id="@+id/RojoONegro"
-        android:layout_width="292dp"
-        android:layout_height="160dp"
+        android:layout_width="304dp"
+        android:layout_height="83dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="¿De qúe color es la carta?"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Player" />
 
@@ -62,14 +62,11 @@
         android:id="@+id/SiguienteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="255dp"
-        android:layout_marginTop="244dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="48dp"
         android:text="Siguiente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RojoONegro" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/HomeButton1_1"
@@ -80,5 +77,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_cropped__1_" />
+
+    <ImageView
+        android:id="@+id/CIV"
+        android:layout_width="116dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="264dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RojoONegro"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cartapordetras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

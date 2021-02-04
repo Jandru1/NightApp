@@ -30,7 +30,6 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private TextView anteriores_cartas_fueron;
 
     private TextView jugador_jugando;
-    private TextView cartaTextView;
 
     private int k = 0;
     private int n;
@@ -45,6 +44,9 @@ public class ElCamino_1_3 extends AppCompatActivity {
 
     private BarajaPersonalizada BP = null;
     private ImageView HomeButton;
+    private ImageView CartaIV1;
+    private ImageView CartaIV2;
+    private ImageView CartaIV3;
 
     private ShotsCounter Shots = new ShotsCounter();
 
@@ -64,12 +66,16 @@ public class ElCamino_1_3 extends AppCompatActivity {
         pregunta = findViewById(R.id.TextView4);
 
         jugador_jugando = findViewById(R.id.PlayerText);
-        cartaTextView = findViewById(R.id.Cartas);
+
+        CartaIV1 = findViewById(R.id.CartaIV1);
+        CartaIV2 = findViewById(R.id.CartaIV2);
+        CartaIV3 = findViewById(R.id.CartaIV3);
+
+        CartaIV3.setVisibility(View.INVISIBLE);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         pregunta.setTypeface(robotoLight);
         jugador_jugando.setTypeface(robotoLight);
-        cartaTextView.setTypeface(robotoLight);
         anteriores_cartas_fueron.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
@@ -111,7 +117,8 @@ public class ElCamino_1_3 extends AppCompatActivity {
             BP = (BarajaPersonalizada) bundle.getSerializable("BarajaPersonalizada");
             carta_anterior1 = BP.getBaraja().get(0);
             carta_anterior2 = BP.getBaraja().get(1);
-            cartaTextView.setText(carta_anterior1 + " y " + carta_anterior2);
+            SetImageInCarta(carta_anterior1, CartaIV1);
+            SetImageInCarta(carta_anterior2, CartaIV2);
         }
 
         DentroButton.setVisibility(View.VISIBLE);
@@ -133,8 +140,18 @@ public class ElCamino_1_3 extends AppCompatActivity {
                 enseñar_carta(dentro_o_fuera);
             }
         });
+    }
 
-
+    private void SetImageInCarta(String carta, ImageView CartaIV) {
+        Log.d("Entro en SetImageCarta","aaa");
+        BarajaPoker Baraja = new BarajaPoker();
+        int aux = 0;
+        for(int i = 0; i < Baraja.getBaraja().size();++i) {
+            if(Baraja.getBaraja().get(i).equals(carta)) aux = i;
+        }
+        String imagen_carta = Baraja.getCartas().get(aux);
+        int resID = getResources().getIdentifier(imagen_carta , "drawable", getPackageName());
+        CartaIV.setImageResource(resID);
     }
 
     private void enseñar_carta(String dentro_o_fuera) {
@@ -189,6 +206,8 @@ public class ElCamino_1_3 extends AppCompatActivity {
             }
         }
         if(!soniguales) {
+            CartaIV3.setVisibility(View.VISIBLE);
+            SetImageInCarta(carta, CartaIV3);
             Log.d("CARTA 3: "+ carta + "Jugador", " "+Jugadores.get(k));
             BP.añadir_carta(carta);
             Bundle b = new Bundle();

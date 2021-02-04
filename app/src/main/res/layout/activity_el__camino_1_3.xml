@@ -5,6 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ElCamino_1_3">
+
+    <ImageView
+        android:id="@+id/CartaIV3"
+        android:layout_width="117dp"
+        android:layout_height="161dp"
+        android:layout_marginBottom="115dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cartapordetras" />
+
+    <ImageView
+        android:id="@+id/CartaIV1"
+        android:layout_width="96dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/CartaIV2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextView3"
+        app:srcCompat="@drawable/cartapordetras" />
+
+    <ImageView
+        android:id="@+id/CartaIV2"
+        android:layout_width="96dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CartaIV1"
+        app:layout_constraintTop_toBottomOf="@+id/TextView3"
+        app:srcCompat="@drawable/cartapordetras" />
+
     <ImageView
         android:id="@+id/HomeButton1_3"
         android:layout_width="73dp"
@@ -53,27 +88,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="¿Cómo será la siguiente?"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Cartas" />
-
-    <TextView
-
-        android:id="@+id/Cartas"
-        android:layout_width="337dp"
-        android:layout_height="109dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextView3" />
+        app:layout_constraintTop_toBottomOf="@+id/CartaIV2" />
 
     <TextView
         android:id="@+id/TextView3"
@@ -105,4 +126,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

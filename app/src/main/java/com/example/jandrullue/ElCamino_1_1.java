@@ -30,6 +30,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private Button SiguienteButton;
 
     private ImageView HomeButton;
+    private ImageView CartaIV;
 
     private TextView pregunta;
     private TextView player;
@@ -38,6 +39,8 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private BarajaPoker Baraja = new BarajaPoker();
 
     private ShotsCounter Shots = new ShotsCounter();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
         HomeButton = findViewById(R.id.HomeButton1_1);
         pregunta = findViewById(R.id.RojoONegro);
         player = findViewById(R.id.Player);
+        CartaIV = findViewById(R.id.CIV);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         pregunta.setTypeface(robotoLight);
@@ -108,8 +112,6 @@ public class ElCamino_1_1 extends AppCompatActivity {
                 enseñar_carta(color);
             }
         });
-
-
     }
 
     private void enseñar_carta(String color) {
@@ -134,7 +136,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
         else {
             pregunta.setText("Felicidades! Tu carta es un " + carta + ". Repartes 1 trago");
         }
-
+        SetImageInCarta(carta,CartaIV);
         BarajaPersonalizada BarajaPers = new BarajaPersonalizada();
         BarajaPers.añadir_carta(carta);
         BarajaPers.setplayer(Jugadores.get(k));
@@ -161,6 +163,18 @@ public class ElCamino_1_1 extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void SetImageInCarta(String carta, ImageView CartaIV) {
+        Log.d("Entro en SetImageCarta","aaa");
+        BarajaPoker Baraja = new BarajaPoker();
+        int aux = 0;
+        for(int i = 0; i < Baraja.getBaraja().size();++i) {
+            if(Baraja.getBaraja().get(i).equals(carta)) aux = i;
+        }
+        String imagen_carta = Baraja.getCartas().get(aux);
+        int resID = getResources().getIdentifier(imagen_carta , "drawable", getPackageName());
+        CartaIV.setImageResource(resID);
     }
 
     private String getColorCarta(String carta) {
