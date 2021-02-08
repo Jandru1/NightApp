@@ -13,6 +13,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,11 @@ public class YoNunca extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yo_nunca);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         i = 0;
         YoNuncaPregs YoNuncaPreguntas = new YoNuncaPregs();
       //  ArrayList<String> YoNuncaPreguntas = new ArrayList<String>();
@@ -135,7 +141,6 @@ public class YoNunca extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==YoNuncaPreguntasPrivate.size()) ha_salido=false;

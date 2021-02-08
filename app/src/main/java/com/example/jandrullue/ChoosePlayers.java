@@ -40,6 +40,10 @@ public class ChoosePlayers extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         startgame = findViewById(R.id.StartButton);
         startgame.setBackgroundColor(0xFF00FF00);
         startgame.setText("Start Game!!");
@@ -107,10 +111,19 @@ public class ChoosePlayers extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
-                else if (modality.equals("LaMoneda")){
+                else if (modality.equals("ElCamino")){
                     if (playersList.size() < 1) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
                     else {
                         Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
+                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    }
+                }
+                else if (modality.equals("Trivial")){
+                    if (playersList.size() < 1) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
+                    else {
+                        Intent intent = new Intent(ChoosePlayers.this, TrivialDifficulties.class);
                         intent.putStringArrayListExtra("playerList", playersList);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);

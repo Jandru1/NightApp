@@ -8,19 +8,15 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class GamesModalities extends AppCompatActivity {
+
     private Button VerdadoReto;
-    private Button LaMoneda;
+    private Button ElCamino;
     private Button YoNunca;
-
-/*
-    private ImageView VerdadoReto;
-    private ImageView LaMoneda;
-    private ImageView YoNunca;
- */
-
+    private Button Trivial;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -29,19 +25,19 @@ public class GamesModalities extends AppCompatActivity {
         setContentView(R.layout.activity_games_modalities);
 
         VerdadoReto = findViewById(R.id.VerdadoReto);
-        LaMoneda = findViewById(R.id.LaMoneda);
+        ElCamino = findViewById(R.id.ElCamino);
         YoNunca = findViewById(R.id.YoNunca);
+        Trivial = findViewById(R.id.Trivial);
 
-/*      ESCONDER BARRA DE ARRIBA
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
- */
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         VerdadoReto.setTypeface(robotoLight);
-        LaMoneda.setTypeface(robotoLight);
+        ElCamino.setTypeface(robotoLight);
         YoNunca.setTypeface(robotoLight);
+        Trivial.setTypeface(robotoLight);
 
         VerdadoReto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,21 +49,19 @@ public class GamesModalities extends AppCompatActivity {
                 startActivity(intent);
                 //ANIMACIÓN
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
-
             }
         });
 
-        LaMoneda.setOnClickListener(new View.OnClickListener() {
+        ElCamino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (GamesModalities.this, ChoosePlayers.class);
-                intent.putExtra("Modalidad", "LaMoneda");
+                intent.putExtra("Modalidad", "ElCamino");
                 ShotsCounter Shots = new ShotsCounter();
                 intent.putExtra("Shots", Shots);
                 startActivity(intent);
                 //ANIMACIÓN
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
-
             }
         });
 
@@ -81,7 +75,17 @@ public class GamesModalities extends AppCompatActivity {
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
-
-
+        Trivial.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(GamesModalities.this, ChoosePlayers.class);
+            intent.putExtra("Modalidad", "Trivial");
+            ShotsCounter Shots = new ShotsCounter();
+            intent.putExtra("Shots", Shots);
+            startActivity(intent);
+            //ANIMACIÓN
+            //overridePendingTransition(R.anim.top_in, R.anim.top_out);
+            }
+        });
     }
 }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -38,6 +39,8 @@ public class ElCamino_2_1 extends AppCompatActivity {
     private TextView RondaTV;
 
     private int k = 0;
+    private int q = 0;
+    private int j = 0;
     private int n;
 
     private BarajaPoker Baraja = new BarajaPoker();
@@ -64,6 +67,10 @@ public class ElCamino_2_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_2);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         Ronda = getIntent().getExtras().getInt("Ronda");
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
@@ -84,6 +91,8 @@ public class ElCamino_2_1 extends AppCompatActivity {
         ShotsText = findViewById(R.id.ShotsText);
         ShotsButton = findViewById(R.id.ShotsButton);
         RondaTV = findViewById(R.id.RondaTV);
+
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         ShotsText.setTypeface(robotoLight);
@@ -138,6 +147,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
                     Carta2.setVisibility(View.INVISIBLE);
                     Carta3.setVisibility(View.INVISIBLE);
                     SiguienteButtonn.setVisibility(View.INVISIBLE);
+                    RondaTV.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
 
                   //  ShotsButton.setVisibility(View.INVISIBLE);
@@ -148,6 +158,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
                     Carta1.setVisibility(View.VISIBLE);
                     Carta2.setVisibility(View.VISIBLE);
                     Carta3.setVisibility(View.VISIBLE);
+                    RondaTV.setVisibility(View.VISIBLE);
 
                     if(Carta3Enseñada & Carta2Enseñada & Carta1Enseñada) SiguienteButtonn.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);
@@ -156,44 +167,54 @@ public class ElCamino_2_1 extends AppCompatActivity {
                 return presionado;
             }
         });
-
         Carta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta1IsClicked = true;
-                generarRandom();
-                String carta = Baraja.getBaraja().get(n);
-                Cartas.add(carta);
-                SetImageToCarta(carta,Carta1);
-                Carta1Enseñada = true;
-                Aparece_SigBut();
+                if(j==0) {
+                    ++j;
+                    Carta1IsClicked = true;
+                    generarRandom();
+                    String carta = Baraja.getBaraja().get(n);
+                    Cartas.add(carta);
+                    SetImageToCarta(carta, Carta1);
+                    Carta1Enseñada = true;
+                    Aparece_SigBut();
+                }
             }
         });
+
         Carta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta2IsClicked = true;
-                generarRandom();
-                String carta = Baraja.getBaraja().get(n);
-                Cartas.add(carta);
-                SetImageToCarta(carta,Carta2);
-                Carta2Enseñada = true;
-                Aparece_SigBut();
-
+                if(q==0) {
+                    ++q;
+                    Carta2IsClicked = true;
+                    generarRandom();
+                    String carta = Baraja.getBaraja().get(n);
+                    Cartas.add(carta);
+                    SetImageToCarta(carta, Carta2);
+                    Carta2Enseñada = true;
+                    Aparece_SigBut();
+                }
             }
         });
+
         Carta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carta3IsClicked = true;
-                generarRandom();
-                String carta = Baraja.getBaraja().get(n);
-                Cartas.add(carta);
-                SetImageToCarta(carta,Carta3);
-                Carta3Enseñada = true;
-                Aparece_SigBut();
+                if(k==0) {
+                    ++k;
+                    Carta3IsClicked = true;
+                    generarRandom();
+                    String carta = Baraja.getBaraja().get(n);
+                    Cartas.add(carta);
+                    SetImageToCarta(carta, Carta3);
+                    Carta3Enseñada = true;
+                    Aparece_SigBut();
+                }
             }
         });
+
 
         SiguienteButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,7 +274,6 @@ public class ElCamino_2_1 extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==Baraja.getBaraja().size()) ha_salido=false;

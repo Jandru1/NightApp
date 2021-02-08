@@ -3,12 +3,16 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,20 +31,22 @@ public class ElCamino_1_1 extends AppCompatActivity {
 
     private Button RojoButton;
     private Button NegroButton;
-    private Button SiguienteButton;
+    private View SiguienteButton;
 
     private ImageView HomeButton;
     private ImageView CartaIV;
+    private ImageView ShotsButton;
 
     private TextView pregunta;
     private TextView player;
+    private TextView ShotsText;
 
     private Intent intent;
     private BarajaPoker Baraja = new BarajaPoker();
 
     private ShotsCounter Shots = new ShotsCounter();
 
-
+    private boolean clickado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,26 +56,96 @@ public class ElCamino_1_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_1_1);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         Jugadores = getIntent().getStringArrayListExtra("playerList");
 
         RojoButton = findViewById(R.id.RojoButton);
         NegroButton = findViewById(R.id.NegroButton);
-        SiguienteButton = findViewById(R.id.SiguienteButton);
+        SiguienteButton = findViewById(R.id.ElCamino1_1);
+        Button nada = findViewById(R.id.SiguienteButton);
+        nada.setVisibility(View.INVISIBLE);
         HomeButton = findViewById(R.id.HomeButton1_1);
         pregunta = findViewById(R.id.RojoONegro);
         player = findViewById(R.id.Player);
         CartaIV = findViewById(R.id.CIV);
+        ShotsText = findViewById(R.id.shotsText3);
+        ShotsButton = findViewById(R.id.shotsButton3);
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         pregunta.setTypeface(robotoLight);
         player.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
 
         intent = new Intent(ElCamino_1_1.this, ElCamino_1_2.class);
-
+        ShotsButt();
         Primer_caso();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    player.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    player.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+    }
+
+    private void all_visible() {
+        if(clickado){
+            CartaIV.setVisibility(View.VISIBLE);
+            pregunta.setVisibility(View.VISIBLE);
+            NegroButton.setVisibility(View.INVISIBLE);
+            RojoButton.setVisibility(View.INVISIBLE);
+        }
+        else {
+            CartaIV.setVisibility(View.VISIBLE);
+            pregunta.setVisibility(View.VISIBLE);
+            NegroButton.setVisibility(View.VISIBLE);
+            RojoButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void all_invisible() {
+        CartaIV.setVisibility(View.INVISIBLE);
+        pregunta.setVisibility(View.INVISIBLE);
+        NegroButton.setVisibility(View.INVISIBLE);
+        RojoButton.setVisibility(View.INVISIBLE);
+    }
+
     private void Primer_caso() {
+        clickado = false;
+        CartaIV.setImageResource(R.drawable.cartapordetras);
         HomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,11 +171,11 @@ public class ElCamino_1_1 extends AppCompatActivity {
         pregunta.setText("¿De qué color es la carta?");
         RojoButton.setVisibility(View.VISIBLE);
         NegroButton.setVisibility(View.VISIBLE);
-        SiguienteButton.setVisibility(View.INVISIBLE);
 
         RojoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String color = "rojo";
                 enseñar_carta(color);
             }
@@ -108,6 +184,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
         NegroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String color = "negro";
                 enseñar_carta(color);
             }
@@ -148,17 +225,16 @@ public class ElCamino_1_1 extends AppCompatActivity {
         SiguienteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(k+1 == Jugadores.size()) {
-                    intent.putStringArrayListExtra("Players", Jugadores);
-                    intent.putStringArrayListExtra("numeross", numeross);
-                    intent.putExtra("Shots", Shots);
-                    startActivity(intent);
-                }
-                else {
-
-                    ++k;
-
-                    Primer_caso();
+                if(clickado) {
+                    if (k + 1 == Jugadores.size()) {
+                        intent.putStringArrayListExtra("Players", Jugadores);
+                        intent.putStringArrayListExtra("numeross", numeross);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    } else {
+                        ++k;
+                        Primer_caso();
+                    }
                 }
             }
         });
@@ -198,7 +274,6 @@ public class ElCamino_1_1 extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==Baraja.getBaraja().size()) ha_salido=false;

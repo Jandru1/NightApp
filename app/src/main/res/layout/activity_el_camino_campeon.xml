@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ElCaminoCampeon">
-
+    tools:context=".ElCaminoCampeon"
+    android:id="@+id/ElCaminoCampeon">
     <TextView
         android:id="@+id/CampeonTV"
         android:layout_width="322dp"

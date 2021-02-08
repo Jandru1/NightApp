@@ -3,12 +3,15 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino_1_3 extends AppCompatActivity {
 
@@ -24,12 +28,13 @@ public class ElCamino_1_3 extends AppCompatActivity {
 
     private Button DentroButton;
     private Button FueraButton;
-    private Button SiguienteButtonn;
+
+    private View SiguienteButtonn;
 
     private TextView pregunta;
     private TextView anteriores_cartas_fueron;
-
     private TextView jugador_jugando;
+    private TextView ShotsText;
 
     private int k = 0;
     private int n;
@@ -47,18 +52,31 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private ImageView CartaIV1;
     private ImageView CartaIV2;
     private ImageView CartaIV3;
+    private ImageView ShotsButton;
 
     private ShotsCounter Shots = new ShotsCounter();
+
+    private boolean clickado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el__camino_1_3);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         DentroButton = findViewById(R.id.DentroButton);
         FueraButton = findViewById(R.id.FueraButton);
-        SiguienteButtonn = findViewById(R.id.SiguienteBut);
+        SiguienteButtonn = findViewById(R.id.ElCamino1_3);
+        Button nada = findViewById(R.id.SiguienteBut);
+        nada.setVisibility(View.INVISIBLE);
         HomeButton = findViewById(R.id.HomeButton1_3);
+        ShotsButton = findViewById(R.id.shotsButton5);
+        ShotsText = findViewById(R.id.shotsText5);
+
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
@@ -70,8 +88,6 @@ public class ElCamino_1_3 extends AppCompatActivity {
         CartaIV1 = findViewById(R.id.CartaIV1);
         CartaIV2 = findViewById(R.id.CartaIV2);
         CartaIV3 = findViewById(R.id.CartaIV3);
-
-        CartaIV3.setVisibility(View.INVISIBLE);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         pregunta.setTypeface(robotoLight);
@@ -104,12 +120,81 @@ public class ElCamino_1_3 extends AppCompatActivity {
             }
         });
 
+        ShotsButt();
         Primer_caso();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    jugador_jugando.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    jugador_jugando.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+    }
+
+    private void all_visible() {
+        if(clickado){
+            CartaIV1.setVisibility(View.VISIBLE);
+            CartaIV2.setVisibility(View.VISIBLE);
+            CartaIV3.setVisibility(View.VISIBLE);
+            pregunta.setVisibility(View.VISIBLE);
+            anteriores_cartas_fueron.setVisibility(View.VISIBLE);
+        }
+        else {
+            CartaIV1.setVisibility(View.VISIBLE);
+            CartaIV2.setVisibility(View.VISIBLE);
+            pregunta.setVisibility(View.VISIBLE);
+            anteriores_cartas_fueron.setVisibility(View.VISIBLE);
+            DentroButton.setVisibility(View.VISIBLE);
+            FueraButton.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void all_invisible() {
+        CartaIV1.setVisibility(View.INVISIBLE);
+        CartaIV2.setVisibility(View.INVISIBLE);
+        CartaIV3.setVisibility(View.INVISIBLE);
+        pregunta.setVisibility(View.INVISIBLE);
+        anteriores_cartas_fueron.setVisibility(View.INVISIBLE);
+        DentroButton.setVisibility(View.INVISIBLE);
+        FueraButton.setVisibility(View.INVISIBLE);
+    }
+
     private void Primer_caso() {
+        clickado = false;
+        CartaIV3.setVisibility(View.INVISIBLE);
+
         jugador_jugando.setText(Jugadores.get(k));
-        pregunta.setText("¿La siguiente estara dentro o fuera del intervalo?");
+        pregunta.setText("¿La siguiente estará dentro del intervalo?");
         anteriores_cartas_fueron.setText("Tus anteriores cartas fueron:");
         bundle = getIntent().getExtras().getBundle("BarajaPers "+k);
 
@@ -123,11 +208,11 @@ public class ElCamino_1_3 extends AppCompatActivity {
 
         DentroButton.setVisibility(View.VISIBLE);
         FueraButton.setVisibility(View.VISIBLE);
-        SiguienteButtonn.setVisibility(View.INVISIBLE);
 
         DentroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String dentro_o_fuera = "dentro";
                 enseñar_carta(dentro_o_fuera);
             }
@@ -136,6 +221,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
         FueraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String dentro_o_fuera = "fuera";
                 enseñar_carta(dentro_o_fuera);
             }
@@ -217,15 +303,16 @@ public class ElCamino_1_3 extends AppCompatActivity {
         SiguienteButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(k+1 == Jugadores.size()) {
-                    intent.putStringArrayListExtra("Players", Jugadores);
-                    intent.putStringArrayListExtra("numeross", numeross);
-                    intent.putExtra("Shots", Shots);
-                    startActivity(intent);
-                }
-                else {
-                    ++k;
-                    Primer_caso();
+                if(clickado) {
+                    if (k + 1 == Jugadores.size()) {
+                        intent.putStringArrayListExtra("Players", Jugadores);
+                        intent.putStringArrayListExtra("numeross", numeross);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    } else {
+                        ++k;
+                        Primer_caso();
+                    }
                 }
             }
         });
@@ -249,7 +336,6 @@ public class ElCamino_1_3 extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==Baraja.getBaraja().size()) ha_salido=false;

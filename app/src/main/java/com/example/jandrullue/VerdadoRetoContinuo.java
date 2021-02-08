@@ -10,6 +10,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,6 +58,10 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         setContentView(R.layout.activity_verdado_reto_continuo);
         VerdadList = VoR.getVerdades();
         RetosList = VoR.getRetos();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         PlayersList = getIntent().getStringArrayListExtra("jugadores");
         Verdad_o_Reto = getIntent().getExtras().getString("VerdadOReto");

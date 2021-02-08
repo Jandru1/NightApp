@@ -3,13 +3,16 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino3_Nuevo extends AppCompatActivity {
 
@@ -47,12 +51,13 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ImageView Carta2L6;
     private ImageView Carta1L7;
     private ImageView HomeButton;
+    private ImageView ShotsButton;
 
     private ScrollView ScrollView;
 
     private ArrayList<String> Jugadores;
 
-    private TextView TragosTV;
+    private TextView ShotsText;
     private TextView PlayerTV;
 
     private int Level;
@@ -64,8 +69,10 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ArrayList<String> numeross = new ArrayList<>();
 
     private View layout;
+    private ShotsCounter Shots = new ShotsCounter();
 
     private boolean quefuncioneellayout;
+    private boolean layoutcuandoessiete;
 
     private ArrayList<ImageView> Cartas = new ArrayList<>();
 
@@ -75,6 +82,10 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         setContentView(R.layout.activity_el_camino3__nuevo);
         Level = 1;
         //Carta1 = findViewById(R.id.C1L1);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         Carta1L1 = findViewById(R.id.C1L1);
         Carta1L2 = findViewById(R.id.C1L2);
@@ -92,6 +103,10 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Carta3L4 = findViewById(R.id.C3L4);
         Carta3L5 = findViewById(R.id.C3L5);
         Carta4L4 = findViewById(R.id.C4L4);
+        ShotsText = findViewById(R.id.shotsText2);
+
+        ShotsButton = findViewById(R.id.shotsButton2);
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         HomeButton = findViewById(R.id.HomeButton32);
 
@@ -100,19 +115,94 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         layout = findViewById(R.id.ElCamino3L2);
         ScrollView = findViewById(R.id.ElCaminoScrollView);
 
-        TragosTV = findViewById(R.id.TragosTV);
+        //TragosTV = findViewById(R.id.TragosTV);
         PlayerTV = findViewById(R.id.playerTV);
 
         Jugadores = getIntent().getStringArrayListExtra("Jugadores");
         Perdedor = getIntent().getExtras().getString("Perdedor");
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-        TragosTV.setTypeface(robotoLight);
+       // TragosTV.setTypeface(robotoLight);
         PlayerTV.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
 
+        ShotsButt();
         init2(Level);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    PlayerTV.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    PlayerTV.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+    }
+
+    private void all_invisible() {
+        Carta1L1.setVisibility(View.INVISIBLE);
+        Carta1L2.setVisibility(View.INVISIBLE);
+        Carta1L3.setVisibility(View.INVISIBLE);
+        Carta1L4.setVisibility(View.INVISIBLE);
+        Carta1L5.setVisibility(View.INVISIBLE);
+        Carta1L6.setVisibility(View.INVISIBLE);
+        Carta1L7.setVisibility(View.INVISIBLE);
+        Carta2L2.setVisibility(View.INVISIBLE);
+        Carta2L3.setVisibility(View.INVISIBLE);
+        Carta2L4.setVisibility(View.INVISIBLE);
+        Carta2L5.setVisibility(View.INVISIBLE);
+        Carta2L6.setVisibility(View.INVISIBLE);
+        Carta3L3.setVisibility(View.INVISIBLE);
+        Carta3L4.setVisibility(View.INVISIBLE);
+        Carta3L5.setVisibility(View.INVISIBLE);
+        Carta4L4.setVisibility(View.INVISIBLE);
+    }
+
+    private void all_visible() {
+        Carta1L1.setVisibility(View.VISIBLE);
+        Carta1L2.setVisibility(View.VISIBLE);
+        Carta1L3.setVisibility(View.VISIBLE);
+        Carta1L4.setVisibility(View.VISIBLE);
+        Carta1L5.setVisibility(View.VISIBLE);
+        Carta1L6.setVisibility(View.VISIBLE);
+        Carta1L7.setVisibility(View.VISIBLE);
+        Carta2L2.setVisibility(View.VISIBLE);
+        Carta2L3.setVisibility(View.VISIBLE);
+        Carta2L4.setVisibility(View.VISIBLE);
+        Carta2L5.setVisibility(View.VISIBLE);
+        Carta2L6.setVisibility(View.VISIBLE);
+        Carta3L3.setVisibility(View.VISIBLE);
+        Carta3L4.setVisibility(View.VISIBLE);
+        Carta3L5.setVisibility(View.VISIBLE);
+        Carta4L4.setVisibility(View.VISIBLE);
+    }
     private void Cartas_ArrayList() {
         Cartas.add(Carta1L1);
         Cartas.add(Carta1L2);
@@ -130,7 +220,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Cartas.add(Carta1L6);
         Cartas.add(Carta2L6);
         Cartas.add(Carta1L7);
-
     }
 
     private void enable_all() {
@@ -288,9 +377,11 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private void init2(int level) {
         HomeBut();
         quefuncioneellayout = false;
-        TragosTV.setVisibility(View.INVISIBLE);
+        layoutcuandoessiete = false;
+       // TragosTV.setVisibility(View.INVISIBLE);
         PlayerTV.setText(Perdedor);
         if(level==1) {
+            numeross.clear();
             enable_level1();
             Level1();
         }
@@ -317,6 +408,11 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         else if (level==7) {
             enable_level7();
             Level7();
+        }
+        else {
+            Intent intent = new Intent(ElCamino3_Nuevo.this, ElCaminoCampeon.class);
+            intent.putExtra("Ganador", ""+Perdedor);
+            startActivity(intent);
         }
     }
 
@@ -506,6 +602,9 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
            // TragosTV.setVisibility(View.VISIBLE);
           //  TragosTV.setText("Bebes "+Level+ " tragos!!");
             Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_SHORT).show();
+            for(int i = 0; i < Level;++i) {
+                Shots.SumShot(Perdedor);
+            }
             level1_superado = false;
             Level = 1;
             quefuncioneellayout = true;
@@ -514,6 +613,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         else {
             boolean es_7 = es_7(carta);
             if (es_7) {
+                layoutcuandoessiete = true;
                 traspasar_El_Camino();
             }
             else {
@@ -538,6 +638,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     }
 
     private void All_Cartas_Do_Begin() {
+
         enable_all();
         for(int i = 0; i < Cartas.size();++i) {
             Cartas.get(i).setOnClickListener(new View.OnClickListener() {
@@ -548,19 +649,21 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 }
             });
         }
-        if (quefuncioneellayout) {
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quefuncioneellayout) {
                     AllImagesToBegin();
                     init2(Level);
                 }
-            });
-        }
+            }
+        });
     }
 
     private void traspasar_El_Camino() {
+
         enable_all();
+
         for(int i = 0; i < Cartas.size();++i) {
             Cartas.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -572,7 +675,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                     dialogo1.setTitle("Un 7!");
                     Spinner spinner = view.findViewById(R.id.SpinnerDialog);
                     String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
-                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
+                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this,R.layout.spinner_customized , valores));
                     dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
                             if (!spinner.getSelectedItem().toString().equals("")) {
@@ -601,36 +704,38 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino3_Nuevo.this);
-                dialogo1.setMessage("¿A quien quieres traspasar El Camino?");
-                dialogo1.setCancelable(false);
-                View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
-                dialogo1.setTitle("Un 7!");
-                Spinner spinner = view.findViewById(R.id.SpinnerDialog);
-                String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
-                spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
-                dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        if (!spinner.getSelectedItem().toString().equals("")) {
-                            Level = 1;
-                            Perdedor =  spinner.getSelectedItem().toString();
-                            AllImagesToBegin();
-                            Log.d("Dentro de Spiner", ""+Perdedor);
+                if(layoutcuandoessiete) {
+                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ElCamino3_Nuevo.this);
+                    dialogo1.setMessage("¿A quien quieres traspasar El Camino?");
+                    dialogo1.setCancelable(false);
+                    View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+                    dialogo1.setTitle("Un 7!");
+                    Spinner spinner = view.findViewById(R.id.SpinnerDialog);
+                    String[] valores = Jugadores.toArray(new String[Jugadores.size()]);
+                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
+                    dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            if (!spinner.getSelectedItem().toString().equals("")) {
+                                Level = 1;
+                                Perdedor = spinner.getSelectedItem().toString();
+                                AllImagesToBegin();
+                                Log.d("Dentro de Spiner", "" + Perdedor);
+                                init2(Level);
+                            }
+                        }
+                    });
+                    dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            Nivel_Superado(Level);
+                            ++Level;
+                            // Carta.setImageResource(R.drawable.homebutton);
                             init2(Level);
                         }
-                    }
-                });
-                dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        Nivel_Superado(Level);
-                        ++Level;
-                        // Carta.setImageResource(R.drawable.homebutton);
-                        init2(Level);
-                    }
-                });
-                dialogo1.setView(view);
-                AlertDialog ad = dialogo1.create();
-                ad.show();
+                    });
+                    dialogo1.setView(view);
+                    AlertDialog ad = dialogo1.create();
+                    ad.show();
+                }
             }
         });
     }
@@ -661,7 +766,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==Baraja.getBaraja().size()) ha_salido=false;
@@ -672,6 +776,5 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         }
         if(ha_salido) generarRandom();
         else numeross.add(n_string);
-
     }
 }

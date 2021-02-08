@@ -4,143 +4,180 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ElCamino_1_4">
-
-    <Button
-        android:id="@+id/TrebolesButton"
-        android:layout_width="142dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="60dp"
-        android:text="Treboles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/DiamanteButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/PicasButton"
-        android:layout_width="142dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:text="Picas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CorazonesButton"
-        app:layout_constraintTop_toBottomOf="@+id/TrebolesButton" />
-
-    <Button
-        android:id="@+id/DiamanteButton"
-        android:layout_width="142dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="10dp"
-        android:text="Diamantes"
-        app:layout_constraintEnd_toStartOf="@+id/TrebolesButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/CorazonesButton"
-        android:layout_width="142dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Corazones"
-        app:layout_constraintEnd_toStartOf="@+id/PicasButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DiamanteButton" />
+    tools:context=".ElCamino_1_4"
+    android:id="@+id/ElCamino1_4">
 
     <ImageView
-        android:id="@+id/HomeButton1_4"
-        android:layout_width="73dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="30dp"
+        android:id="@+id/shotsButton6"
+        android:layout_width="62dp"
+        android:layout_height="65dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="413dp"
+        android:layout_height="731dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle_cropped__1_" />
-    <Button
-        android:id="@+id/SigBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="48dp"
-        android:text="Siguiente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/PaloTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="360dp"
-        android:text="¿A qué palo pertenece?"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView" />
+        <TextView
+            android:id="@+id/shotsText6"
+            android:layout_width="235dp"
+            android:layout_height="400dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498" />
 
-    <TextView
+        <Button
+            android:id="@+id/TrebolesButton"
+            android:layout_width="142dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="60dp"
+            android:text="Treboles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/DiamanteButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:id="@+id/UltimaCartaTextView"
-        android:layout_width="319dp"
-        android:layout_height="53dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp"
-        android:gravity="center"
-        android:text="Tu última carta!"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jugadorTextView" />
+        <Button
+            android:id="@+id/PicasButton"
+            android:layout_width="142dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="60dp"
+            android:text="Picas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CorazonesButton"
+            app:layout_constraintTop_toBottomOf="@+id/TrebolesButton" />
 
-    <TextView
+        <Button
+            android:id="@+id/DiamanteButton"
+            android:layout_width="142dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="10dp"
+            android:text="Diamantes"
+            app:layout_constraintEnd_toStartOf="@+id/TrebolesButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:id="@+id/jugadorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="76dp"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/CorazonesButton"
+            android:layout_width="142dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Corazones"
+            app:layout_constraintEnd_toStartOf="@+id/PicasButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DiamanteButton" />
 
-    <ImageView
-        android:id="@+id/Cartatv"
-        android:layout_width="112dp"
-        android:layout_height="144dp"
-        android:layout_marginBottom="172dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cartapordetras" />
+        <ImageView
+            android:id="@+id/HomeButton1_4"
+            android:layout_width="73dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/circle_cropped__1_" />
 
-    <TextView
-        android:id="@+id/LastimaTV"
-        android:layout_width="317dp"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView" />
+        <Button
+            android:id="@+id/SigBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="48dp"
+            android:text="Siguiente"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Cartatv" />
 
+        <TextView
+            android:id="@+id/PaloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="120dp"
+            android:gravity="center"
+            android:text="¿A qué palo pertenece?"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Cartatv" />
+
+        <TextView
+
+            android:id="@+id/UltimaCartaTextView"
+            android:layout_width="319dp"
+            android:layout_height="53dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="39dp"
+            android:gravity="center"
+            android:text="Tu última carta!"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jugadorTextView" />
+
+        <TextView
+
+            android:id="@+id/jugadorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="173dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="180dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/Cartatv"
+            android:layout_width="112dp"
+            android:layout_height="144dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/PaloTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CorazonesButton"
+            app:srcCompat="@drawable/cartapordetras" />
+
+        <TextView
+            android:id="@+id/LastimaTV"
+            android:layout_width="317dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

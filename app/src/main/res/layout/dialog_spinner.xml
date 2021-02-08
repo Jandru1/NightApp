@@ -8,10 +8,11 @@
 
     <Spinner
         android:id="@+id/SpinnerDialog"
-        android:layout_width="289dp"
-        android:layout_height="32dp"
+        android:layout_width="324dp"
+        android:layout_height="64dp"
         android:layout_marginStart="61dp"
         android:layout_marginEnd="61dp"
+        android:scrollbarSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

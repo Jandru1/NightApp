@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -38,13 +39,22 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 
     private ImageView HomeButton;
 
+    private ShotsCounter Shots;
+
+    private ArrayList<String> CartasPequesDeCadaUno = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_perdedor);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
+        Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
         PerdedoresTV = findViewById(R.id.PerdedorTV);
         TextView = findViewById(R.id.PerdedorTV2);
@@ -93,7 +103,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 
             }
         });
-        todos_tienen_la_misma_carta();
+    //    todos_tienen_la_misma_carta();
         get_perdedor();
     }
 //REPASAR MUCHISIMO
@@ -137,8 +147,8 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 //HASTA AQUI
     private void get_perdedor() {
         Log.d("PERDEDORES", ""+Perdedores.size());
+        CartaButton.setVisibility(View.INVISIBLE);
         if(Perdedores.size()==1)  {
-            CartaButton.setVisibility(View.INVISIBLE);
             PerdedoresTV.setText(Perdedores.get(0).getplayer() + " ha perdido y deberá jugar El Camino!!");
             SiguienteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -148,11 +158,13 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                     intent.putStringArrayListExtra("Jugadores", Jugadores);
                     String Perdedor = Perdedores.get(0).getplayer();
                     intent.putExtra("Perdedor", Perdedor);
+                    intent.putExtra("Shots", Shots);
                     startActivity(intent);
                 }
             });
         }
         else {
+            /*
             SiguienteButton.setVisibility(View.INVISIBLE);
             PerdedoresTV.setVisibility(View.INVISIBLE);
             CartaButton.setVisibility(View.VISIBLE);
@@ -173,7 +185,85 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                     get_perdedor();
                 }
             });
+             */
+            compararCartas();
         }
+    }
+
+    private void compararCartas() {
+        for(int i = 0; i < Perdedores.size();++i) {
+            Log.d("Perdedor "+i, ""+Perdedores.get(i).getplayer());
+            BarajaPersonalizada BP = Perdedores.get(i);
+            int min = 15;
+            String carta = null;
+            for(int j = 0; j < BP.getBaraja().size();++j) {
+                int num = Integer.parseInt(transform_JQK(BP.get_num(j)));
+                if (num < min) {
+                    min = num;
+                    carta = BP.getBaraja().get(j);
+                } else if (num==min) {
+                    carta = comprobarPalo(carta,BP.getBaraja().get(j));
+                }
+                Log.d("carta "+j, ""+BP.getBaraja().get(j));
+            }
+            Log.d("La carta min es", ""+carta);
+            CartasPequesDeCadaUno.add(carta);
+        }
+        int min = 15;
+        String carta_def = null;
+        for(int x = 0; x < CartasPequesDeCadaUno.size();++x) {
+            Log.d("Carta min de "+x, ""+CartasPequesDeCadaUno.get(x));
+            if (Integer.parseInt(transform_JQK(getnum(CartasPequesDeCadaUno.get(x))))< min) {
+                min = Integer.parseInt(transform_JQK(getnum(CartasPequesDeCadaUno.get(x))));
+                carta_def = CartasPequesDeCadaUno.get(x);
+            } else if (Integer.parseInt(transform_JQK(getnum(CartasPequesDeCadaUno.get(x))))==min) {
+                carta_def = comprobarPalo(carta_def,CartasPequesDeCadaUno.get(x));
+            }
+        }
+        Log.d("La carta más peque es", ""+carta_def);
+
+        int aux1 = -1;
+        int aux2 = -1;
+        for(int i = 0; i < Perdedores.size();++i) {
+            BarajaPersonalizada BP = Perdedores.get(i);
+            for(int j = 0; j < BP.getBaraja().size();++j) {
+                    if (BP.getBaraja().get(j).equals(carta_def)){
+                        aux1 = i;
+                        aux2 = j;
+                    }
+            }
+        }
+
+        PerdedoresTV.setText(Perdedores.get(aux1).getplayer() + " ha perdido y deberá jugar El Camino!!");
+        SiguienteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3_Nuevo.class);
+                intent.putExtra("Level", 1);
+                intent.putStringArrayListExtra("Jugadores", Jugadores);
+                String Perdedor = Perdedores.get(0).getplayer();
+                intent.putExtra("Perdedor", Perdedor);
+                intent.putExtra("Shots", Shots);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private String comprobarPalo(String carta1, String carta2) {
+        String palo1 = get_palo(carta1);
+        String palo2 = get_palo(carta2);
+        int valor1 = valor_por_palo(palo1);
+        int valor2 = valor_por_palo(palo2);
+        if(valor2 > valor1) return carta1;
+        else return carta2;
+    }
+
+    private int valor_por_palo(String palo1) {
+        if(palo1.equals("treboles")) return 0;
+        if(palo1.equals("picas")) return 1;
+        if(palo1.equals("corazones")) return 2;
+        if(palo1.equals("diamantes")) return 3;
+        return 6;
     }
 
     private void alguien_la_tiene(String carta) {
@@ -210,7 +300,20 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         return s;
     }
 
-
+    private String get_palo(String s) {
+        if(s.substring(0,1).equals("1")) { s = s.substring(6);}
+        else s = s.substring(5);
+        return s;
+    }
+    private String transform_JQK(String s) {
+        String a = null;
+        if (s.equals("J")) a = "11";
+        else if (s.equals("Q")) a = "12";
+        else if (s.equals("K")) a = "13";
+        else if (s.equals("A")) a = "14";
+        else a = s;
+        return a;
+    }
     public void generarRandom() {
         boolean ha_salido = false;
         double m = Math.random()*Baraja.getBaraja().size()+0;

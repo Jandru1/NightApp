@@ -3,12 +3,15 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino_1_4 extends AppCompatActivity {
 
@@ -23,18 +27,19 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private ArrayList<String> numeross = new ArrayList<>();
 
     private ImageView CartaIV;
+    private ImageView ShotsButton;
 
     private Button DiamanteButton;
     private Button CorazonesButton;
     private Button PicasButton;
     private Button TrebolesButton;
-    private Button SiguienteButtonn;
+    private View SiguienteButtonn;
 
     private TextView pregunta;
     private TextView ultima_carta;
     private TextView LastimaTV;
-
     private TextView jugador_jugando;
+    private TextView ShotsText;
 
     private int k = 0;
     private int n;
@@ -49,10 +54,16 @@ public class ElCamino_1_4 extends AppCompatActivity {
 
     private ShotsCounter Shots = new ShotsCounter();
 
+    private boolean clickado = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino_1_4);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
@@ -60,8 +71,14 @@ public class ElCamino_1_4 extends AppCompatActivity {
         PicasButton = findViewById(R.id.PicasButton);
         CorazonesButton = findViewById(R.id.CorazonesButton);
         TrebolesButton = findViewById(R.id.TrebolesButton);
-        SiguienteButtonn = findViewById(R.id.SigBut);
+        SiguienteButtonn = findViewById(R.id.ElCamino1_4);
+        Button nada = findViewById(R.id.SigBut);
+        nada.setVisibility(View.INVISIBLE);
         HomeButton = findViewById(R.id.HomeButton1_4);
+
+        ShotsButton = findViewById(R.id.shotsButton6);
+        ShotsText = findViewById(R.id.shotsText6);
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         CartaIV = findViewById(R.id.Cartatv);
 
@@ -81,10 +98,84 @@ public class ElCamino_1_4 extends AppCompatActivity {
 
         intent = new Intent(ElCamino_1_4.this, ElCamino_2_1.class);
 
+        ShotsButt();
+
         Primer_caso();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    jugador_jugando.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    jugador_jugando.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+    }
+
+    private void all_visible() {
+
+        if (clickado){
+            CartaIV.setVisibility(View.VISIBLE);
+            ultima_carta.setVisibility(View.VISIBLE);
+            LastimaTV.setVisibility(View.VISIBLE);
+
+        }
+        else {
+            pregunta.setVisibility(View.VISIBLE);
+            DiamanteButton.setVisibility(View.VISIBLE);
+            CorazonesButton.setVisibility(View.VISIBLE);
+            TrebolesButton.setVisibility(View.VISIBLE);
+            PicasButton.setVisibility(View.VISIBLE);
+            CartaIV.setVisibility(View.VISIBLE);
+            ultima_carta.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void all_invisible() {
+        pregunta.setVisibility(View.INVISIBLE);
+        DiamanteButton.setVisibility(View.INVISIBLE);
+        CorazonesButton.setVisibility(View.INVISIBLE);
+        TrebolesButton.setVisibility(View.INVISIBLE);
+        PicasButton.setVisibility(View.INVISIBLE);
+        CartaIV.setVisibility(View.INVISIBLE);
+        ultima_carta.setVisibility(View.INVISIBLE);
+        LastimaTV.setVisibility(View.INVISIBLE);
+    }
+
     private void Primer_caso() {
+
+        clickado = false;
+        pregunta.setVisibility(View.VISIBLE);
+        CartaIV.setImageResource(R.drawable.cartapordetras);
+        LastimaTV.setVisibility(View.INVISIBLE);
         HomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,11 +209,11 @@ public class ElCamino_1_4 extends AppCompatActivity {
         CorazonesButton.setVisibility(View.VISIBLE);
         TrebolesButton.setVisibility(View.VISIBLE);
         PicasButton.setVisibility(View.VISIBLE);
-        SiguienteButtonn.setVisibility(View.INVISIBLE);
 
         DiamanteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String palo = "diamantes";
                 enseñar_carta(palo);
             }
@@ -131,6 +222,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         CorazonesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String palo = "corazones";
                 enseñar_carta(palo);
             }
@@ -139,6 +231,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         PicasButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String palo = "picas";
                 enseñar_carta(palo);
             }
@@ -147,12 +240,11 @@ public class ElCamino_1_4 extends AppCompatActivity {
         TrebolesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickado = true;
                 String palo = "treboles";
                 enseñar_carta(palo);
             }
         });
-
-
     }
 
     private void enseñar_carta(String palo) {
@@ -163,10 +255,12 @@ public class ElCamino_1_4 extends AppCompatActivity {
         String palo_final = Baraja.get_palo(n);
 
         if(palo.equals(palo_final)) {
+            LastimaTV.setVisibility(View.VISIBLE);
             LastimaTV.setText("Felicidades!"+/* Un "+ carta +"*/" Repartes 4 tragos");
             pregunta.setVisibility(View.INVISIBLE);
         }
         else {
+            LastimaTV.setVisibility(View.VISIBLE);
             Shots.SumShot(Jugadores.get(k));
             Shots.SumShot(Jugadores.get(k));
             Shots.SumShot(Jugadores.get(k));
@@ -190,16 +284,17 @@ public class ElCamino_1_4 extends AppCompatActivity {
         SiguienteButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(k+1 == Jugadores.size()) {
-                    intent.putStringArrayListExtra("Players", Jugadores);
-                    intent.putStringArrayListExtra("numeross", numeross);
-                    intent.putExtra("Ronda", 1);
-                    intent.putExtra("Shots", Shots);
-                    startActivity(intent);
-                }
-                else {
-                    ++k;
-                    Primer_caso();
+                if(clickado) {
+                    if (k + 1 == Jugadores.size()) {
+                        intent.putStringArrayListExtra("Players", Jugadores);
+                        intent.putStringArrayListExtra("numeross", numeross);
+                        intent.putExtra("Ronda", 1);
+                        intent.putExtra("Shots", Shots);
+                        startActivity(intent);
+                    } else {
+                        ++k;
+                        Primer_caso();
+                    }
                 }
             }
         });
@@ -235,7 +330,6 @@ public class ElCamino_1_4 extends AppCompatActivity {
         String n_string = Integer.toString(n);
 
         if (numeross.size()==0) {
-            numeross.add(n_string);
             ha_salido = false;
         }
         else if(numeross.size()==Baraja.getBaraja().size()) ha_salido=false;

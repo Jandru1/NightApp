@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -51,6 +52,10 @@ public class ElCamino2_Aux extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_el_camino2__aux);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         PlayerTV = findViewById(R.id.JugadorTV);
         Deshacer_cartasTV = findViewById(R.id.TV);
@@ -138,10 +143,10 @@ public class ElCamino2_Aux extends AppCompatActivity {
                 equal_to_someone = true;
             }
             if(equal_to_someone){
-                BP.getBaraja().set(j, "BORRAR");
+                //BP.getBaraja().set(j, "BORRAR");
             }
         }
-        limpiar_baraja(BP);
+        //limpiar_baraja(BP);
         if(cartas_a_deshacer>0){
             if (cartas_a_deshacer==1) Deshacer_cartasTV.setText("Felicidades! Te puedes deshacer del "+ Carta_a_deshacer1 + " y repartir "+cartas_a_deshacer*Ronda+ " tragos!");
             if (cartas_a_deshacer==2) Deshacer_cartasTV.setText("Felicidades! Te puedes deshacer del "+ Carta_a_deshacer1 + " y del " + Carta_a_deshacer2 + " y repartir "+cartas_a_deshacer*Ronda+ " tragos!");
