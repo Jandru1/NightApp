@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
     private ImageView Carta2;
     private ImageView Carta3;
     private ImageView ShotsButton;
-    private Button SiguienteButtonn;
+    private ImageButton SiguienteButtonn;
 
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
@@ -83,7 +84,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
         Carta1 = findViewById(R.id.Carta1);
         Carta2 = findViewById(R.id.Carta2);
         Carta3 = findViewById(R.id.Carta3);
-        SiguienteButtonn = findViewById(R.id.Sig);
+        SiguienteButtonn = findViewById(R.id.sig);
         HomeButton = findViewById(R.id.HomeButton2);
 
         SiguienteButtonn.setVisibility(View.INVISIBLE);

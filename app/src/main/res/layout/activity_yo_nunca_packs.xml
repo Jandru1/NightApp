@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YoNuncaPacks">
-
+    tools:context=".YoNuncaPacks"
+    android:background="#00796B">
+<!--
     <Button
         app:backgroundTint="#353535"
         android:textColor="@color/white"
@@ -35,5 +36,48 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+-->
+
+
+    <ImageButton
+        android:id="@+id/Pack2Button"
+        android:layout_width="302dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="238dp"
+        android:adjustViewBounds="true"
+        android:background="#00796B"
+        android:padding="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Pack1Button"
+        app:srcCompat="@drawable/pack2" />
+
+    <ImageButton
+        android:id="@+id/Pack1Button"
+        android:layout_width="302dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="238dp"
+        android:layout_marginBottom="90dp"
+        android:adjustViewBounds="true"
+        android:background="#00796B"
+        android:padding="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/Pack2Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pack1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

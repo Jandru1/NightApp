@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class GamesModalities extends AppCompatActivity {
 
-    private Button VerdadoReto;
-    private Button ElCamino;
-    private Button YoNunca;
-    private Button Trivial;
+    private ImageButton VerdadoReto;
+    private ImageButton ElCamino;
+    private ImageButton YoNunca;
+    private ImageButton Trivial;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -34,10 +35,10 @@ public class GamesModalities extends AppCompatActivity {
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-        VerdadoReto.setTypeface(robotoLight);
-        ElCamino.setTypeface(robotoLight);
-        YoNunca.setTypeface(robotoLight);
-        Trivial.setTypeface(robotoLight);
+     //   VerdadoReto.setTypeface(robotoLight);
+      //  ElCamino.setTypeface(robotoLight);
+       // YoNunca.setTypeface(robotoLight);
+        //Trivial.setTypeface(robotoLight);
 
         VerdadoReto.setOnClickListener(new View.OnClickListener() {
             @Override

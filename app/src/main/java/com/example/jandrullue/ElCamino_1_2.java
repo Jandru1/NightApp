@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,8 +27,8 @@ public class ElCamino_1_2 extends AppCompatActivity {
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
 
-    private Button MayorButton;
-    private Button MenorButton;
+    private ImageButton MayorButton;
+    private ImageButton MenorButton;
     private View SiguienteButtonn;
 
     private TextView pregunta;
@@ -93,6 +94,7 @@ public class ElCamino_1_2 extends AppCompatActivity {
         jugador_jugando.setTypeface(robotoLight);
         anterior_carta_fue.setTypeface(robotoLight);
         pregunta.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -305,7 +307,7 @@ public class ElCamino_1_2 extends AppCompatActivity {
         if (s.equals("J")) a = "11";
         else if (s.equals("Q")) a = "12";
         else if (s.equals("K")) a = "13";
-        else if (s.equals("A")) a = "14";
+        else if (s.equals("A")) a = "1";
         else a = s;
         return a;
     }

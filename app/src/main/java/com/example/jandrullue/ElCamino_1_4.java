@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,10 +30,10 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private ImageView CartaIV;
     private ImageView ShotsButton;
 
-    private Button DiamanteButton;
-    private Button CorazonesButton;
-    private Button PicasButton;
-    private Button TrebolesButton;
+    private ImageButton DiamanteButton;
+    private ImageButton CorazonesButton;
+    private ImageButton PicasButton;
+    private ImageButton TrebolesButton;
     private View SiguienteButtonn;
 
     private TextView pregunta;
@@ -92,6 +93,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         pregunta.setTypeface(robotoLight);
         ultima_carta.setTypeface(robotoLight);
         LastimaTV.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -317,7 +319,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         if (s.equals("J")) a = "11";
         else if (s.equals("Q")) a = "12";
         else if (s.equals("K")) a = "13";
-        else if (s.equals("A")) a = "14";
+        else if (s.equals("A")) a = "1";
         else a = s;
         return a;
     }

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ElCamino3"
     android:id="@+id/ElCaminoScrollView"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#00796B">
+
 
 
 <androidx.constraintlayout.widget.ConstraintLayout

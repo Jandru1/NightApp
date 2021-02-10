@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ElCamino_1_4"
-    android:id="@+id/ElCamino1_4">
+    android:id="@+id/ElCamino1_4"
+    android:background="#00796B">
 
-    <ImageView
+
+<ImageView
         android:id="@+id/shotsButton6"
         android:layout_width="62dp"
         android:layout_height="65dp"
@@ -26,17 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/shotsText6"
-            android:layout_width="235dp"
-            android:layout_height="400dp"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498" />
-
+<!--
         <Button
             android:id="@+id/TrebolesButton"
             android:layout_width="142dp"
@@ -84,6 +76,73 @@
             app:layout_constraintEnd_toStartOf="@+id/PicasButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DiamanteButton" />
+-->
+
+            <ImageButton
+                android:id="@+id/DiamanteButton"
+                android:layout_width="139dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="68dp"
+                android:layout_marginBottom="30dp"
+                android:adjustViewBounds="true"
+                android:background="#00796B"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/Cartatv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PicasButton"
+                app:layout_constraintVertical_bias="0.571"
+                app:srcCompat="@drawable/diamantesbutton" />
+
+            <ImageButton
+                android:id="@+id/TrebolesButton"
+                android:layout_width="139dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="30dp"
+                android:adjustViewBounds="true"
+                android:background="#00796B"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/Cartatv"
+                app:layout_constraintEnd_toStartOf="@+id/DiamanteButton"
+                app:layout_constraintHorizontal_bias="0.813"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CorazonesButton"
+                app:layout_constraintVertical_bias="0.571"
+                app:srcCompat="@drawable/trebolesbutton" />
+
+            <ImageButton
+                android:id="@+id/CorazonesButton"
+                android:layout_width="139dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="28dp"
+                android:adjustViewBounds="true"
+                android:background="#00796B"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView"
+                app:srcCompat="@drawable/corazonesbutton" />
+
+            <TextView
+            android:id="@+id/shotsText6"
+            android:layout_width="235dp"
+            android:layout_height="400dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498" />
 
         <ImageView
             android:id="@+id/HomeButton1_4"
@@ -178,6 +237,24 @@
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView" />
+
+            <ImageButton
+                android:id="@+id/PicasButton"
+                android:layout_width="139dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="68dp"
+                android:adjustViewBounds="true"
+                android:background="#00796B"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/CorazonesButton"
+                app:layout_constraintTop_toBottomOf="@+id/UltimaCartaTextView"
+                app:srcCompat="@drawable/picasbutton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

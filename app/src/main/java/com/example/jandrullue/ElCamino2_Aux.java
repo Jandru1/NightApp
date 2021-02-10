@@ -4,29 +4,35 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCamino2_Aux extends AppCompatActivity {
 
     private TextView PlayerTV;
     private TextView Deshacer_cartasTV;
+    private TextView ShotsText;
 
-    private Button SiguienteButton;
+    private ImageButton SiguienteButton;
+    private ImageView ShotsButton;
 
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
@@ -60,6 +66,10 @@ public class ElCamino2_Aux extends AppCompatActivity {
         PlayerTV = findViewById(R.id.JugadorTV);
         Deshacer_cartasTV = findViewById(R.id.TV);
         HomeButton = findViewById(R.id.HomeButton2Aux);
+
+        ShotsButton = findViewById(R.id.shotsButton7);
+        ShotsText = findViewById(R.id.shotsText7);
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         SiguienteButton = findViewById(R.id.Sigui);
         Ronda = getIntent().getExtras().getInt("Ronda");
@@ -101,6 +111,8 @@ public class ElCamino2_Aux extends AppCompatActivity {
 
             }
         });
+
+        ShotsButt();
 
         PlayerTV.setText(Jugadores.get(x));
 
@@ -207,6 +219,52 @@ public class ElCamino2_Aux extends AppCompatActivity {
 
             }
         });
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    PlayerTV.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    PlayerTV.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+    }
+
+    private void all_visible() {
+        Deshacer_cartasTV.setVisibility(View.VISIBLE);
+        SiguienteButton.setVisibility(View.VISIBLE);
+    }
+
+    private void all_invisible() {
+        Deshacer_cartasTV.setVisibility(View.INVISIBLE);
+        SiguienteButton.setVisibility(View.INVISIBLE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

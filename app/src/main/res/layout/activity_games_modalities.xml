@@ -5,29 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GamesModalities"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#00796B">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/YoNunca"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_below="@+id/ElCamino"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="121dp"
-            android:layout_marginTop="90dp"
-            android:layout_marginEnd="121dp"
-            android:text="Yo Nunca"
-            android:textColor="@color/white"
-            app:backgroundTint="#353535"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ElCamino"
-            tools:text="Yo Nunca" />
+
+<!--
+
+
 
         <Button
             android:id="@+id/VerdadoReto"
@@ -64,7 +52,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+               <Button
+            android:id="@+id/YoNunca"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/ElCamino"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="121dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="121dp"
+            android:text="Yo Nunca"
+            android:textColor="@color/white"
+            app:backgroundTint="#353535"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ElCamino"
+            tools:text="Yo Nunca" />
+
+              <Button
             android:id="@+id/Trivial"
             android:layout_width="250dp"
             android:layout_height="80dp"
@@ -80,6 +86,74 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/VerdadoReto" />
+
+            -->
+
+
+        <ImageButton
+            android:id="@+id/ElCamino"
+            android:layout_width="477dp"
+            android:layout_height="114dp"
+            android:layout_marginTop="108dp"
+            android:adjustViewBounds="true"
+            android:backgroundTint="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:background="@drawable/bordes_redondos"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/camino_imagen2" />
+
+        <ImageButton
+            android:id="@+id/YoNunca"
+            android:layout_width="248dp"
+            android:layout_height="111dp"
+            android:layout_marginTop="90dp"
+            android:adjustViewBounds="true"
+            android:background="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ElCamino"
+            app:srcCompat="@drawable/yonuncaimagen" />
+
+        <ImageButton
+            android:id="@+id/VerdadoReto"
+            android:layout_width="251dp"
+            android:layout_height="103dp"
+            android:layout_marginTop="90dp"
+            android:adjustViewBounds="true"
+            android:background="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/YoNunca"
+            app:srcCompat="@drawable/verdadoretoimagen" />
+
+        <ImageButton
+            android:id="@+id/Trivial"
+            android:layout_width="259dp"
+            android:layout_height="141dp"
+            android:layout_marginTop="92dp"
+            android:adjustViewBounds="true"
+            android:background="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/VerdadoReto"
+            app:srcCompat="@drawable/trivialimagen" />
 
         <!--
 

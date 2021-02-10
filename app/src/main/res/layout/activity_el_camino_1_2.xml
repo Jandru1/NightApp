@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ElCamino_1_2"
-    android:id="@+id/ElCamino1_2">
+    android:id="@+id/ElCamino1_2"
+    android:background="#00796B">
 
-    <TextView
+
+<TextView
         android:id="@+id/shotsText4"
         android:layout_width="235dp"
         android:layout_height="400dp"
@@ -25,6 +27,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+<!--
+        <Button
+            android:id="@+id/MayorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="159dp"
+            android:layout_marginEnd="164dp"
+            android:text="Mayor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextView2" />
+
+        <Button
+            android:id="@+id/MenorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Menor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MayorButton" />
+-->
+
+        <ImageButton
+            android:id="@+id/MenorButton"
+            android:layout_width="304dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:background="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MayorButton"
+            app:srcCompat="@drawable/menorquebutton" />
+
+        <ImageButton
+            android:id="@+id/MayorButton"
+            android:layout_width="304dp"
+            android:layout_height="72dp"
+            android:adjustViewBounds="true"
+            android:background="#00796B"
+            android:padding="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextView2"
+            app:srcCompat="@drawable/mayorquebutton" />
 
         <ImageView
             android:id="@+id/shotsButton4"
@@ -96,26 +154,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CIV1" />
 
-        <Button
-            android:id="@+id/MayorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="159dp"
-            android:layout_marginEnd="164dp"
-            android:text="Mayor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextView2" />
-
-    <Button
-        android:id="@+id/MenorButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Menor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MayorButton" />
 
     <Button
         android:id="@+id/Siguiente"
@@ -149,5 +187,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextView"
         app:srcCompat="@drawable/cartapordetras" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

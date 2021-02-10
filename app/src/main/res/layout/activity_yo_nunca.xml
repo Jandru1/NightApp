@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".YoNunca"
-    android:id="@+id/Layout">
+    android:id="@+id/Layout"
+    android:background="#00796B"
+    >
 
     <TextView
         android:gravity="center"

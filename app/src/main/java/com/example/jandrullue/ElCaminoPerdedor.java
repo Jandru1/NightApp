@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
     private BarajaPersonalizada BP;
 
     private Button CartaButton;
-    private Button SiguienteButton;
+    private ImageButton SiguienteButton;
 
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
@@ -63,7 +64,6 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         CartaButton = findViewById(R.id.Cartabutton);
         SiguienteButton = findViewById(R.id.Siguien);
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-
         PerdedoresTV.setTypeface(robotoLight);
         TextView.setTypeface(robotoLight);
         int max = -1;

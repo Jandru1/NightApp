@@ -6,13 +6,15 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class YoNuncaPacks extends AppCompatActivity {
 
     private String Level;
-    private Button Pack2Button;
-    private Button Pack1Button;
+    private ImageButton Pack2Button;
+    private ImageButton Pack1Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +24,13 @@ public class YoNuncaPacks extends AppCompatActivity {
         Pack1Button = findViewById(R.id.Pack1Button);
         Pack2Button = findViewById(R.id.Pack2Button);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(getSupportActionBar() != null) getSupportActionBar().hide();
+
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-        Pack1Button.setTypeface(robotoLight);
-        Pack2Button.setTypeface(robotoLight);
+    //    Pack1Button.setTypeface(robotoLight);
+    //    Pack2Button.setTypeface(robotoLight);
 
         Level = getIntent().getExtras().getString("Level");
 

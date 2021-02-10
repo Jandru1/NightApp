@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YoNuncaLevels">
-
+    tools:context=".YoNuncaLevels"
+    android:background="#00796B"
+    >
+<!--
     <Button
         app:backgroundTint="#353535"
         android:textColor="@color/white"
@@ -29,6 +31,45 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    -->
+
+    <ImageButton
+        android:id="@+id/ChillLevelButton"
+        android:layout_width="265dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginBottom="90dp"
+        android:adjustViewBounds="true"
+        android:background="#00796B"
+        android:padding="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/Pack2Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chilllevel" />
+
+    <ImageButton
+        android:id="@+id/HotLevelButton"
+        android:layout_width="265dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="189dp"
+        android:adjustViewBounds="true"
+        android:background="#00796B"
+        android:padding="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/hotlevel" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

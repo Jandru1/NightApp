@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -29,8 +30,8 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private int n;
     private int k = 0;
 
-    private Button RojoButton;
-    private Button NegroButton;
+    private ImageButton RojoButton;
+    private ImageButton NegroButton;
     private View SiguienteButton;
 
     private ImageView HomeButton;
