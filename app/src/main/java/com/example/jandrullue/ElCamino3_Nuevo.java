@@ -451,6 +451,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         else {
             Intent intent = new Intent(ElCamino3_Nuevo.this, ElCaminoCampeon.class);
             intent.putExtra("Ganador", ""+Perdedor);
+            intent.putStringArrayListExtra("Jugadores", Jugadores);
+            intent.putExtra("Shots", Shots);
             startActivity(intent);
         }
     }

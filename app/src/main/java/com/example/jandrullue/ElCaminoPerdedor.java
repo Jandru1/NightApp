@@ -37,6 +37,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 
     private TextView PerdedoresTV;
     private TextView TextView;
+    private TextView QueHacerTV;
 
     private ImageView HomeButton;
 
