@@ -9,7 +9,17 @@
     android:background="#00796B">
 
 
-<TextView
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="314dp"
+        android:layout_height="496dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/shotsText4"
         android:layout_width="235dp"
         android:layout_height="400dp"
@@ -50,16 +60,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MayorButton" />
 -->
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="343dp"
-            android:layout_height="576dp"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/infoButtton"

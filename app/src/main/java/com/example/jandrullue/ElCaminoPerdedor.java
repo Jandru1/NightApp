@@ -3,11 +3,13 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Adapter;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ElCaminoPerdedor extends AppCompatActivity {
 
@@ -37,9 +40,10 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 
     private TextView PerdedoresTV;
     private TextView TextView;
-    private TextView QueHacerTV;
+    private TextView ShotsText;
 
     private ImageView HomeButton;
+    private ImageView ShotsButton;
 
     private ShotsCounter Shots;
 
@@ -61,12 +65,19 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         PerdedoresTV = findViewById(R.id.PerdedorTV);
         TextView = findViewById(R.id.PerdedorTV2);
         HomeButton = findViewById(R.id.HomeButton3P);
+        ShotsButton = findViewById(R.id.shotsButton8);
+        ShotsText = findViewById(R.id.shotsText8);
+
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         CartaButton = findViewById(R.id.Cartabutton);
         SiguienteButton = findViewById(R.id.Siguien);
+
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         PerdedoresTV.setTypeface(robotoLight);
         TextView.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
+
         int max = -1;
         for (int i = 0; i < Jugadores.size(); ++i) {
             bundle = getIntent().getExtras().getBundle("BarajaPers " + i);
@@ -84,6 +95,9 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                 }
             }
         }
+
+        ShotsButt();
+
         HomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +121,43 @@ public class ElCaminoPerdedor extends AppCompatActivity {
     //    todos_tienen_la_misma_carta();
         get_perdedor();
     }
-//REPASAR MUCHISIMO
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void ShotsButt() {
+        ShotsButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    ShotsText.setText("");
+                    for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
+                        String key = entry.getKey();
+                        Integer value = entry.getValue();
+                        ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
+                        // do stuff
+                    }
+                    ShotsText.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    PerdedoresTV.setVisibility(View.INVISIBLE);
+                    SiguienteButton.setVisibility(View.INVISIBLE);
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    PerdedoresTV.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);;
+                    SiguienteButton.setVisibility(View.VISIBLE);
+                }
+                return presionado;
+            }
+        });
+
+    }
+
+    //REPASAR MUCHISIMO
     private void todos_tienen_la_misma_carta() {
         boolean la_tienen = false;
         BarajaPersonalizada b1 = Perdedores.get(0);
