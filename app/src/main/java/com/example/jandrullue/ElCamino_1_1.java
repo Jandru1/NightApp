@@ -37,10 +37,12 @@ public class ElCamino_1_1 extends AppCompatActivity {
     private ImageView HomeButton;
     private ImageView CartaIV;
     private ImageView ShotsButton;
+    private ImageView InfoButton;
 
     private TextView pregunta;
     private TextView player;
     private TextView ShotsText;
+    private TextView InfoText;
 
     private Intent intent;
     private BarajaPoker Baraja = new BarajaPoker();
@@ -66,12 +68,13 @@ public class ElCamino_1_1 extends AppCompatActivity {
         RojoButton = findViewById(R.id.RojoButton);
         NegroButton = findViewById(R.id.NegroButton);
         SiguienteButton = findViewById(R.id.ElCamino1_1);
-        Button nada = findViewById(R.id.SiguienteButton);
-        nada.setVisibility(View.INVISIBLE);
         HomeButton = findViewById(R.id.HomeButton1_1);
         pregunta = findViewById(R.id.RojoONegro);
         player = findViewById(R.id.Player);
         CartaIV = findViewById(R.id.CIV);
+        InfoButton = findViewById(R.id.InfoButtton);
+        InfoText = findViewById(R.id.textView6);
+
         ShotsText = findViewById(R.id.shotsText3);
         ShotsButton = findViewById(R.id.shotsButton3);
         ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
@@ -80,10 +83,44 @@ public class ElCamino_1_1 extends AppCompatActivity {
         pregunta.setTypeface(robotoLight);
         player.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         intent = new Intent(ElCamino_1_1.this, ElCamino_1_2.class);
         ShotsButt();
+        InfoButt();
         Primer_caso();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setVisibility(View.VISIBLE);
+                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se lo mostrará diferentes opciones. Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    player.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.INVISIBLE);
+                    all_invisible();
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    player.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -102,9 +139,11 @@ public class ElCamino_1_1 extends AppCompatActivity {
                         ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
                         // do stuff
                     }
+                    InfoButton.setVisibility(View.INVISIBLE);
                     ShotsText.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
                     player.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
                     all_invisible();
 
                     //  ShotsButton.setVisibility(View.INVISIBLE);
@@ -115,6 +154,7 @@ public class ElCamino_1_1 extends AppCompatActivity {
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);
                     ShotsButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
                     all_visible();
                 }
                 return presionado;

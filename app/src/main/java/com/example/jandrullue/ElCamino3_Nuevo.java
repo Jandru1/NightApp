@@ -52,6 +52,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ImageView Carta1L7;
     private ImageView HomeButton;
     private ImageView ShotsButton;
+    private ImageView InfoButton;
 
     private ScrollView ScrollView;
 
@@ -59,6 +60,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
     private TextView ShotsText;
     private TextView PlayerTV;
+    private TextView InfoText;
 
     private int Level;
     private int n;
@@ -104,6 +106,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Carta3L5 = findViewById(R.id.C3L5);
         Carta4L4 = findViewById(R.id.C4L4);
         ShotsText = findViewById(R.id.shotsText2);
+        InfoText = findViewById(R.id.InfoText);
+        InfoButton = findViewById(R.id.infoButtton9);
 
         ShotsButton = findViewById(R.id.shotsButton2);
         ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
@@ -112,8 +116,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
         Cartas_ArrayList();
         
-        layout = findViewById(R.id.ElCamino3L2);
-        ScrollView = findViewById(R.id.ElCaminoScrollView);
+        layout = findViewById(R.id.ElCaminoConstraint2);
+     //   ScrollView = findViewById(R.id.ElCaminoScrollView);
 
         //TragosTV = findViewById(R.id.TragosTV);
         PlayerTV = findViewById(R.id.playerTV);
@@ -126,9 +130,42 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
        // TragosTV.setTypeface(robotoLight);
         PlayerTV.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         ShotsButt();
+        InfoButt();
         init2(Level);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setText("En la última fase del Camino, debes levantar una carta para cada uno de los 7 niveles pregresivamente. Si levantas una carta que no sea figura, puedes avanzar al siguiente nivel, pero si lo es, ¡beberás tragos iguales al nivel en el que hayas perdido y volverás a empezar! ¡Buena suerte!");
+                    InfoText.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    PlayerTV.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.INVISIBLE);
+                    all_invisible();
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    PlayerTV.setVisibility(View.VISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -146,6 +183,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                         ShotsText.append(key + ": " + value + "\n"+ "\n"+ "\n");
                         // do stuff
                     }
+                    InfoButton.setVisibility(View.INVISIBLE);
                     ShotsText.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
                     PlayerTV.setVisibility(View.INVISIBLE);
@@ -158,6 +196,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                     PlayerTV.setVisibility(View.VISIBLE);
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
                     ShotsButton.setVisibility(View.VISIBLE);
                     all_visible();
                 }

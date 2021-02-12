@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00796B"
     tools:context=".VerdadoRetoContinuo">
 
     <TextView
@@ -50,8 +51,8 @@
         android:layout_marginBottom="59dp"
         android:text="R"
         android:textColor="@color/white"
-        android:textSize="36sp"
-        app:backgroundTint="#353535"
+        android:textSize="50sp"
+        app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/verdadButton"
@@ -68,8 +69,8 @@
         android:layout_marginBottom="59dp"
         android:text="V"
         android:textColor="@color/white"
-        android:textSize="36sp"
-        app:backgroundTint="#353535"
+        android:textSize="50sp"
+        app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/retoButton"
         app:layout_constraintStart_toStartOf="parent"

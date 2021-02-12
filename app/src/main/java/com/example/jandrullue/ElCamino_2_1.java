@@ -33,11 +33,9 @@ public class ElCamino_2_1 extends AppCompatActivity {
     private ArrayList<String> Jugadores;
     private ArrayList<String> numeross = new ArrayList<>();
 
-    private TextView Carta1TV;
-    private TextView Carta2TV;
-    private TextView Carta3TV;
     private TextView ShotsText;
     private TextView RondaTV;
+    private TextView InfoText;
 
     private int k = 0;
     private int q = 0;
@@ -55,6 +53,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
 
     private int Ronda;
     private ImageView HomeButton;
+    private ImageView InfoButton;
 
     private ShotsCounter Shots = new ShotsCounter();
 
@@ -86,18 +85,21 @@ public class ElCamino_2_1 extends AppCompatActivity {
         Carta3 = findViewById(R.id.Carta3);
         SiguienteButtonn = findViewById(R.id.sig);
         HomeButton = findViewById(R.id.HomeButton2);
+        InfoButton = findViewById(R.id.infoButtton4);
 
         SiguienteButtonn.setVisibility(View.INVISIBLE);
 
         ShotsText = findViewById(R.id.ShotsText);
         ShotsButton = findViewById(R.id.ShotsButton);
         RondaTV = findViewById(R.id.RondaTV);
+        InfoText = findViewById(R.id.textView4);
 
         ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         ShotsText.setTypeface(robotoLight);
         RondaTV.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         ShotsText.setVisibility(View.INVISIBLE);
 
@@ -106,7 +108,51 @@ public class ElCamino_2_1 extends AppCompatActivity {
 
         RondaTV.setText("Ronda "+Ronda);
 
+        InfoButt();
+
         init();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setVisibility(View.VISIBLE);
+                    InfoText.setText("La Fase2 del Camino consiste en 4 rondas. En cada ronda se enseñaran 3 cartas. Si tienes alguna carta con el mismo número que as mostradas, repartiras trago. El que se quede más cartas al final jugará ElCamino!");
+                    InfoText.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    Carta1.setVisibility(View.INVISIBLE);
+                    Carta2.setVisibility(View.INVISIBLE);
+                    Carta3.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.INVISIBLE);
+                    SiguienteButtonn.setVisibility(View.INVISIBLE);
+                    RondaTV.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    Carta1.setVisibility(View.VISIBLE);
+                    Carta2.setVisibility(View.VISIBLE);
+                    Carta3.setVisibility(View.VISIBLE);
+                    RondaTV.setVisibility(View.VISIBLE);
+
+                    if(Carta3Enseñada & Carta2Enseñada & Carta1Enseñada) SiguienteButtonn.setVisibility(View.VISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                }
+                return presionado;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -150,6 +196,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
                     SiguienteButtonn.setVisibility(View.INVISIBLE);
                     RondaTV.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
 
                   //  ShotsButton.setVisibility(View.INVISIBLE);
                 }
@@ -160,6 +207,7 @@ public class ElCamino_2_1 extends AppCompatActivity {
                     Carta2.setVisibility(View.VISIBLE);
                     Carta3.setVisibility(View.VISIBLE);
                     RondaTV.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
 
                     if(Carta3Enseñada & Carta2Enseñada & Carta1Enseñada) SiguienteButtonn.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);

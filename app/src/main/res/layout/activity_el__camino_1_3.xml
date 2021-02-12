@@ -46,6 +46,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/DentroButton" />
                 -->
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="343dp"
+            android:layout_height="576dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/infoButtton2"
+            android:layout_width="68dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NegroButton"
+            app:srcCompat="@drawable/infobutton" />
+
         <ImageButton
             android:id="@+id/FueraButton"
             android:layout_width="185dp"
@@ -125,19 +147,6 @@
             app:layout_constraintTop_toBottomOf="@+id/TextView4"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/cartapordetras" />
-
-        <Button
-            android:id="@+id/SiguienteBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="148dp"
-            android:layout_marginBottom="48dp"
-            android:text="Siguiente"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CartaIV3"
-            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/CartaIV1"

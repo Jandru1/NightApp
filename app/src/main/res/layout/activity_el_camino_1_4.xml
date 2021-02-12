@@ -78,7 +78,29 @@
             app:layout_constraintTop_toBottomOf="@+id/DiamanteButton" />
 -->
 
-            <ImageButton
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="343dp"
+            android:layout_height="576dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/infoButtton3"
+            android:layout_width="68dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NegroButton"
+            app:srcCompat="@drawable/infobutton" />
+
+        <ImageButton
                 android:id="@+id/DiamanteButton"
                 android:layout_width="139dp"
                 android:layout_height="47dp"
@@ -153,18 +175,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/circle_cropped__1_" />
-
-        <Button
-            android:id="@+id/SigBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="48dp"
-            android:text="Siguiente"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Cartatv" />
 
         <TextView
             android:id="@+id/PaloTextView"

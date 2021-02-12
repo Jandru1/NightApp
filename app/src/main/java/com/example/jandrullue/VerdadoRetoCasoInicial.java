@@ -60,8 +60,9 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
         RetoButton = findViewById(R.id.RetoButton);
         HomeButton = findViewById(R.id.HomeButton);
 
-        VerdadButton.setTypeface(robotoLight);
-        RetoButton.setTypeface(robotoLight);
+        Typeface robotoLight2 = Typeface.createFromAsset(getAssets(),"font/het_ja_woord.ttf");
+        VerdadButton.setTypeface(robotoLight2);
+        RetoButton.setTypeface(robotoLight2);
 
         Log.d("YOU Primer Jugador es :", ""+ Jugadores.get(n));
 

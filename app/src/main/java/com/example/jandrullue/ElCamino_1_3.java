@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -36,6 +37,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private TextView anteriores_cartas_fueron;
     private TextView jugador_jugando;
     private TextView ShotsText;
+    private TextView InfoText;
 
     private int k = 0;
     private int n;
@@ -49,11 +51,13 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private Intent intent;
 
     private BarajaPersonalizada BP = null;
+
     private ImageView HomeButton;
     private ImageView CartaIV1;
     private ImageView CartaIV2;
     private ImageView CartaIV3;
     private ImageView ShotsButton;
+    private ImageView InfoButton;
 
     private ShotsCounter Shots = new ShotsCounter();
 
@@ -71,8 +75,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
         DentroButton = findViewById(R.id.DentroButton);
         FueraButton = findViewById(R.id.FueraButton);
         SiguienteButtonn = findViewById(R.id.ElCamino1_3);
-        Button nada = findViewById(R.id.SiguienteBut);
-        nada.setVisibility(View.INVISIBLE);
+
         HomeButton = findViewById(R.id.HomeButton1_3);
         ShotsButton = findViewById(R.id.shotsButton5);
         ShotsText = findViewById(R.id.shotsText5);
@@ -89,12 +92,15 @@ public class ElCamino_1_3 extends AppCompatActivity {
         CartaIV1 = findViewById(R.id.CartaIV1);
         CartaIV2 = findViewById(R.id.CartaIV2);
         CartaIV3 = findViewById(R.id.CartaIV3);
+        InfoButton = findViewById(R.id.infoButtton2);
+        InfoText = findViewById(R.id.textView8);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         pregunta.setTypeface(robotoLight);
         jugador_jugando.setTypeface(robotoLight);
         anteriores_cartas_fueron.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -122,8 +128,44 @@ public class ElCamino_1_3 extends AppCompatActivity {
             }
         });
 
+        InfoButt();
         ShotsButt();
         Primer_caso();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setVisibility(View.VISIBLE);
+                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se lo mostrará diferentes opciones. Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.INVISIBLE);
+                    jugador_jugando.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    jugador_jugando.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -145,6 +187,8 @@ public class ElCamino_1_3 extends AppCompatActivity {
                     ShotsText.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
                     jugador_jugando.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
+
                     all_invisible();
 
                     //  ShotsButton.setVisibility(View.INVISIBLE);
@@ -155,6 +199,8 @@ public class ElCamino_1_3 extends AppCompatActivity {
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);
                     ShotsButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
+
                     all_visible();
                 }
                 return presionado;

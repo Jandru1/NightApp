@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ElCaminoCampeon"
-    android:id="@+id/ElCaminoCampeon">
-    <TextView
+    android:id="@+id/ElCaminoCampeon"
+    android:background="#00796B">
+
+<TextView
         android:id="@+id/CampeonTV"
         android:layout_width="322dp"
         android:layout_height="290dp"

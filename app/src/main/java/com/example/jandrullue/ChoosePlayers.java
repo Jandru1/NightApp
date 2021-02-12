@@ -50,9 +50,8 @@ public class ChoosePlayers extends AppCompatActivity {
 
         players = findViewById(R.id.players);
         et1 = findViewById(R.id.addPlayer);
-
         playersList = new ArrayList<String>();
-        adaptador1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, playersList);
+        adaptador1=new ArrayAdapter<String>(this, R.layout.nombres_chooseplayers, playersList);
         players.setAdapter(adaptador1);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");

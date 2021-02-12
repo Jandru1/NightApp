@@ -78,6 +78,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         Texto.setTypeface(robotoLight);
         nada.setTypeface(robotoLight);
 
+
         Log.d("El Primer jugador es", ""+ Primer_jugador);
         Log.d("El Primer VoR es:", ""+ Verdad_o_Reto);
 
@@ -85,8 +86,10 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         RetoButton = findViewById(R.id.retoButton);
         HomeButton = findViewById(R.id.HomeButton);
 
-        VerdadButton.setTypeface(robotoLight);
-        RetoButton.setTypeface(robotoLight);
+
+        Typeface robotoLight2 = Typeface.createFromAsset(getAssets(),"font/het_ja_woord.ttf");
+        VerdadButton.setTypeface(robotoLight2);
+        RetoButton.setTypeface(robotoLight2);
 
         if(Verdad_o_Reto.equals("verdad")){
             generarRandomVerdad();

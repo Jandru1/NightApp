@@ -41,6 +41,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private TextView LastimaTV;
     private TextView jugador_jugando;
     private TextView ShotsText;
+    private TextView InfoText;
 
     private int k = 0;
     private int n;
@@ -51,7 +52,9 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private Intent intent;
 
     private BarajaPersonalizada BP = null;
+
     private ImageView HomeButton;
+    private ImageView InfoButton;
 
     private ShotsCounter Shots = new ShotsCounter();
 
@@ -74,8 +77,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         CorazonesButton = findViewById(R.id.CorazonesButton);
         TrebolesButton = findViewById(R.id.TrebolesButton);
         SiguienteButtonn = findViewById(R.id.ElCamino1_4);
-        Button nada = findViewById(R.id.SigBut);
-        nada.setVisibility(View.INVISIBLE);
+
         HomeButton = findViewById(R.id.HomeButton1_4);
 
         ShotsButton = findViewById(R.id.shotsButton6);
@@ -88,6 +90,8 @@ public class ElCamino_1_4 extends AppCompatActivity {
         pregunta = findViewById(R.id.PaloTextView);
         jugador_jugando = findViewById(R.id.jugadorTextView);
         LastimaTV = findViewById(R.id.LastimaTV);
+        InfoButton = findViewById(R.id.infoButtton3);
+        InfoText = findViewById(R.id.textView9);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         jugador_jugando.setTypeface(robotoLight);
@@ -95,6 +99,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
         ultima_carta.setTypeface(robotoLight);
         LastimaTV.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         Jugadores = getIntent().getStringArrayListExtra("Players");
         numeross = getIntent().getStringArrayListExtra("numeross");
@@ -102,8 +107,45 @@ public class ElCamino_1_4 extends AppCompatActivity {
         intent = new Intent(ElCamino_1_4.this, ElCamino_2_1.class);
 
         ShotsButt();
+        InfoButt();
 
         Primer_caso();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setVisibility(View.VISIBLE);
+                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se lo mostrará diferentes opciones. Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility((View.INVISIBLE));
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    jugador_jugando.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    jugador_jugando.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -199,6 +241,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
 
             }
         });
+
         jugador_jugando.setText(Jugadores.get(k));
         pregunta.setText("¿A qué palo pertenece?");
         ultima_carta.setText("Tu última carta!");

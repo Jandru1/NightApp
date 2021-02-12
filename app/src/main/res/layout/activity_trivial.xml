@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Trivial"
-    android:id="@+id/Trivial">
+    android:id="@+id/Trivial"
+    android:background="#00796B"
+    >
 
     <Button
         android:id="@+id/AnswerButton"

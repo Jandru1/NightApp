@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
 
-<!--
+        <!--
 
 
 
@@ -96,14 +96,14 @@
             android:layout_height="114dp"
             android:layout_marginTop="108dp"
             android:adjustViewBounds="true"
+            android:background="@drawable/bordes_redondos"
             android:backgroundTint="#00796B"
             android:padding="0dp"
             android:paddingStart="0dp"
-            android:background="@drawable/bordes_redondos"
             android:paddingEnd="0dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/YoNunca"
+            app:layout_constraintStart_toStartOf="@+id/YoNunca"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/camino_imagen2" />
 
@@ -111,15 +111,15 @@
             android:id="@+id/YoNunca"
             android:layout_width="248dp"
             android:layout_height="111dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="85dp"
             android:adjustViewBounds="true"
             android:background="#00796B"
             android:padding="0dp"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/VerdadoReto"
+            app:layout_constraintStart_toStartOf="@+id/VerdadoReto"
             app:layout_constraintTop_toBottomOf="@+id/ElCamino"
             app:srcCompat="@drawable/yonuncaimagen" />
 
@@ -127,15 +127,15 @@
             android:id="@+id/VerdadoReto"
             android:layout_width="251dp"
             android:layout_height="103dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="85dp"
             android:adjustViewBounds="true"
             android:background="#00796B"
             android:padding="0dp"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Trivial"
+            app:layout_constraintStart_toStartOf="@+id/Trivial"
             app:layout_constraintTop_toBottomOf="@+id/YoNunca"
             app:srcCompat="@drawable/verdadoretoimagen" />
 
@@ -143,7 +143,7 @@
             android:id="@+id/Trivial"
             android:layout_width="259dp"
             android:layout_height="141dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="60dp"
             android:adjustViewBounds="true"
             android:background="#00796B"
             android:padding="0dp"

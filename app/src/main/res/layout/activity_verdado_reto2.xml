@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VerdadoRetoCasoInicial">
+    tools:context=".VerdadoRetoCasoInicial"
+    android:background="#00796B">
 
     <Button
         android:id="@+id/VerdadButton"
@@ -16,8 +17,9 @@
         android:layout_marginBottom="59dp"
         android:text="V"
         android:textColor="@color/white"
-        android:textSize="36sp"
-        app:backgroundTint="#353535"
+        android:textSize="50sp"
+        app:backgroundTint="#000000"
+        android:drawableStart="@drawable/bordes_redondos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/RetoButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +36,8 @@
         android:layout_marginBottom="59dp"
         android:text="R"
         android:textColor="@color/white"
-        android:textSize="36sp"
-        app:backgroundTint="#353535"
+        android:textSize="50sp"
+        app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/VerdadButton"

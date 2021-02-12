@@ -30,6 +30,7 @@ public class ElCamino2_Aux extends AppCompatActivity {
     private TextView PlayerTV;
     private TextView Deshacer_cartasTV;
     private TextView ShotsText;
+    private TextView InfoText;
 
     private ImageButton SiguienteButton;
     private ImageView ShotsButton;
@@ -50,6 +51,7 @@ public class ElCamino2_Aux extends AppCompatActivity {
 
     private int Ronda;
     private ImageView HomeButton;
+    private ImageView InfoButton;
 
     private ShotsCounter Shots;
 
@@ -66,9 +68,12 @@ public class ElCamino2_Aux extends AppCompatActivity {
         PlayerTV = findViewById(R.id.JugadorTV);
         Deshacer_cartasTV = findViewById(R.id.TV);
         HomeButton = findViewById(R.id.HomeButton2Aux);
+        InfoButton = findViewById(R.id.infoButtton5);
+        InfoText = findViewById(R.id.textView5);
 
         ShotsButton = findViewById(R.id.shotsButton7);
         ShotsText = findViewById(R.id.shotsText7);
+        ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
         ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
 
         SiguienteButton = findViewById(R.id.Sigui);
@@ -79,6 +84,8 @@ public class ElCamino2_Aux extends AppCompatActivity {
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
         Deshacer_cartasTV.setTypeface(robotoLight);
         PlayerTV.setTypeface(robotoLight);
+        ShotsText.setTypeface(robotoLight);
+        InfoText.setTypeface(robotoLight);
 
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
@@ -86,7 +93,44 @@ public class ElCamino2_Aux extends AppCompatActivity {
         if(bundle!=null) {
              BP = (BarajaPersonalizada) bundle.getSerializable("BarajaPersonalizada");
         }
+
+        InfoButt();
+
         Deshacer_Cartas(k, BP);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void InfoButt() {
+
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean  presionado = false;
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    presionado = true;
+                    InfoText.setVisibility(View.VISIBLE);
+                    InfoText.setText("La Fase2 del Camino consiste en 4 rondas. En cada ronda se enseñaran 3 cartas. Si tienes alguna carta con el mismo número que as mostradas, repartiras trago. El que se quede más cartas al final jugará ElCamino!");
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.INVISIBLE);
+                    PlayerTV.setVisibility(View.INVISIBLE);
+                    ShotsButton.setVisibility(View.INVISIBLE);
+                    all_invisible();
+
+                    //  ShotsButton.setVisibility(View.INVISIBLE);
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+                    presionado = false;
+                    PlayerTV.setVisibility(View.VISIBLE);
+                    ShotsText.setVisibility(View.INVISIBLE);
+                    HomeButton.setVisibility(View.VISIBLE);
+                    ShotsButton.setVisibility(View.VISIBLE);
+                    InfoText.setVisibility(View.INVISIBLE);
+                    all_visible();
+                }
+                return presionado;
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -238,8 +282,10 @@ public class ElCamino2_Aux extends AppCompatActivity {
                         // do stuff
                     }
                     ShotsText.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
                     PlayerTV.setVisibility(View.INVISIBLE);
+                    InfoButton.setVisibility(View.INVISIBLE);
                     all_invisible();
 
                     //  ShotsButton.setVisibility(View.INVISIBLE);
@@ -249,7 +295,9 @@ public class ElCamino2_Aux extends AppCompatActivity {
                     PlayerTV.setVisibility(View.VISIBLE);
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
                     ShotsButton.setVisibility(View.VISIBLE);
+                    InfoButton.setVisibility(View.VISIBLE);
                     all_visible();
                 }
                 return presionado;
