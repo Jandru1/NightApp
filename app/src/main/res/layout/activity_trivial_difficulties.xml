@@ -8,6 +8,7 @@
     android:background="#00796B"
     >
 
+    <!--
     <Button
         android:id="@+id/FacilButton"
         android:layout_width="wrap_content"
@@ -37,4 +38,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MedioButton" />
+-->
+
+    <ImageView
+        android:id="@+id/DificilButton"
+        android:layout_width="228dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="165dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dificilbutton" />
+
+    <ImageView
+        android:id="@+id/MedioButton"
+        android:layout_width="228dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DificilButton"
+        app:srcCompat="@drawable/mediobutton" />
+
+    <ImageView
+        android:id="@+id/FacilButton"
+        android:layout_width="228dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="165dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MedioButton"
+        app:srcCompat="@drawable/facilbutton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

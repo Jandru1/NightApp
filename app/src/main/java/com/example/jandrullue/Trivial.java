@@ -1,5 +1,6 @@
 package com.example.jandrullue;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,8 +17,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +27,7 @@ public class Trivial extends AppCompatActivity {
     private String dificultad;
     private HashMap<Integer,String> Preguntas;
     private HashMap<Integer,String> Respuestas;
+    private HashMap<Integer,String> RespuestasIncorrectas;
     private TrivialClass Trivial = new TrivialClass();
     private int n;
     private ArrayList<String> numeross = new ArrayList<>();
@@ -50,6 +51,7 @@ public class Trivial extends AppCompatActivity {
     private boolean VoF;
     int pregunta_num = 0;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,20 +96,184 @@ public class Trivial extends AppCompatActivity {
         if(dificultad.equals("facil")) {
             Preguntas = Trivial.getPreguntasTrivialFaciles();
             Respuestas = Trivial.getRespuestasTrivialFaciles();
+            RespuestasIncorrectas = Trivial.getRespuestasIncorrectasFacil();
         }
         else if(dificultad.equals("medio")) {
             Preguntas = Trivial.getPreguntasTrivialMedio();
             Respuestas = Trivial.getRespuestasTrivialMedio();
+            RespuestasIncorrectas = Trivial.getRespuestasIncorrectasMedio();
         }
         else if(dificultad.equals("dificil")) {
             Preguntas = Trivial.getPreguntasTrivialDificil();
             Respuestas = Trivial.getRespuestasTrivialDificil();
+            RespuestasIncorrectas = Trivial.getRespuestasIncorrectasDificil();
         }
-        init();
+        init_sin_opciones();
+         //init_con_opciones();
     }
 
-    private void init() {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void init_con_opciones() {
+        RespuestaButton.setVisibility(View.INVISIBLE);
+        AciertoButton.setText("V");
+        FalloButton.setText("F");
         generarRandom();
+        Log.d("El numero random es:", ""+n);
+        comprobarK();
+        ShotsButt();
+        HomeBut();
+        VoF = EsVerdadoOFalso(Preguntas.get(n));
+
+        if(!VoF) PreguntaTV.setText(Preguntas.get(n));
+        else {
+            String pregunta = getPreguntaVoF(Preguntas.get(n));
+            PreguntaTV.setText(pregunta);
+        }
+        PlayerTV.setText(Jugadores.get(k));
+        setVisibilitiesCorrectly(VoF);
+        if(!VoF) {
+            Momento = "Opciones";
+            setWrongAnswers();
+            getTextButton();
+        }
+        else {
+            Momento = "VoF";
+            getVoF();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setWrongAnswers() {
+        n = 0;
+        //MAS BIEN CONTAR LONGITUD DEL STRING!!!! Respuestas.get(n).lenght < ....
+        int num_palabras = cuenta_palabras(Respuestas.get(n));
+        Log.d("Numero de palabras : ", ""+num_palabras);
+        String respuesta_final = Respuestas.get(n).substring(1,Respuestas.get(n).length()-1);
+        int longitud = respuesta_final.length();
+
+        String primera_respuesta_incorrecta = null;
+        String segunda_respuesta_incorrecta = null;
+        String tercera_respuesta_incorrecta = null;
+
+        boolean con_primera = false;
+        boolean con_segunda = false;
+        boolean con_tercera = false;
+
+        int m = 0;
+        for(int i = 0; i < RespuestasIncorrectas.get(n).length();++i) {
+            if(RespuestasIncorrectas.get(n).startsWith("||", i)){
+                if(!con_primera & !con_segunda & !con_tercera){
+                    con_primera = true;
+                    Log.d("El valor de 1 'i' es : ", ""+i);
+                    m = i;
+                    primera_respuesta_incorrecta = RespuestasIncorrectas.get(n).substring(1,i-1);
+                }
+                else if(con_primera & !con_segunda & !con_tercera) {
+                    Log.d("El valor de 2 'i' es : ", ""+i);
+                    con_segunda = true;
+                    segunda_respuesta_incorrecta = RespuestasIncorrectas.get(n).substring(m+3,i-1);
+                    tercera_respuesta_incorrecta = RespuestasIncorrectas.get(n).substring(i+3,RespuestasIncorrectas.get(n).length()-1);
+                }
+            }
+        }
+        Log.d("Primera respuesta es : ", ""+primera_respuesta_incorrecta);
+        Log.d("Segunda respuesta es : ", ""+segunda_respuesta_incorrecta);
+        Log.d("Tercera respuesta es : ", ""+tercera_respuesta_incorrecta);
+
+
+        if(longitud < 13){//(num_palabras == 1){
+            R1Button.setMaxLines(1);
+            R2Button.setMaxLines(1);
+            R3Button.setMaxLines(1);
+            R4Button.setMaxLines(1);
+        }
+        else if(longitud < 25){//(num_palabras < 3){
+            R1Button.setMaxLines(2);
+            R2Button.setMaxLines(2);
+            R3Button.setMaxLines(2);
+            R4Button.setMaxLines(2);
+        }
+        else if(longitud < 37){//(num_palabras < 5){
+            R1Button.setMaxLines(3);
+            R2Button.setMaxLines(3);
+            R3Button.setMaxLines(3);
+            R4Button.setMaxLines(3);
+        }
+        else if(longitud < 49){//(num_palabras < 7) {
+            R1Button.setMaxLines(4);
+            R2Button.setMaxLines(4);
+            R3Button.setMaxLines(4);
+            R4Button.setMaxLines(4);
+        }
+        else {
+            Log.d("Entro en el else","");
+            R1Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            R2Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            R3Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            R4Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
+            R1Button.setMaxLines(9);
+            R2Button.setMaxLines(9);
+            R3Button.setMaxLines(9);
+            R4Button.setMaxLines(9);
+        }
+
+        double x = Math.random()*4+0;
+        int x_random = (int) x;
+        Log.d("random respuestas es", " "+x_random);
+
+        if(x_random == 0){
+            R1Button.setText(Respuestas.get(n));
+            R2Button.setText(primera_respuesta_incorrecta);
+            R3Button.setText(tercera_respuesta_incorrecta);
+            R4Button.setText(segunda_respuesta_incorrecta);
+        }
+        else if(x_random == 1) {
+            R1Button.setText(tercera_respuesta_incorrecta);
+            R2Button.setText(Respuestas.get(n));
+            R3Button.setText(segunda_respuesta_incorrecta);
+            R4Button.setText(primera_respuesta_incorrecta);
+        }
+        else if(x_random == 2){
+            R1Button.setText(primera_respuesta_incorrecta);
+            R2Button.setText(segunda_respuesta_incorrecta);
+            R3Button.setText(Respuestas.get(n));
+            R4Button.setText(tercera_respuesta_incorrecta);
+        }
+        else {
+            R1Button.setText(segunda_respuesta_incorrecta);
+            R2Button.setText(tercera_respuesta_incorrecta);
+            R3Button.setText(primera_respuesta_incorrecta);
+            R4Button.setText(Respuestas.get(n));
+        }
+
+        /*
+        R1Button.setText(Respuestas.get(n));
+        R2Button.setText(Respuestas.get(n) + "A");
+        R3Button.setText(Respuestas.get(n) + "B");
+        R4Button.setText(Respuestas.get(n)+ "C");
+         */
+    }
+
+
+    private int cuenta_palabras(String frase) {
+        int m = 0;
+        for(int i = 0; i < frase.length();++i) {
+            if(frase.substring(i,i+1)!= " ") {
+                m = i;
+                i = 10000000;
+            }
+        }
+        int palabras = 0;
+        for(int i = m; i < frase.length();++i) {
+            if (frase.substring(i,i+1).equals(" ")) ++palabras;
+        }
+        return palabras-1;
+    }
+
+    private void init_sin_opciones() {
+        generarRandom();
+        Log.d("El numero random es:", ""+n);
         comprobarK();
         ShotsButt();
         HomeBut();
@@ -118,7 +284,6 @@ public class Trivial extends AppCompatActivity {
             String pregunta = getPreguntaVoF(Preguntas.get(n));
             PreguntaTV.setText(pregunta);
         }
-
          */
         ++pregunta_num;
         PreguntaTV.setText(Preguntas.get(n));
@@ -168,7 +333,7 @@ public class Trivial extends AppCompatActivity {
                         else {
                             RespuestaButton.setVisibility(View.VISIBLE);
                             ++k;
-                            init();
+                            init_sin_opciones();
                         }
                     }
                 });
@@ -180,7 +345,7 @@ public class Trivial extends AppCompatActivity {
                             RespuestaButton.setVisibility(View.VISIBLE);
                             Shots.SumShot(Jugadores.get(k));
                             ++k;
-                            init();
+                            init_sin_opciones();
                         }
                     }
                 });
@@ -245,7 +410,9 @@ public class Trivial extends AppCompatActivity {
     }
 
     private void all_invisible() {
+
         PlayerTV.setVisibility(View.INVISIBLE);
+        HomeButton.setVisibility(View.INVISIBLE);
         PreguntaTV.setVisibility(View.INVISIBLE);
         AciertoButton.setVisibility(View.INVISIBLE);
         FalloButton.setVisibility(View.INVISIBLE);
@@ -259,6 +426,7 @@ public class Trivial extends AppCompatActivity {
     private void all_visible() {
         PlayerTV.setVisibility(View.VISIBLE);
         PreguntaTV.setVisibility(View.VISIBLE);
+        HomeButton.setVisibility(View.VISIBLE);
         if(Momento.equals("SinRespuesta")) {
             /*
             R1Button.setVisibility(View.VISIBLE);
@@ -269,6 +437,20 @@ public class Trivial extends AppCompatActivity {
             RespuestaButton.setVisibility(View.VISIBLE);
         }
         else if (Momento.equals("ConRespuesta")) {
+            AciertoButton.setVisibility(View.VISIBLE);
+            FalloButton.setVisibility(View.VISIBLE);
+        }
+        else if(Momento.equals("Respuesta")) {
+
+        }
+        else if(Momento.equals("Opciones")){
+
+            R1Button.setVisibility(View.VISIBLE);
+            R2Button.setVisibility(View.VISIBLE);
+            R3Button.setVisibility(View.VISIBLE);
+            R4Button.setVisibility(View.VISIBLE);
+        }
+        else if(Momento.equals("VoF")){
             AciertoButton.setVisibility(View.VISIBLE);
             FalloButton.setVisibility(View.VISIBLE);
         }
@@ -298,7 +480,7 @@ public class Trivial extends AppCompatActivity {
     private void Comprobar_Respuesta(String Respuesta) {
         Momento = "Respuesta";
         String RespuestaCorrecta = Respuestas.get(n);
-        getTextButton();
+       // getTextButton();
         R1Button.setVisibility(View.INVISIBLE);
         R2Button.setVisibility(View.INVISIBLE);
         R3Button.setVisibility(View.INVISIBLE);
@@ -311,10 +493,13 @@ public class Trivial extends AppCompatActivity {
             Shots.SumShot(Jugadores.get(k));
         }
         layout.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                ++k;
-                init();
+                if(Momento.equals("Respuesta")) {
+                    ++k;
+                    init_con_opciones();
+                }
             }
         });
     }

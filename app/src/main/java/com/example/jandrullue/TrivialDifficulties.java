@@ -4,18 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 public class TrivialDifficulties extends AppCompatActivity {
 
-    private Button FacilButton;
-    private Button MedioButton;
-    private Button DificilButton;
+    private ImageView FacilButton;
+    private ImageView MedioButton;
+    private ImageView DificilButton;
 
     private String dificultad;
     private ArrayList<String> Jugadores;
@@ -40,9 +43,9 @@ public class TrivialDifficulties extends AppCompatActivity {
         DificilButton = findViewById(R.id.DificilButton);
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-        FacilButton.setTypeface(robotoLight);
-        MedioButton.setTypeface(robotoLight);
-        DificilButton.setTypeface(robotoLight);
+        //FacilButton.setTypeface(robotoLight);
+        //MedioButton.setTypeface(robotoLight);
+        //DificilButton.setTypeface(robotoLight);
 
         init();
     }
