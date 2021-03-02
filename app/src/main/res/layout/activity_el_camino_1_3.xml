@@ -9,25 +9,71 @@
     android:background="#00796B">
 
 
+    <ImageView
+        android:id="@+id/HomeButton1_3"
+        android:layout_width="73dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle_cropped__1_" />
+
+
+    <ImageView
+        android:id="@+id/infoButtton2"
+        android:layout_width="68dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NegroButton"
+        app:srcCompat="@drawable/infobutton" />
+
+    <TextView
+        android:id="@+id/shotsText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <ImageView
+        android:id="@+id/shotsButton5"
+        android:layout_width="62dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="314dp"
-        android:layout_height="496dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="413dp"
-        android:layout_height="731dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/infoButtton2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@id/HomeButton1_3">
         <!--
                 <Button
                     android:id="@+id/DentroButton"
@@ -56,54 +102,24 @@
                     app:layout_constraintTop_toBottomOf="@+id/DentroButton" />
                 -->
 
-        <ImageView
-            android:id="@+id/infoButtton2"
-            android:layout_width="68dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="36dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/NegroButton"
-            app:srcCompat="@drawable/infobutton" />
 
         <ImageButton
             android:id="@+id/FueraButton"
             android:layout_width="185dp"
             android:layout_height="57dp"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
             android:adjustViewBounds="true"
             android:background="#00796B"
             android:padding="0dp"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextView4"
-            app:srcCompat="@drawable/nobutton" />
-
-        <TextView
-            android:id="@+id/shotsText5"
-            android:layout_width="235dp"
-            android:layout_height="400dp"
-            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498" />
-
-        <ImageView
-            android:id="@+id/shotsButton5"
-            android:layout_width="62dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:layout_constraintTop_toBottomOf="@+id/DentroButton"
+            app:srcCompat="@drawable/nobutton" />
 
 
         <ImageView
@@ -139,7 +155,7 @@
             android:layout_width="104dp"
             android:layout_height="153dp"
             android:layout_marginTop="34dp"
-            android:layout_marginBottom="156dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -174,15 +190,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PlayerText" />
 
-        <ImageView
-            android:id="@+id/HomeButton1_3"
-            android:layout_width="73dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circle_cropped__1_" />
 
         <TextView
             android:id="@+id/PlayerText"
@@ -190,7 +197,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="173dp"
-            android:layout_marginTop="104dp"
             android:layout_marginEnd="180dp"
             android:gravity="center"
             android:text="TextView"

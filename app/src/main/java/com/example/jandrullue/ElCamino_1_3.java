@@ -7,15 +7,11 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +21,7 @@ import java.util.Map;
 
 public class ElCamino_1_3 extends AppCompatActivity {
 
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private ArrayList<String> numeross = new ArrayList<>();
 
     private ImageButton DentroButton;
@@ -60,13 +56,13 @@ public class ElCamino_1_3 extends AppCompatActivity {
     private ImageView InfoButton;
 
     private ShotsCounter Shots = new ShotsCounter();
-
+    private PlayerClass PlayerClass = new PlayerClass();
     private boolean clickado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_el__camino_1_3);
+        setContentView(R.layout.activity_el_camino_1_3);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -102,7 +98,12 @@ public class ElCamino_1_3 extends AppCompatActivity {
         ShotsText.setTypeface(robotoLight);
         InfoText.setTypeface(robotoLight);
 
-        Jugadores = getIntent().getStringArrayListExtra("Players");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Jugadores.add(key);
+        }
         numeross = getIntent().getStringArrayListExtra("numeross");
 
         intent = new Intent(ElCamino_1_3.this, ElCamino_1_4.class);
@@ -116,6 +117,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(ElCamino_1_3.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -143,7 +145,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
                     InfoText.setVisibility(View.VISIBLE);
-                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se lo mostrará diferentes opciones. Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
+                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se le mostrarán diferentes opciones. ¡Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
                     ShotsButton.setVisibility(View.INVISIBLE);
@@ -177,7 +179,8 @@ public class ElCamino_1_3 extends AppCompatActivity {
                 boolean  presionado = false;
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
-                    ShotsText.setText("");
+                    ShotsText.setText("\n");
+                    ShotsText.append("Tragos"+"\n"+ "\n");
                     for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
                         String key = entry.getKey();
                         Integer value = entry.getValue();
@@ -353,7 +356,7 @@ public class ElCamino_1_3 extends AppCompatActivity {
             public void onClick(View v) {
                 if(clickado) {
                     if (k + 1 == Jugadores.size()) {
-                        intent.putStringArrayListExtra("Players", Jugadores);
+                        intent.putExtra("Jugadores", PlayerClass);
                         intent.putStringArrayListExtra("numeross", numeross);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);

@@ -2,7 +2,7 @@ package com.example.jandrullue;
 
 import java.util.ArrayList;
 
-public class YoNuncaPregs {
+public class YoNuncaClass {
 
     private ArrayList<String> PregsHotPack1;
     private ArrayList<String> PregsHotPack2;
@@ -11,7 +11,7 @@ public class YoNuncaPregs {
     private ArrayList<String> PregsMediumPack1 = new ArrayList<String>();
     private ArrayList<String> PregsMediumPack2 = new ArrayList<String>();
 
-    public YoNuncaPregs(){
+    public YoNuncaClass(){
 
         ArrayList<String> HotPack1 = new ArrayList<String>();
         HotPack1.add("Yo nunca he tenido sexo en la cocina ");
@@ -85,7 +85,7 @@ public class YoNuncaPregs {
         HotPack2.add("Yo nunca he sido pillado borracho al llegar a casa ");
         HotPack2.add("Yo nunca he vomitado por culpa del alcohol en casa y me han pillado mis padres ");
         HotPack2.add("Yo nunca he sido pillado por llegar fumado/drogado a casa ");
-        HotPack2.add("Yo nunca he sentido atraído por la pareja de alguna amistad");
+        HotPack2.add("Yo nunca me he sentido atraído por la pareja de alguna amistad");
         HotPack2.add("Yo nunca he tenido relaciones con alguien del trabajo ");
         HotPack2.add("Yo nunca me he sentido atraído por alguien del mismo sexo");
         HotPack2.add("Yo nunca he dejado a alguien con las ganas ");

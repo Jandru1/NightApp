@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GamesModalities.class);
                 startActivity(intent);
-               // overridePendingTransition(R.anim.top_in, R.anim.top_out);
+                // overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
     }

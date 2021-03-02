@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class TrivialDifficulties extends AppCompatActivity {
 
@@ -21,9 +22,10 @@ public class TrivialDifficulties extends AppCompatActivity {
     private ImageView DificilButton;
 
     private String dificultad;
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
 
     private ShotsCounter Shots = new ShotsCounter();
+    private PlayerClass PlayerClass = new PlayerClass();
 
 
     @Override
@@ -35,7 +37,12 @@ public class TrivialDifficulties extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
-        Jugadores = getIntent().getStringArrayListExtra("playerList");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Jugadores.add(key);
+        }
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
         FacilButton = findViewById(R.id.FacilButton);
@@ -77,7 +84,7 @@ public class TrivialDifficulties extends AppCompatActivity {
 
     private void empezar_trivial(String dificultad) {
         Intent intent = new Intent(TrivialDifficulties.this, Trivial.class);
-        intent.putStringArrayListExtra("playerList", Jugadores);
+        intent.putExtra("Jugadores", PlayerClass);
         intent.putExtra("Dificultad",dificultad);
         intent.putExtra("Shots",Shots);
         startActivity(intent);

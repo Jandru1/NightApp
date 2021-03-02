@@ -7,24 +7,25 @@
     tools:context=".ElCaminoPerdedor"
     android:background="#00796B">
 
-<!--
-
-    <Button
-        android:id="@+id/Siguien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:text="Siguiente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PerdedorTV2" />
-        -->
+    <!--
+        <Button
+            android:id="@+id/Siguien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:text="Siguiente"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PerdedorTV2" />
+            -->
 
     <TextView
         android:id="@+id/shotsText8"
-        android:layout_width="235dp"
-        android:layout_height="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -78,8 +78,6 @@ public class BarajaPoker {
         this.Baraja.add("K de treboles");
         this.Baraja.add("K de picas");
 
-
-
         this.Cartas.add("ascorazones");
         this.Cartas.add("asdiamantes");
         this.Cartas.add("astreboles");

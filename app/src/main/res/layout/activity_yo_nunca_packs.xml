@@ -6,39 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".YoNuncaPacks"
     android:background="#00796B">
-<!--
-    <Button
-        app:backgroundTint="#353535"
-        android:textColor="@color/white"
-        android:id="@+id/Pack2Button"
-        android:layout_width="142dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="73dp"
-        android:layout_marginBottom="236dp"
-        android:text="Pack2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Pack1Button" />
+    <!--
+        <Button
+            app:backgroundTint="#353535"
+            android:textColor="@color/white"
+            android:id="@+id/Pack2Button"
+            android:layout_width="142dp"
+            android:layout_height="93dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginBottom="236dp"
+            android:text="Pack2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Pack1Button" />
 
-    <Button
-        app:backgroundTint="#353535"
-        android:textColor="@color/white"
-        android:id="@+id/Pack1Button"
-        android:layout_width="142dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginBottom="73dp"
-        android:text="Pack1"
-        app:layout_constraintBottom_toTopOf="@+id/Pack2Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            app:backgroundTint="#353535"
+            android:textColor="@color/white"
+            android:id="@+id/Pack1Button"
+            android:layout_width="142dp"
+            android:layout_height="93dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="73dp"
+            android:text="Pack1"
+            app:layout_constraintBottom_toTopOf="@+id/Pack2Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
--->
+    -->
 
 
     <ImageButton

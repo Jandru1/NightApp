@@ -10,14 +10,15 @@
 
     <ListView
         android:id="@+id/players"
-        android:layout_width="228dp"
-        android:layout_height="464dp"
+        android:layout_width="246dp"
+        android:layout_height="361dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/StartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPlayer" />
+        app:layout_constraintTop_toBottomOf="@id/HombreButton" />
 
     <Button
         android:id="@+id/StartButton"
@@ -45,29 +46,61 @@
         tools:text="Comenzamos"
         tools:visibility="visible" />
 
-    <EditText
-        android:id="@+id/addPlayer"
-        android:layout_width="236dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="Nombres"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/players"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!--
     <ImageView
         android:id="@+id/AddButton"
         android:layout_width="32dp"
         android:layout_height="31dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="188dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/players"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addPlayer"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addbutton" />
+        app:layout_constraintVertical_bias="0.38"
+        app:srcCompat="@drawable/addbutton" />-->
+
+    <EditText
+        android:id="@+id/addPlayer"
+        android:layout_width="236dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="Nombres"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/HombreButton"
+        android:layout_width="44dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="31dp"
+        app:layout_constraintEnd_toStartOf="@+id/MujerButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addPlayer"
+        app:srcCompat="@drawable/hombre_button" />
+
+    <ImageView
+        android:id="@+id/MujerButton"
+        android:layout_width="44dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/HombreButton"
+        app:layout_constraintTop_toBottomOf="@+id/addPlayer"
+        app:srcCompat="@drawable/mujer_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

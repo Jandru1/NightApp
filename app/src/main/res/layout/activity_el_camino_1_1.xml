@@ -8,25 +8,60 @@
     android:id="@+id/ElCamino1_1"
     android:background="#00796B">
 
-
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="314dp"
-            android:layout_height="496dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="30sp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="413dp"
-        android:layout_height="731dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/HomeButton1_1"
+            android:layout_width="73dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/circle_cropped__1_" />
 
-<!--
+
+        <TextView
+            android:id="@+id/shotsText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498" />
+
+        <ImageView
+            android:id="@+id/shotsButton3"
+            android:layout_width="62dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/InfoButtton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/HomeButton1_1">
+                <!--
         <Button
             android:id="@+id/RojoButton"
             android:layout_width="wrap_content"
@@ -51,128 +86,96 @@
             app:layout_constraintTop_toBottomOf="@+id/RojoButton" />
 -->
 
-        <TextView
-            android:id="@+id/shotsText3"
-            android:layout_width="235dp"
-            android:layout_height="400dp"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498" />
 
-        <ImageView
-            android:id="@+id/shotsButton3"
-            android:layout_width="62dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+                <TextView
 
-        <TextView
+                    android:id="@+id/RojoONegro"
+                    android:layout_width="304dp"
+                    android:layout_height="83dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="¿De qúe color es la carta?"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Player" />
 
-            android:id="@+id/RojoONegro"
-            android:layout_width="304dp"
-            android:layout_height="83dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
-            android:gravity="center"
-            android:text="¿De qúe color es la carta?"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Player" />
+                <TextView
+                    android:id="@+id/Player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="104dp"
-            android:gravity="center"
-            android:text="TextView"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/CIV"
+                    android:layout_width="116dp"
+                    android:layout_height="172dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RojoONegro"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/cartapordetras" />
 
+                <ImageButton
+                    android:id="@+id/RojoButton"
+                    android:layout_width="288dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00796B"
+                    android:padding="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toTopOf="@+id/NegroButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CIV"
+                    app:srcCompat="@drawable/rojobutton" />
 
-        <ImageView
-            android:id="@+id/HomeButton1_1"
-            android:layout_width="73dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circle_cropped__1_" />
+                <ImageButton
+                    android:id="@+id/NegroButton"
+                    android:layout_width="288dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00796B"
+                    android:padding="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RojoButton"
+                    app:srcCompat="@drawable/negrobutton" />
 
-        <ImageView
-            android:id="@+id/CIV"
-            android:layout_width="116dp"
-            android:layout_height="172dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="264dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RojoONegro"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/cartapordetras" />
-
-        <ImageButton
-            android:id="@+id/RojoButton"
-            android:layout_width="288dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="40dp"
-            android:adjustViewBounds="true"
-            android:background="#00796B"
-            android:padding="0dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/NegroButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CIV"
-            app:srcCompat="@drawable/rojobutton" />
-
-        <ImageButton
-            android:id="@+id/NegroButton"
-            android:layout_width="288dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="42dp"
-            android:adjustViewBounds="true"
-            android:background="#00796B"
-            android:padding="0dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RojoButton"
-            app:srcCompat="@drawable/negrobutton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/InfoButtton"
             android:layout_width="68dp"
             android:layout_height="49dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/NegroButton"
             app:srcCompat="@drawable/infobutton" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

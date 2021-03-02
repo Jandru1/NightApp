@@ -15,7 +15,7 @@ public class ShotsCounter implements Serializable {
         int a = this.Shots.get(player);
         ++a;
         this.Shots.put(player,a);
-        }
+    }
 
     public HashMap<String, Integer> getShotsMap() {
         return this.Shots;

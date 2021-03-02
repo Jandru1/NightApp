@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,14 +26,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ElCamino3_Nuevo extends AppCompatActivity {
-
-    private boolean level1_superado = false;
-    private boolean level2_superado = false;
-    private boolean level3_superado = false;
-    private boolean level4_superado = false;
-    private boolean level5_superado = false;
-    private boolean level6_superado = false;
-    private boolean level7_superado = false;
 
     private ImageView Carta1L1;
     private ImageView Carta1L2;
@@ -56,11 +49,13 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
 
     private ScrollView ScrollView;
 
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
 
     private TextView ShotsText;
     private TextView PlayerTV;
     private TextView InfoText;
+    private TextView ToastText;
+    private TextView textview;
 
     private int Level;
     private int n;
@@ -71,8 +66,9 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
     private ArrayList<String> numeross = new ArrayList<>();
 
     private View layout;
+    private View customToast;
     private ShotsCounter Shots = new ShotsCounter();
-
+    private PlayerClass PlayerClass;
     private boolean quefuncioneellayout;
     private boolean layoutcuandoessiete;
 
@@ -108,6 +104,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         ShotsText = findViewById(R.id.shotsText2);
         InfoText = findViewById(R.id.InfoText);
         InfoButton = findViewById(R.id.infoButtton9);
+        ToastText = findViewById(R.id.txt_custom_toast);
 
         ShotsButton = findViewById(R.id.shotsButton2);
         ShotsButton.setImageResource(R.drawable.chupitos_redondeado);
@@ -115,22 +112,33 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         HomeButton = findViewById(R.id.HomeButton32);
 
         Cartas_ArrayList();
-        
+
         layout = findViewById(R.id.ElCaminoConstraint2);
-     //   ScrollView = findViewById(R.id.ElCaminoScrollView);
+        //   ScrollView = findViewById(R.id.ElCaminoScrollView);
 
         //TragosTV = findViewById(R.id.TragosTV);
         PlayerTV = findViewById(R.id.playerTV);
 
-        Jugadores = getIntent().getStringArrayListExtra("Jugadores");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+        if(PlayerClass!=null) {
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                Jugadores.add(key);
+            }
+        }
         Perdedor = getIntent().getExtras().getString("Perdedor");
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-       // TragosTV.setTypeface(robotoLight);
+        // TragosTV.setTypeface(robotoLight);
         PlayerTV.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
         InfoText.setTypeface(robotoLight);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        customToast = inflater.inflate(R.layout.custom_toast, null);
+        textview = (TextView) customToast.findViewById(R.id.txt_custom_toast);
+        textview.setTypeface(robotoLight);
 
         ShotsButt();
         InfoButt();
@@ -145,7 +153,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 boolean  presionado = false;
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
-                    InfoText.setText("En la última fase del Camino, debes levantar una carta para cada uno de los 7 niveles pregresivamente. Si levantas una carta que no sea figura, puedes avanzar al siguiente nivel, pero si lo es, ¡beberás tragos iguales al nivel en el que hayas perdido y volverás a empezar! ¡Buena suerte!");
+                    InfoText.setText("En la última fase del Camino, debes levantar una carta para cada uno de los 7 niveles progresivamente, comenzando desde arriba. Si levantas una carta que no sea figura, puedes avanzar al siguiente nivel, pero si lo es, ¡beberás tragos iguales al nivel en el que hayas perdido y volverás a empezar! ¡Buena suerte!"+"\n"+"*El 7 es una carta especial ;)*");
                     InfoText.setVisibility(View.VISIBLE);
                     ShotsText.setVisibility(View.INVISIBLE);
                     HomeButton.setVisibility(View.INVISIBLE);
@@ -176,7 +184,8 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 boolean  presionado = false;
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
-                    ShotsText.setText("");
+                    ShotsText.setText("\n");
+                    ShotsText.append("Tragos"+"\n"+ "\n");
                     for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
                         String key = entry.getKey();
                         Integer value = entry.getValue();
@@ -417,7 +426,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         HomeBut();
         quefuncioneellayout = false;
         layoutcuandoessiete = false;
-       // TragosTV.setVisibility(View.INVISIBLE);
+        // TragosTV.setVisibility(View.INVISIBLE);
         PlayerTV.setText(Perdedor);
         if(level==1) {
             numeross.clear();
@@ -451,7 +460,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         else {
             Intent intent = new Intent(ElCamino3_Nuevo.this, ElCaminoCampeon.class);
             intent.putExtra("Ganador", ""+Perdedor);
-            intent.putStringArrayListExtra("Jugadores", Jugadores);
+            intent.putExtra("Jugadores", PlayerClass);
             intent.putExtra("Shots", Shots);
             startActivity(intent);
         }
@@ -467,6 +476,7 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(ElCamino3_Nuevo.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -497,16 +507,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Carta1L6.setImageResource(R.drawable.cartapordetras);
         Carta2L6.setImageResource(R.drawable.cartapordetras);
         Carta1L7.setImageResource(R.drawable.cartapordetras);
-    }
-
-    private void Nivel_Superado(int level) {
-        if(level == 1)level1_superado = true;
-        else if(level == 2)level2_superado = true;
-        else if(level == 3)level3_superado = true;
-        else if(level == 4)level4_superado = true;
-        else if(level == 5)level5_superado = true;
-        else if(level == 6)level6_superado = true;
-        else if(level == 7)level7_superado = true;
     }
 
     private void Level7() {
@@ -640,13 +640,13 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
         Log.d("La carta es un: ", ""+carta);
         boolean Figura = es_Figura(carta);
         if(Figura){
-           // TragosTV.setVisibility(View.VISIBLE);
-          //  TragosTV.setText("Bebes "+Level+ " tragos!!");
-            Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_SHORT).show();
+            // TragosTV.setVisibility(View.VISIBLE);
+            //  TragosTV.setText("Bebes "+Level+ " tragos!!");
+            setToast();
+            // Toast.makeText(ElCamino3_Nuevo.this,"Bebes "+Level+ " tragos!",Toast.LENGTH_SHORT).show();
             for(int i = 0; i < Level;++i) {
                 Shots.SumShot(Perdedor);
             }
-            level1_superado = false;
             Level = 1;
             quefuncioneellayout = true;
             All_Cartas_Do_Begin();
@@ -658,12 +658,21 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                 traspasar_El_Camino();
             }
             else {
-                Nivel_Superado(Level);
                 ++Level;
                 // Carta.setImageResource(R.drawable.homebutton);
                 init2(Level);
             }
         }
+    }
+
+    private void setToast() {
+
+        textview.setText("Bebes "+Level+ " tragos!");
+        Toast toast = new Toast(ElCamino3_Nuevo.this);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
     }
 
     private void SetImageInCarta(String carta, ImageView CartaIV) {
@@ -715,7 +724,14 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                     View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
                     dialogo1.setTitle("Un 7!");
                     Spinner spinner = view.findViewById(R.id.SpinnerDialog);
-                    String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
+                    ArrayList<String> JugadoresSpinner = new ArrayList<String>();
+                    JugadoresSpinner.addAll(Jugadores);
+                    for(int i = 0; i < JugadoresSpinner.size();++i) {
+                        if (JugadoresSpinner.get(i).equals(Perdedor)){
+                            JugadoresSpinner.remove(i);
+                        }
+                    }
+                    String [] valores = JugadoresSpinner.toArray(new String[JugadoresSpinner.size()]);
                     spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this,R.layout.spinner_customized , valores));
                     dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
@@ -730,7 +746,6 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                     });
                     dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
-                            Nivel_Superado(Level);
                             ++Level;
                             // Carta.setImageResource(R.drawable.homebutton);
                             init2(Level);
@@ -752,22 +767,28 @@ public class ElCamino3_Nuevo extends AppCompatActivity {
                     View view = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
                     dialogo1.setTitle("Un 7!");
                     Spinner spinner = view.findViewById(R.id.SpinnerDialog);
-                    String[] valores = Jugadores.toArray(new String[Jugadores.size()]);
-                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this, android.R.layout.simple_spinner_item, valores));
+                    ArrayList<String> JugadoresSpinner = new ArrayList<String>();
+                    JugadoresSpinner.addAll(Jugadores);
+                    for(int i = 0; i < JugadoresSpinner.size();++i) {
+                        if (JugadoresSpinner.get(i).equals(Perdedor)){
+                            JugadoresSpinner.remove(i);
+                        }
+                    }
+                    String [] valores = JugadoresSpinner.toArray(new String[JugadoresSpinner.size()]);
+                    spinner.setAdapter(new ArrayAdapter<String>(ElCamino3_Nuevo.this,R.layout.spinner_customized , valores));
                     dialogo1.setPositiveButton("Traspasar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
                             if (!spinner.getSelectedItem().toString().equals("")) {
                                 Level = 1;
-                                Perdedor = spinner.getSelectedItem().toString();
+                                Perdedor =  spinner.getSelectedItem().toString();
                                 AllImagesToBegin();
-                                Log.d("Dentro de Spiner", "" + Perdedor);
+                                Log.d("Dentro de Spiner", ""+Perdedor);
                                 init2(Level);
                             }
                         }
                     });
                     dialogo1.setNegativeButton("Sigo jugando", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
-                            Nivel_Superado(Level);
                             ++Level;
                             // Carta.setImageResource(R.drawable.homebutton);
                             init2(Level);

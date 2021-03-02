@@ -7,10 +7,14 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class GamesModalities extends AppCompatActivity {
 
@@ -18,6 +22,10 @@ public class GamesModalities extends AppCompatActivity {
     private ImageButton ElCamino;
     private ImageButton YoNunca;
     private ImageButton Trivial;
+
+    private ArrayList<String> Jugadores = new ArrayList<>();
+
+    private PlayerClass PlayerClass = new PlayerClass();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -34,10 +42,19 @@ public class GamesModalities extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        if(PlayerClass!=null) {
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                Jugadores.add(key);
+            }
+        }
+
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-     //   VerdadoReto.setTypeface(robotoLight);
-      //  ElCamino.setTypeface(robotoLight);
-       // YoNunca.setTypeface(robotoLight);
+        //   VerdadoReto.setTypeface(robotoLight);
+        //  ElCamino.setTypeface(robotoLight);
+        // YoNunca.setTypeface(robotoLight);
         //Trivial.setTypeface(robotoLight);
 
         VerdadoReto.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +64,7 @@ public class GamesModalities extends AppCompatActivity {
                 intent.putExtra("Modalidad", "VerdadOReto");
                 ShotsCounter Shots = new ShotsCounter();
                 intent.putExtra("Shots", Shots);
+                intent.putExtra("Jugadores", PlayerClass);
                 startActivity(intent);
                 //ANIMACIÓN
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
@@ -60,6 +78,7 @@ public class GamesModalities extends AppCompatActivity {
                 intent.putExtra("Modalidad", "ElCamino");
                 ShotsCounter Shots = new ShotsCounter();
                 intent.putExtra("Shots", Shots);
+                intent.putExtra("Jugadores", PlayerClass);
                 startActivity(intent);
                 //ANIMACIÓN
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
@@ -71,21 +90,23 @@ public class GamesModalities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(GamesModalities.this, YoNuncaLevels.class);
                 intent.putExtra("Modalidad", "YoNunca");
+                intent.putExtra("Jugadores", PlayerClass);
                 startActivity(intent);
                 //ANIMACIÓN
                 //overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
         Trivial.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(GamesModalities.this, ChoosePlayers.class);
-            intent.putExtra("Modalidad", "Trivial");
-            ShotsCounter Shots = new ShotsCounter();
-            intent.putExtra("Shots", Shots);
-            startActivity(intent);
-            //ANIMACIÓN
-            //overridePendingTransition(R.anim.top_in, R.anim.top_out);
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GamesModalities.this, ChoosePlayers.class);
+                intent.putExtra("Modalidad", "Trivial");
+                ShotsCounter Shots = new ShotsCounter();
+                intent.putExtra("Shots", Shots);
+                intent.putExtra("Jugadores", PlayerClass);
+                startActivity(intent);
+                //ANIMACIÓN
+                //overridePendingTransition(R.anim.top_in, R.anim.top_out);
             }
         });
     }

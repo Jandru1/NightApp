@@ -3,10 +3,13 @@ package com.example.jandrullue;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -21,15 +24,22 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ChoosePlayers extends AppCompatActivity {
 
     private ListView players;
     private ArrayList<String> playersList;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private ArrayAdapter<String> adaptador1;
     private EditText et1;
-    private ImageView addButton;
     private Button startgame;
+    private ImageView HombreButton;
+    private ImageView MujerButton;
+    private String modality;
+
+    private PlayerClass PlayerClass = new PlayerClass();
+
 
 
     @Override
@@ -58,12 +68,35 @@ public class ChoosePlayers extends AppCompatActivity {
         et1.setTypeface(robotoLight);
         startgame.setTypeface(robotoLight);
 
-        addButton = findViewById(R.id.AddButton);
+        HombreButton = findViewById(R.id.HombreButton);
+        MujerButton = findViewById(R.id.MujerButton);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        modality = getIntent().getExtras().getString("Modalidad");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        if(PlayerClass!=null) {
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                Jugadores.add(key);
+            }
+        }
+        else PlayerClass = new PlayerClass();
+        if(Jugadores != null) {
+            for(int i = 0; i < Jugadores.size();++i) {
+                playersList.add(Jugadores.get(i));
+                adaptador1.notifyDataSetChanged();
+            }
+        }
+        MujerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                agregar(v);
+                agregar(v, "mujer");
+            }
+        });
+        HombreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agregar(v, "hombre");
             }
         });
 
@@ -71,13 +104,14 @@ public class ChoosePlayers extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final int posicion=i;
-
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(ChoosePlayers.this);
-                dialogo1.setMessage("¿ Eliminar este jugador ?");
+                dialogo1.setMessage("¿Eliminar este jugador?");
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
+                        PlayerClass.removePlayer(playersList.get(posicion));
                         playersList.remove(posicion);
+                        Log.d("la posicions es",""+posicion);
                         adaptador1.notifyDataSetChanged();
                     }
                 });
@@ -94,36 +128,50 @@ public class ChoosePlayers extends AppCompatActivity {
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("ALMENOS ENTRO AQUI","");
                 ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
                 for(int i = 0; i < playersList.size();++i) {
                     Shots.getShotsMap().put(playersList.get(i),0);
                 }
 
-                String modality = getIntent().getExtras().getString("Modalidad");
                 if (modality.equals("VerdadOReto")) {
-                    if (playersList.size() < 2) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 2 jugadores", Toast.LENGTH_SHORT).show();
+                    if (playersList.size() < 2)
+                        Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 2 jugadores", Toast.LENGTH_SHORT).show();
                     else {
                         Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
-                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);
                     }
-                }
-                else if (modality.equals("ElCamino")){
+                } else if (modality.equals("ElCamino")) {
+                    Log.d("Entro if modalidad","");
+                    boolean longitudTooMuch = false;
+                    for(int i = 0; i < playersList.size(); ++i) {
+                        String nombre = playersList.get(i);
+                        if(nombre.length() > 9) {
+                            Log.d("Playerslist" + i, "" + playersList.get(i));
+                            longitudTooMuch = true;
+                        }
+                    }
                     if (playersList.size() < 1) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
+                    else if (longitudTooMuch) {
+                        Toast.makeText(ChoosePlayers.this, "Máximo número de caracteres por nombre: 9", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (playersList.size() > 9) {
+                        Toast.makeText(ChoosePlayers.this, "Máximo número de jugadores: 9", Toast.LENGTH_SHORT).show();
+                    }
                     else {
                         Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
-                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);
                     }
-                }
-                else if (modality.equals("Trivial")){
-                    if (playersList.size() < 1) Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
+                } else if (modality.equals("Trivial")) {
+                    if (playersList.size() < 1)
+                        Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
                     else {
                         Intent intent = new Intent(ChoosePlayers.this, TrivialDifficulties.class);
-                        intent.putStringArrayListExtra("playerList", playersList);
+                        intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);
                     }
@@ -132,14 +180,35 @@ public class ChoosePlayers extends AppCompatActivity {
         });
 
     }
-    public void agregar(View v) {
+    public void agregar(View v, String sexo) {
         if(et1.getText().toString().isEmpty()){
-            Toast.makeText(ChoosePlayers.this, "Introduce un nombre válido!", Toast.LENGTH_SHORT).show();
+            Log.d("entro en el log","");
+            Toast.makeText(ChoosePlayers.this, "Introduce un nombre válido", Toast.LENGTH_SHORT).show();
         }
+
+        else if (playersList.size()==9 & (modality.equals("ElCamino")||modality.equals("Trivial"))) Toast.makeText(ChoosePlayers.this, "Has llegado al número máximo de jugadores", Toast.LENGTH_SHORT).show();
+
+        else if(et1.getText().toString().length()>9 & modality.equals("ElCamino")) Toast.makeText(ChoosePlayers.this, "Número máximo de carácteres por nombre: 9", Toast.LENGTH_SHORT).show();
+
         else {
-            playersList.add(et1.getText().toString());
-            adaptador1.notifyDataSetChanged();
-            et1.setText("");
+            boolean repetido = false;
+            for(int i = 0; i < playersList.size();++i) {
+                if(playersList.get(i).equals(et1.getText().toString())) repetido=true;
+            }
+            if(!repetido) {
+                if(sexo.equals("mujer")) {
+                    Log.d("entro en mujer","");
+                    PlayerClass.addPlayer(et1.getText().toString(),1);
+                }
+                else if(sexo.equals("hombre")){
+                    Log.d("entro en hombre","");
+                    PlayerClass.addPlayer(et1.getText().toString(),0);
+                }
+                playersList.add(et1.getText().toString());
+                adaptador1.notifyDataSetChanged();
+                et1.setText("");
+            }
+            else Toast.makeText(ChoosePlayers.this, "Este jugador ya existe", Toast.LENGTH_SHORT).show();
         }
     }
 }

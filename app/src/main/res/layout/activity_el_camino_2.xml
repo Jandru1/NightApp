@@ -7,25 +7,52 @@
     tools:context=".ElCamino_2_1"
     android:background="#00796B">
 
-<!--
+    <!--
+        <Button
+            android:id="@+id/Sig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="73dp"
+            android:text="Siguiente"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+            -->
 
-    <Button
-        android:id="@+id/Sig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="73dp"
-        android:text="Siguiente"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/RondaTV"
+        android:layout_width="131dp"
+        android:layout_height="44dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginBottom="75dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-        -->
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/sig"
+        android:layout_width="289dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/infoButtton4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/siguientebutton" />
+
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="314dp"
-        android:layout_height="496dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,82 +93,294 @@
 
     <TextView
         android:id="@+id/ShotsText"
-        android:layout_width="235dp"
-        android:layout_height="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498" />
 
-    <TextView
-        android:id="@+id/RondaTV"
-        android:layout_width="131dp"
-        android:layout_height="44dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="152dp"
-        android:textSize="24sp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/infoButtton4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/HomeButton2">
 
-    <ImageView
-        android:id="@+id/Carta1"
-        android:layout_width="105dp"
-        android:layout_height="169dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="2dp"
-        android:text="Carta1"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Carta2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cartapordetras" />
+        <ImageView
+            android:id="@+id/Carta1"
+            android:layout_width="105dp"
+            android:layout_height="169dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Carta2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cartapordetras" />
 
-    <ImageView
-        android:id="@+id/Carta2"
-        android:layout_width="105dp"
-        android:layout_height="169dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:text="Carta1"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Carta3"
-        app:layout_constraintStart_toEndOf="@+id/Carta1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cartapordetras" />
+        <ImageView
+            android:id="@+id/Carta2"
+            android:layout_width="105dp"
+            android:layout_height="169dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Carta3"
+            app:layout_constraintStart_toEndOf="@+id/Carta1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cartapordetras" />
 
-    <ImageView
-        android:id="@+id/Carta3"
-        android:layout_width="105dp"
-        android:layout_height="169dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="20dp"
-        android:text="Carta1"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Carta2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cartapordetras" />
+        <ImageView
+            android:id="@+id/Carta3"
+            android:layout_width="105dp"
+            android:layout_height="169dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="40dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Carta2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cartapordetras" />
 
-    <ImageButton
-        android:id="@+id/sig"
-        android:layout_width="289dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Carta2"
-        app:layout_constraintVertical_bias="0.658"
-        app:srcCompat="@drawable/siguientebutton" />
+        <TextView
+            android:id="@+id/Player1TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:layout_centerHorizontal="true"
+            android:background="#008F39"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="player1tv"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toTopOf="@id/Player2TV"
+            app:layout_constraintEnd_toStartOf="@id/Player4TV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/Carta1"
+            />
+
+        <TextView
+            android:id="@+id/Player2TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Player1TV"
+            app:layout_constraintBottom_toTopOf="@id/Player3TV"
+            app:layout_constraintEnd_toStartOf="@id/Player4TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player3TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/Player6TV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Player2TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player4TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/Player1TV"
+            app:layout_constraintTop_toTopOf="@id/Carta2"
+            app:layout_constraintBottom_toTopOf="@id/Player5TV"
+            app:layout_constraintEnd_toStartOf="@id/Player7TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player5TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/Player2TV"
+            app:layout_constraintTop_toBottomOf="@id/Player4TV"
+            app:layout_constraintBottom_toTopOf="@id/Player6TV"
+            app:layout_constraintEnd_toStartOf="@id/Player7TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player6TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:layout_marginBottom="40dp"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/Player9TV"
+            app:layout_constraintStart_toEndOf="@id/Player3TV"
+            app:layout_constraintTop_toBottomOf="@id/Player5TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player7TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/Player8TV"
+            app:layout_constraintStart_toEndOf="@id/Player4TV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/Carta2"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player8TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/Player9TV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Player5TV"
+            app:layout_constraintTop_toBottomOf="@id/Player7TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/Player9TV"
+            android:layout_width="140dp"
+            android:layout_height="31dp"
+            android:background="#008F39"
+            android:text="pLAYER1tv"
+            android:layout_marginBottom="40dp"
+            android:textSize="19sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Player6TV"
+            app:layout_constraintTop_toBottomOf="@id/Player8TV"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
 
 
+        <Button
+            android:id="@+id/ShowPlayersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#353535"
+            android:text="Mostrar Jugadores"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Carta1" />
+
+        <ImageView
+            android:id="@+id/CartaAntigua1"
+            android:layout_width="90dp"
+            android:layout_height="145dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/CartaAntigua2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.503"
+            app:srcCompat="@drawable/carta_por_detras_descartada" />
+
+        <ImageView
+            android:id="@+id/CartaAntigua2"
+            android:layout_width="90dp"
+            android:layout_height="145dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:srcCompat="@drawable/carta_por_detras_descartada"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="4dp"
+            app:layout_constraintStart_toEndOf="@id/CartaAntigua1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/CartaAntigua3"/>
+
+        <ImageView
+            android:id="@+id/CartaAntigua3"
+            android:layout_width="90dp"
+            android:layout_height="145dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:srcCompat="@drawable/carta_por_detras_descartada"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="4dp"
+            app:layout_constraintStart_toEndOf="@id/CartaAntigua2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/CartaAntigua4"/>
+
+        <ImageView
+            android:id="@+id/CartaAntigua4"
+            android:layout_width="90dp"
+            android:layout_height="145dp"
+            android:text="Carta1"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/CartaAntigua3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/carta_por_detras_descartada" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

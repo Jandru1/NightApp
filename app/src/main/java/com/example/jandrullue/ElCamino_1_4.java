@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class ElCamino_1_4 extends AppCompatActivity {
 
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private ArrayList<String> numeross = new ArrayList<>();
 
     private ImageView CartaIV;
@@ -57,6 +57,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
     private ImageView InfoButton;
 
     private ShotsCounter Shots = new ShotsCounter();
+    private PlayerClass PlayerClass = new PlayerClass();
 
     private boolean clickado = false;
 
@@ -101,7 +102,12 @@ public class ElCamino_1_4 extends AppCompatActivity {
         ShotsText.setTypeface(robotoLight);
         InfoText.setTypeface(robotoLight);
 
-        Jugadores = getIntent().getStringArrayListExtra("Players");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Jugadores.add(key);
+        }
         numeross = getIntent().getStringArrayListExtra("numeross");
 
         intent = new Intent(ElCamino_1_4.this, ElCamino_2_1.class);
@@ -122,7 +128,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
                     InfoText.setVisibility(View.VISIBLE);
-                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se lo mostrará diferentes opciones. Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
+                    InfoText.setText("La Fase1 del Camino consiste en lo siguiente: a cada jugador se le preguntará cómo cree que será su carta y se le mostrarán diferentes opciones. ¡Si falla, beberá, y si acierta repartirá un número de tragos dependiendo del nivel en el que esté!!");
                     ShotsText.setVisibility(View.INVISIBLE);
                     ShotsButton.setVisibility((View.INVISIBLE));
                     HomeButton.setVisibility(View.INVISIBLE);
@@ -157,7 +163,8 @@ public class ElCamino_1_4 extends AppCompatActivity {
                 boolean  presionado = false;
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
-                    ShotsText.setText("");
+                    ShotsText.setText("\n");
+                    ShotsText.append("Tragos"+ "\n" + "\n");
                     for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
                         String key = entry.getKey();
                         Integer value = entry.getValue();
@@ -230,6 +237,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(ElCamino_1_4.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -332,7 +340,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
             public void onClick(View v) {
                 if(clickado) {
                     if (k + 1 == Jugadores.size()) {
-                        intent.putStringArrayListExtra("Players", Jugadores);
+                        intent.putExtra("Jugadores", PlayerClass);
                         intent.putStringArrayListExtra("numeross", numeross);
                         intent.putExtra("Ronda", 1);
                         intent.putExtra("Shots", Shots);

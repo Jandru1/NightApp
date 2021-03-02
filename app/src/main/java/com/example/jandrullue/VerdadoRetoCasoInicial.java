@@ -17,20 +17,25 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class VerdadoRetoCasoInicial extends AppCompatActivity {
 
     private TextView Jugador;
     private TextView SiguienteJugador;
 
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores_con_sexo;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private ArrayList<String> numeross = new ArrayList<>();
 
     private Button VerdadButton;
     private Button RetoButton;
 
     private ImageView HomeButton;
+
+    private PlayerClass PlayerClass;
 
     private int n;
 
@@ -50,9 +55,17 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
         SiguienteJugador.setTypeface(robotoLight);
         Jugador.setTypeface(robotoLight);
 
-        Jugadores = getIntent().getStringArrayListExtra("playerList");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        if(PlayerClass!=null) {
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                Jugadores.add(key);
+            }
+        }
 
         generarRandom();
+
 
         Jugador.setText(Jugadores.get(n));
 
@@ -71,7 +84,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VerdadoRetoCasoInicial.this, VerdadoRetoContinuo.class);
                 intent.putExtra("VerdadOReto", "verdad");
-                intent.putStringArrayListExtra("jugadores", Jugadores);
+                intent.putExtra("jugadores", PlayerClass);
                 intent.putExtra("PrimerJugador", Jugadores.get(n));
                 startActivity(intent);
             }
@@ -82,7 +95,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VerdadoRetoCasoInicial.this, VerdadoRetoContinuo.class);
                 intent.putExtra("VerdadOReto", "reto");
-                intent.putStringArrayListExtra("jugadores", Jugadores);
+                intent.putExtra("jugadores", PlayerClass);
                 intent.putExtra("PrimerJugador", Jugadores.get(n));
                 startActivity(intent);
             }
@@ -97,6 +110,7 @@ public class VerdadoRetoCasoInicial extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(VerdadoRetoCasoInicial.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });

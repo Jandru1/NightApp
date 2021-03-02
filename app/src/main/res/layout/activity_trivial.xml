@@ -1,82 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Trivial"
-    android:id="@+id/Trivial"
+    android:layout_width="match_parent"
     android:background="#00796B"
-    >
+    android:id="@+id/CONSTRAINTDEFINITIVO">
 
-    <Button
-        android:id="@+id/Respuesta4Button"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
 
-        android:text="Button"
+    <ScrollView
+        android:id="@+id/Trivial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:background="#00796B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Respuesta2Button"
-        app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button"
-        android:autoSizeMaxTextSize="20dp"
-        android:autoSizeTextType="uniform"
-        android:backgroundTint="#2196F3"
-        android:breakStrategy="balanced"
-        android:hyphenationFrequency="normal"
-        android:textColor="@color/black"/>
-
-    <Button
-        android:id="@+id/Respuesta1Button"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:text="Button"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
-        android:autoSizeMaxTextSize="20dp"
-        android:autoSizeTextType="uniform"
-        android:backgroundTint="#2196F3"
-        android:breakStrategy="balanced"
-        android:hyphenationFrequency="normal"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".Trivial">
 
-    <Button
-        android:id="@+id/Respuesta2Button"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="48dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutASDF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeButton"
+            app:layout_constraintVertical_bias="0.0">
 
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button"
-        android:autoSizeMaxTextSize="20dp"
-        android:autoSizeTextType="uniform"
-        android:backgroundTint="#2196F3"
-        android:breakStrategy="balanced"
-        android:hyphenationFrequency="normal"
-        android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/Respuesta4Button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Respuesta2Button"
+                app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
 
-    <Button
-        android:id="@+id/AnswerButton"
-        android:layout_width="232dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="190dp"
-        android:backgroundTint="#353535"
-        android:text="Respuesta"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
-        app:layout_constraintVertical_bias="0.0" />
+            <Button
+                android:id="@+id/Respuesta1Button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/Respuesta2Button"
+                app:layout_constraintEnd_toStartOf="@id/Respuesta3Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV" />
+
+            <Button
+                android:id="@+id/Respuesta2Button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/Respuesta4Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
+
+            <Button
+                android:id="@+id/AnswerButton"
+                android:layout_width="232dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="190dp"
+                android:backgroundTint="#353535"
+                android:text="Respuesta"
+                android:textColor="@color/white"
+                android:textColorHint="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <Button
+                android:id="@+id/FButton"
+                android:layout_width="182dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#9F0101"
+                android:text="FALLO"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/VButton" />
+
+            <TextView
+                android:id="@+id/jugadortv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/PreguntaTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/PreguntaTVtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jugadortv" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/VButton"
+                android:layout_width="181dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="150dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#FD3FA302"
+                android:text="Acierto"
+                android:textColor="#040404"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
+                app:rippleColor="@color/black" />
+
+            <Button
+                android:id="@+id/Respuesta3Button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="15dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/Respuesta4Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Respuesta1Button"
+                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV" />
+
+            <ImageView
+                android:id="@+id/BackButton"
+                android:layout_width="99dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Respuesta2Button"
+                app:srcCompat="@drawable/back_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 
     <ImageView
         android:id="@+id/homeButton"
@@ -108,79 +250,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <Button
-        android:id="@+id/FButton"
-        android:layout_width="182dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#9F0101"
-        android:text="FALLO"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VButton" />
-
-    <TextView
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:id="@+id/jugadortv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/PreguntaTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:gravity="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jugadortv" />
-
-    <Button
-        android:id="@+id/VButton"
-        android:layout_width="181dp"
-        android:layout_height="70dp"
-
-        android:layout_marginTop="150dp"
-        android:backgroundTint="#FD3FA302"
-        android:text="Acierto"
-        android:textColor="#040404"
-        android:textSize="30sp"
-        android:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
-        app:rippleColor="@color/black" />
-
-    <Button
-        android:id="@+id/Respuesta3Button"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Respuesta1Button"
-        app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
-        android:autoSizeMaxTextSize="20dp"
-        android:autoSizeTextType="uniform"
-        android:backgroundTint="#2196F3"
-        android:breakStrategy="balanced"
-        android:hyphenationFrequency="normal"
-        android:textColor="@color/black"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

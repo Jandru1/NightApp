@@ -7,31 +7,31 @@
     tools:context=".YoNuncaLevels"
     android:background="#00796B"
     >
-<!--
-    <Button
-        app:backgroundTint="#353535"
-        android:textColor="@color/white"
-        android:id="@+id/ChillLevelButton"
-        android:layout_width="195dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="164dp"
-        android:text="Chill"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--
+        <Button
+            app:backgroundTint="#353535"
+            android:textColor="@color/white"
+            android:id="@+id/ChillLevelButton"
+            android:layout_width="195dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="164dp"
+            android:text="Chill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        app:backgroundTint="#353535"
-        android:textColor="@color/white"
-        android:id="@+id/HotLevelButton"
-        android:layout_width="195dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="189dp"
-        android:text="Hot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    -->
+        <Button
+            app:backgroundTint="#353535"
+            android:textColor="@color/white"
+            android:id="@+id/HotLevelButton"
+            android:layout_width="195dp"
+            android:layout_height="76dp"
+            android:layout_marginBottom="189dp"
+            android:text="Hot"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        -->
 
     <ImageButton
         android:id="@+id/ChillLevelButton"

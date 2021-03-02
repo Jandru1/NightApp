@@ -32,11 +32,11 @@ public class ElCaminoPerdedor extends AppCompatActivity {
     private Button CartaButton;
     private ImageButton SiguienteButton;
 
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private ArrayList<String> numeross = new ArrayList<>();
-    private ArrayList<BarajaPersonalizada> Perdedores = new ArrayList<>();
+    private ArrayList<String> CartasPequesDeCadaUno = new ArrayList<>();
 
-    private int n;
+    private ArrayList<BarajaPersonalizada> Perdedores = new ArrayList<>();
 
     private TextView PerdedoresTV;
     private TextView TextView;
@@ -46,8 +46,9 @@ public class ElCaminoPerdedor extends AppCompatActivity {
     private ImageView ShotsButton;
 
     private ShotsCounter Shots;
+    private PlayerClass PlayerClass;
 
-    private ArrayList<String> CartasPequesDeCadaUno = new ArrayList<>();
+    private int n;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,12 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
-        Jugadores = getIntent().getStringArrayListExtra("Players");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Jugadores.add(key);
+        }
         numeross = getIntent().getStringArrayListExtra("numeross");
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
 
@@ -78,7 +84,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         TextView.setTypeface(robotoLight);
         ShotsText.setTypeface(robotoLight);
 
-        int max = -1;
+        int max = 1;
         for (int i = 0; i < Jugadores.size(); ++i) {
             bundle = getIntent().getExtras().getBundle("BarajaPers " + i);
             if (bundle != null) {
@@ -107,6 +113,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(ElCaminoPerdedor.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -118,7 +125,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
 
             }
         });
-    //    todos_tienen_la_misma_carta();
+        //    todos_tienen_la_misma_carta();
         get_perdedor();
     }
 
@@ -130,7 +137,8 @@ public class ElCaminoPerdedor extends AppCompatActivity {
                 boolean  presionado = false;
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     presionado = true;
-                    ShotsText.setText("");
+                    ShotsText.setText("\n");
+                    ShotsText.append("Tragos"+"\n"+ "\n");
                     for (Map.Entry<String,Integer> entry : Shots.getShotsMap().entrySet()) {
                         String key = entry.getKey();
                         Integer value = entry.getValue();
@@ -195,18 +203,35 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         }
     }
 
-//HASTA AQUI
+    //HASTA AQUI
     private void get_perdedor() {
         Log.d("PERDEDORES", ""+Perdedores.size());
         CartaButton.setVisibility(View.INVISIBLE);
-        if(Perdedores.size()==1)  {
+        if(Perdedores.size() == 0) {
+            double m = Math.random()*Jugadores.size()+0;
+            int l = (int) m;
+            PerdedoresTV.setText(Jugadores.get(l) + " ha perdido y deberá jugar El Camino!!");
+            SiguienteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3_Nuevo.class);
+                    intent.putExtra("Level", 1);
+                    intent.putExtra("Jugadores", PlayerClass);
+                    String Perdedor = Jugadores.get(l);
+                    intent.putExtra("Perdedor", Perdedor);
+                    intent.putExtra("Shots", Shots);
+                    startActivity(intent);
+                }
+            });
+        }
+        else if(Perdedores.size()==1)  {
             PerdedoresTV.setText(Perdedores.get(0).getplayer() + " ha perdido y deberá jugar El Camino!!");
             SiguienteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3_Nuevo.class);
                     intent.putExtra("Level", 1);
-                    intent.putStringArrayListExtra("Jugadores", Jugadores);
+                    intent.putExtra("Jugadores", PlayerClass);
                     String Perdedor = Perdedores.get(0).getplayer();
                     intent.putExtra("Perdedor", Perdedor);
                     intent.putExtra("Shots", Shots);
@@ -278,10 +303,10 @@ public class ElCaminoPerdedor extends AppCompatActivity {
         for(int i = 0; i < Perdedores.size();++i) {
             BarajaPersonalizada BP = Perdedores.get(i);
             for(int j = 0; j < BP.getBaraja().size();++j) {
-                    if (BP.getBaraja().get(j).equals(carta_def)){
-                        aux1 = i;
-                        aux2 = j;
-                    }
+                if (BP.getBaraja().get(j).equals(carta_def)){
+                    aux1 = i;
+                    aux2 = j;
+                }
             }
         }
 
@@ -291,7 +316,7 @@ public class ElCaminoPerdedor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ElCaminoPerdedor.this, ElCamino3_Nuevo.class);
                 intent.putExtra("Level", 1);
-                intent.putStringArrayListExtra("Jugadores", Jugadores);
+                intent.putExtra("Jugadores", PlayerClass);
                 String Perdedor = Perdedores.get(0).getplayer();
                 intent.putExtra("Perdedor", Perdedor);
                 intent.putExtra("Shots", Shots);

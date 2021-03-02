@@ -31,12 +31,13 @@ public class Trivial extends AppCompatActivity {
     private TrivialClass Trivial = new TrivialClass();
     private int n;
     private ArrayList<String> numeross = new ArrayList<>();
-    private ArrayList<String> Jugadores;
+    private ArrayList<String> Jugadores = new ArrayList<>();
     private TextView PreguntaTV;
     private TextView PlayerTV;
     private int k = 0;
     private View layout;
     private ShotsCounter Shots = new ShotsCounter();
+    private PlayerClass PlayerClass = new PlayerClass();
     private Button AciertoButton;
     private Button FalloButton;
     private Button R1Button;
@@ -46,6 +47,7 @@ public class Trivial extends AppCompatActivity {
     private Button RespuestaButton;
     private ImageView HomeButton;
     private ImageView ShotsButton;
+    private ImageView BackButton;
     private TextView ShotsText;
     private String Momento;
     private boolean VoF;
@@ -62,8 +64,8 @@ public class Trivial extends AppCompatActivity {
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         PlayerTV = findViewById(R.id.jugadortv);
-        PreguntaTV = findViewById(R.id.PreguntaTV);
-        layout = findViewById(R.id.Trivial);
+        PreguntaTV = findViewById(R.id.PreguntaTVtext);
+        layout = findViewById(R.id.constraintLayoutASDF);
         AciertoButton = findViewById(R.id.VButton);
         FalloButton = findViewById(R.id.FButton);
         R1Button = findViewById(R.id.Respuesta1Button);
@@ -74,9 +76,15 @@ public class Trivial extends AppCompatActivity {
         ShotsText = findViewById(R.id.shotsText);
         HomeButton = findViewById(R.id.homeButton);
         RespuestaButton = findViewById(R.id.AnswerButton);
+        BackButton = findViewById(R.id.BackButton);
 
         Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
-        Jugadores = getIntent().getStringArrayListExtra("playerList");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Jugadores.add(key);
+        }
         dificultad = getIntent().getExtras().getString("Dificultad");
 
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
@@ -97,19 +105,85 @@ public class Trivial extends AppCompatActivity {
             Preguntas = Trivial.getPreguntasTrivialFaciles();
             Respuestas = Trivial.getRespuestasTrivialFaciles();
             RespuestasIncorrectas = Trivial.getRespuestasIncorrectasFacil();
+            checkWithOrWithouOptions();
         }
+
         else if(dificultad.equals("medio")) {
             Preguntas = Trivial.getPreguntasTrivialMedio();
             Respuestas = Trivial.getRespuestasTrivialMedio();
             RespuestasIncorrectas = Trivial.getRespuestasIncorrectasMedio();
+            checkWithOrWithouOptions();
         }
+
         else if(dificultad.equals("dificil")) {
             Preguntas = Trivial.getPreguntasTrivialDificil();
             Respuestas = Trivial.getRespuestasTrivialDificil();
             RespuestasIncorrectas = Trivial.getRespuestasIncorrectasDificil();
+            checkWithOrWithouOptions();
         }
-        init_sin_opciones();
-         //init_con_opciones();
+        //init_sin_opciones();
+        //init_con_opciones();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void checkWithOrWithouOptions() {
+
+        Log.d("Tamaño de Preguntas", ""+Preguntas.size());
+
+        generarRandom();
+        comprobarK();
+        ShotsButt();
+        HomeBut();
+        BackButt();
+        ++pregunta_num;
+        PlayerTV.setText(Jugadores.get(k));
+        if(dificultad.equals("dificil")){
+            PreguntaTV.setText(Preguntas.get(n));
+            init_sin_opciones();
+        }
+        else {
+
+            boolean sin_options = EsConOptions(Preguntas.get(n));
+
+            if (sin_options) {
+                String pregunta_sin_opciones = getPreguntaSinOptions(Preguntas.get(n));
+                PreguntaTV.setText(pregunta_sin_opciones);
+                AciertoButton.setText("Acierto");
+                FalloButton.setText("Fallo");
+                init_sin_opciones();
+            } else {
+                PreguntaTV.setText(Preguntas.get(n));
+                init_con_opciones();
+            }
+        }
+
+    }
+
+    private void BackButt() {
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trivial.this, TrivialDifficulties.class);
+                intent.putExtra("Jugadores", PlayerClass);
+                intent.putExtra("Shots", Shots);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private boolean EsConOptions(String s) {
+        boolean sinOptions = false;
+        if(s.startsWith(" IMBECIL")){ //NO ES NEPUI
+            Log.d("Miramo bien sinopciones", ""+ "JEJEJEJEJE");
+            sinOptions = true;
+        }
+        return sinOptions;
+    }
+
+    private String getPreguntaSinOptions(String s) {
+        String ffinal = null;
+        ffinal = s.substring(8);
+        return ffinal;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -117,11 +191,7 @@ public class Trivial extends AppCompatActivity {
         RespuestaButton.setVisibility(View.INVISIBLE);
         AciertoButton.setText("V");
         FalloButton.setText("F");
-        generarRandom();
-        Log.d("El numero random es:", ""+n);
-        comprobarK();
-        ShotsButt();
-        HomeBut();
+
         VoF = EsVerdadoOFalso(Preguntas.get(n));
 
         if(!VoF) PreguntaTV.setText(Preguntas.get(n));
@@ -129,7 +199,6 @@ public class Trivial extends AppCompatActivity {
             String pregunta = getPreguntaVoF(Preguntas.get(n));
             PreguntaTV.setText(pregunta);
         }
-        PlayerTV.setText(Jugadores.get(k));
         setVisibilitiesCorrectly(VoF);
         if(!VoF) {
             Momento = "Opciones";
@@ -144,7 +213,6 @@ public class Trivial extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setWrongAnswers() {
-        n = 0;
         //MAS BIEN CONTAR LONGITUD DEL STRING!!!! Respuestas.get(n).lenght < ....
         int num_palabras = cuenta_palabras(Respuestas.get(n));
         Log.d("Numero de palabras : ", ""+num_palabras);
@@ -180,44 +248,6 @@ public class Trivial extends AppCompatActivity {
         Log.d("Segunda respuesta es : ", ""+segunda_respuesta_incorrecta);
         Log.d("Tercera respuesta es : ", ""+tercera_respuesta_incorrecta);
 
-
-        if(longitud < 13){//(num_palabras == 1){
-            R1Button.setMaxLines(1);
-            R2Button.setMaxLines(1);
-            R3Button.setMaxLines(1);
-            R4Button.setMaxLines(1);
-        }
-        else if(longitud < 25){//(num_palabras < 3){
-            R1Button.setMaxLines(2);
-            R2Button.setMaxLines(2);
-            R3Button.setMaxLines(2);
-            R4Button.setMaxLines(2);
-        }
-        else if(longitud < 37){//(num_palabras < 5){
-            R1Button.setMaxLines(3);
-            R2Button.setMaxLines(3);
-            R3Button.setMaxLines(3);
-            R4Button.setMaxLines(3);
-        }
-        else if(longitud < 49){//(num_palabras < 7) {
-            R1Button.setMaxLines(4);
-            R2Button.setMaxLines(4);
-            R3Button.setMaxLines(4);
-            R4Button.setMaxLines(4);
-        }
-        else {
-            Log.d("Entro en el else","");
-            R1Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            R2Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            R3Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            R4Button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-
-            R1Button.setMaxLines(9);
-            R2Button.setMaxLines(9);
-            R3Button.setMaxLines(9);
-            R4Button.setMaxLines(9);
-        }
-
         double x = Math.random()*4+0;
         int x_random = (int) x;
         Log.d("random respuestas es", " "+x_random);
@@ -247,6 +277,11 @@ public class Trivial extends AppCompatActivity {
             R4Button.setText(Respuestas.get(n));
         }
 
+        check_longitud(R1Button);
+        check_longitud(R2Button);
+        check_longitud(R3Button);
+        check_longitud(R4Button);
+
         /*
         R1Button.setText(Respuestas.get(n));
         R2Button.setText(Respuestas.get(n) + "A");
@@ -255,6 +290,31 @@ public class Trivial extends AppCompatActivity {
          */
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void check_longitud(Button button) {
+
+        int longitud = button.getText().toString().length();
+
+        if(longitud < 13){//(num_palabras == 1){
+            button.setMaxLines(1);
+        }
+        else if(longitud < 25){//(num_palabras < 3){
+            button.setMaxLines(2);
+
+        }
+        else if(longitud < 37){//(num_palabras < 5){
+            button.setMaxLines(3);
+
+        }
+        else if(longitud < 49){//(num_palabras < 7) {
+            button.setMaxLines(4);
+
+        }
+        else {
+            Log.d("Entro en el else","");
+            button.setMaxLines(9);
+        }
+    }
 
     private int cuenta_palabras(String frase) {
         int m = 0;
@@ -272,47 +332,14 @@ public class Trivial extends AppCompatActivity {
     }
 
     private void init_sin_opciones() {
-        generarRandom();
-        Log.d("El numero random es:", ""+n);
-        comprobarK();
-        ShotsButt();
-        HomeBut();
-        VoF = EsVerdadoOFalso(Preguntas.get(n));
-        /*
-        if(!VoF) PreguntaTV.setText(Preguntas.get(n));
-        else {
-            String pregunta = getPreguntaVoF(Preguntas.get(n));
-            PreguntaTV.setText(pregunta);
-        }
-         */
-        ++pregunta_num;
-        PreguntaTV.setText(Preguntas.get(n));
-        PlayerTV.setText(Jugadores.get(k));
-
-        //SIN OPCIONES
         R1Button.setVisibility(View.INVISIBLE);
         R2Button.setVisibility(View.INVISIBLE);
         R3Button.setVisibility(View.INVISIBLE);
         R4Button.setVisibility(View.INVISIBLE);
         AciertoButton.setVisibility(View.INVISIBLE);
         FalloButton.setVisibility(View.INVISIBLE);
+        RespuestaButton.setVisibility(View.VISIBLE);
         init2();
-        //HASTA AQUI
-        //setVisibilitiesCorrectly(VoF);
-        /*
-        if(!VoF) {
-            Momento = "Opciones";
-            R1Button.setText(Respuestas.get(n));
-            R2Button.setText(Respuestas.get(n) + "A");
-            R3Button.setText(Respuestas.get(n) + "B");
-            R4Button.setText(Respuestas.get(n)+ "C");
-            getTextButton();
-        }
-        else {
-            Momento = "VoF";
-            getVoF();
-        }
-         */
     }
 
     private void init2() {
@@ -327,17 +354,19 @@ public class Trivial extends AppCompatActivity {
                 AciertoButton.setVisibility(View.VISIBLE);
                 FalloButton.setVisibility(View.VISIBLE);
                 AciertoButton.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
                         if(pregunta_num==Preguntas.size()) terminarTrivial();
                         else {
                             RespuestaButton.setVisibility(View.VISIBLE);
                             ++k;
-                            init_sin_opciones();
+                            checkWithOrWithouOptions();
                         }
                     }
                 });
                 FalloButton.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
                         if(pregunta_num==Preguntas.size()) terminarTrivial();
@@ -345,7 +374,7 @@ public class Trivial extends AppCompatActivity {
                             RespuestaButton.setVisibility(View.VISIBLE);
                             Shots.SumShot(Jugadores.get(k));
                             ++k;
-                            init_sin_opciones();
+                            checkWithOrWithouOptions();
                         }
                     }
                 });
@@ -364,6 +393,7 @@ public class Trivial extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(Trivial.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -480,7 +510,7 @@ public class Trivial extends AppCompatActivity {
     private void Comprobar_Respuesta(String Respuesta) {
         Momento = "Respuesta";
         String RespuestaCorrecta = Respuestas.get(n);
-       // getTextButton();
+        // getTextButton();
         R1Button.setVisibility(View.INVISIBLE);
         R2Button.setVisibility(View.INVISIBLE);
         R3Button.setVisibility(View.INVISIBLE);
@@ -496,9 +526,13 @@ public class Trivial extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                if(Momento.equals("Respuesta")) {
+                Log.d("pregunta_num", ""+pregunta_num);
+                Log.d("Preguntas_Size", ""+Preguntas.size());
+                if(pregunta_num==Preguntas.size()) terminarTrivial();
+
+                else if(Momento.equals("Respuesta")) {
                     ++k;
-                    init_con_opciones();
+                    checkWithOrWithouOptions();
                 }
             }
         });
@@ -530,7 +564,7 @@ public class Trivial extends AppCompatActivity {
                 Comprobar_Respuesta(R4Button.getText().toString());
             }
         });
-}
+    }
 
     private void setVisibilitiesCorrectly(boolean vof) {
         if (vof) {
@@ -563,7 +597,6 @@ public class Trivial extends AppCompatActivity {
     }
 
     private void comprobarK() {
-
         if(k==Jugadores.size()) k = 0;
     }
 
@@ -593,7 +626,9 @@ public class Trivial extends AppCompatActivity {
     }
 
     private void terminarTrivial() {
-        Intent intent = new Intent(Trivial.this, GamesModalities.class);
+        Intent intent = new Intent(Trivial.this, TrivialCampeon.class);
+        intent.putExtra("Shots", Shots);
+        intent.putExtra("Jugadores", PlayerClass);
         startActivity(intent);
     }
 }

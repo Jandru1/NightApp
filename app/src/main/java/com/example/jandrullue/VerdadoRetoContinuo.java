@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class VerdadoRetoContinuo extends AppCompatActivity {
 
@@ -51,6 +52,8 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
 
     private VerdadoRetoClass VoR = new VerdadoRetoClass();
 
+    private PlayerClass PlayerClass = new PlayerClass();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,14 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
-        PlayersList = getIntent().getStringArrayListExtra("jugadores");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("jugadores");
+
+        for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+            String key = entry.getKey();
+            Log.d("HASHMAP JUGADOR"+key+"+",""+entry.getValue());
+            PlayersList.add(key);
+        }
+
         Verdad_o_Reto = getIntent().getExtras().getString("VerdadOReto");
         Primer_jugador = getIntent().getExtras().getString("PrimerJugador");
 
@@ -78,14 +88,12 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         Texto.setTypeface(robotoLight);
         nada.setTypeface(robotoLight);
 
-
         Log.d("El Primer jugador es", ""+ Primer_jugador);
         Log.d("El Primer VoR es:", ""+ Verdad_o_Reto);
 
         VerdadButton = findViewById(R.id.verdadButton);
         RetoButton = findViewById(R.id.retoButton);
         HomeButton = findViewById(R.id.HomeButton);
-
 
         Typeface robotoLight2 = Typeface.createFromAsset(getAssets(),"font/het_ja_woord.ttf");
         VerdadButton.setTypeface(robotoLight2);
@@ -98,8 +106,11 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         }
         else {
             generarRandomReto();
-            String reto = VoR.getVerdades().get(n_Reto);
-            ComprobarReto(reto);
+            String reto = VoR.getRetos().get(n_Reto);
+            if (ComprobarReto(reto)){
+                String nuevo_reto = JugadorX(reto, Primer_jugador);
+                reto = nuevo_reto;
+            };
             Texto.setText(reto);
         }
         i = 0;
@@ -107,6 +118,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
     }
 
     private void init() {
+        Log.d("jugador jugando ", ""+Primer_jugador);
         generarRandomPlayer();
         //False -> Verdad. True -> Reto
         if(i > 0){
@@ -157,6 +169,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(VerdadoRetoContinuo.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -165,7 +178,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                     }
                 });
                 dialogo1.show();
-
             }
         });
     }
@@ -183,6 +195,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
 
     private String JugadorX(String reto, String jugador) {
         String nuevo_reto = "";
+        Log.d("El reto es ", ""+reto);
         for(int i = 0; i < reto.length();++i){
             if(reto.startsWith("JUGADORX", i)){
                 double m = Math.random()*PlayersList.size()+0;
@@ -202,13 +215,31 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         int n = (int) m;
         Log.d("El jugador jugando es:", ""+jugador);
         Log.d("El jugadorX es:", ""+n);
-        Log.d("Con nombre:", ""+PlayersList.get(n));
+        Log.d("Con nombre:", "+"+PlayersList.get(n)+"+");
         if(PlayersList.get(n).equals(jugador)) generarRandomJugadorX(jugador);
         else {
-            String a  = PlayersList.get(n);
-            Log.d("PlayerList en "+n+" es:", ""+Player_X);
-            Player_X = a;
-            return Player_X;
+            int sexo1 = -1;
+            int sexo2 = -2;
+            boolean HayMujer = false;
+            boolean HayHombre = false;
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                int value = entry.getValue();
+                if(value==0) HayHombre = true;
+                if(value==1) HayMujer = true;
+                if (key.equals(PlayersList.get(n))) sexo1 = entry.getValue();
+                if (key.equals(jugador)) sexo2 = entry.getValue();
+            }
+            Log.d("sexo1",""+sexo1);
+            Log.d("sexo2",""+sexo2);
+            if(sexo1==sexo2 & HayHombre & HayMujer) generarRandomJugadorX(jugador);
+            else {
+                Log.d("jugador random ", ""+PlayersList.get(n));
+                String a = PlayersList.get(n);
+                Log.d("PlayerList en " + n + " es:", "" + Player_X);
+                Player_X = a;
+                return Player_X;
+            }
         }
         return Player_X;
     }
@@ -235,7 +266,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 if (numeross_Player.get(k).equals(n_string)) ha_salido = true;
             }
         }
-        Log.d("tamaño de NUMEROS es:", ""+ numeross_Player.size());
         if(ha_salido) generarRandomPlayer();
         else numeross_Player.add(n_string);
     }
@@ -262,7 +292,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 if (numeross_Verdad.get(k).equals(n_string)) ha_salido = true;
             }
         }
-        Log.d("tamaño de NUMEROS es:", ""+numeross_Verdad.size());
         if(ha_salido) generarRandomVerdad();
         else numeross_Verdad.add(n_string);
     }
@@ -288,7 +317,6 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
                 if (numeross_Reto.get(k).equals(n_string)) ha_salido = true;
             }
         }
-        Log.d("tamaño de NUMEROS es:", ""+numeross_Reto.size());
         if(ha_salido) generarRandomReto();
         else numeross_Reto.add(n_string);
     }

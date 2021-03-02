@@ -2,38 +2,37 @@ package com.example.jandrullue;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Random;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class YoNunca extends AppCompatActivity {
 
     private View layout;
     private TextView Preguntas;
     private ImageView HomeButton;
+    private ImageView BackButton;
     private int i;
     private int n;
     private ArrayList<String> YoNuncaPreguntasPrivate;
     private ArrayList<String> numeross = new ArrayList<>();
+    private ArrayList<String> Jugadores = new ArrayList<>();
 
     private String Level;
     private String Pack;
 
-    public YoNunca() {
-    }
+    private PlayerClass PlayerClass = new PlayerClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +44,25 @@ public class YoNunca extends AppCompatActivity {
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
         i = 0;
-        YoNuncaPregs YoNuncaPreguntas = new YoNuncaPregs();
-      //  ArrayList<String> YoNuncaPreguntas = new ArrayList<String>();
+        YoNuncaClass YoNuncaPreguntas = new YoNuncaClass();
+        //  ArrayList<String> YoNuncaPreguntas = new ArrayList<String>();
 
         Level = getIntent().getExtras().getString("Level");
         Pack = getIntent().getExtras().getString("Pack");
+        PlayerClass = (PlayerClass) getIntent().getSerializableExtra("Jugadores");
 
+        if(PlayerClass != null) {
+            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                String key = entry.getKey();
+                Jugadores.add(key);
+            }
+        }
         Log.d("El Valor de Level es:", ""+Level);
         Log.d("El Valor de Pack es:", ""+Pack);
+
+        BackButton = findViewById(R.id.BackButton2);
+
+
 
         if(Level.equals("Chill")){
             if(Pack.equals("Pack1")) {
@@ -89,6 +99,8 @@ public class YoNunca extends AppCompatActivity {
 
     private void init( ArrayList<String> YoNuncaPreguntas) {
 
+        BackButt();
+
         Log.d("El Valor de i es:", ""+i);
         generarRandom();
         //int n = numAleatorio.nextInt();
@@ -122,6 +134,7 @@ public class YoNunca extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         Intent intent = new Intent(YoNunca.this, GamesModalities.class);
+                        intent.putExtra("Jugadores", PlayerClass);
                         startActivity(intent);
                     }
                 });
@@ -130,6 +143,18 @@ public class YoNunca extends AppCompatActivity {
                     }
                 });
                 dialogo1.show();
+            }
+        });
+    }
+
+    private void BackButt() {
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(YoNunca.this, YoNuncaPacks.class);
+                intent.putExtra("Jugadores", PlayerClass);
+                intent.putExtra("Level", Level);
+                startActivity(intent);
             }
         });
     }

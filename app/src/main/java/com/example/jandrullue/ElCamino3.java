@@ -82,7 +82,7 @@ public class ElCamino3 extends AppCompatActivity {
         Perdedor = getIntent().getExtras().getString("Perdedor");
         Level = getIntent().getExtras().getInt("Level");
 
-       // String[] valores = {"Soy una persona mayor", "Problemas inmunológicos", "Otros"};
+        // String[] valores = {"Soy una persona mayor", "Problemas inmunológicos", "Otros"};
         String [] valores = Jugadores.toArray(new String[Jugadores.size()]);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
 
@@ -190,7 +190,7 @@ public class ElCamino3 extends AppCompatActivity {
 
             }
         });
-          Carta2.setOnClickListener(new View.OnClickListener() {
+        Carta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Carta6.setVisibility(View.INVISIBLE);
@@ -200,7 +200,7 @@ public class ElCamino3 extends AppCompatActivity {
                 onClickCarta();
             }
         });
-          Carta3.setOnClickListener(new View.OnClickListener() {
+        Carta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Carta6.setVisibility(View.INVISIBLE);
@@ -210,7 +210,7 @@ public class ElCamino3 extends AppCompatActivity {
                 onClickCarta();
             }
         });
-          Carta7.setOnClickListener(new View.OnClickListener() {
+        Carta7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Carta6.setVisibility(View.INVISIBLE);
