@@ -108,6 +108,7 @@ public class ElCamino_1_4 extends AppCompatActivity {
             String key = entry.getKey();
             Jugadores.add(key);
         }
+
         numeross = getIntent().getStringArrayListExtra("numeross");
 
         intent = new Intent(ElCamino_1_4.this, ElCamino_2_1.class);
