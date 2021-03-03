@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
 
-        textView = findViewById(R.id.textView);
         Typeface robotoLight = Typeface.createFromAsset(getAssets(),"font/Androgyne_TB.otf");
-        textView.setTypeface(robotoLight);
         startgame.setTypeface(robotoLight);
 
         startgame.setText("Start Game!!");
