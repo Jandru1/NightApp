@@ -497,7 +497,7 @@ public class TrivialClass {
         this.RespuestasTrivialMedio.put(33, " Sara Carbonero ");
         this.RespuestasIncorrectasMedio.put(33, " Cristina Pedroche || Ana Pastor || Mónica Carillo ");
 
-        this.PreguntasTrivialMedio.put(34, " ¿Cual es la fórmula química del agua oxigenada? ");
+        this.PreguntasTrivialMedio.put(34, " IMBECIL ¿Cual es la fórmula química del agua oxigenada? ");
         this.RespuestasTrivialMedio.put(34, " H2O2 ");
         this.RespuestasIncorrectasMedio.put(34, " HCI || CO2 || H2O3 ");
 
@@ -533,7 +533,7 @@ public class TrivialClass {
         this.RespuestasTrivialMedio.put(42, " Thriller, de Michael Jackson ");
         this.RespuestasIncorrectasMedio.put(42, " Grease, artistas varios || Billie Jean, Michael Jackson || The Dark side of the moon, Pink Floyd ");
 
-        this.PreguntasTrivialMedio.put(43, "¿Cuántas estrellas tiene la bander actual de Estados Unidos? ");
+        this.PreguntasTrivialMedio.put(43, "¿Cuántas estrellas tiene la bandera actual de Estados Unidos? ");
         this.RespuestasTrivialMedio.put(43, " 50 ");
         this.RespuestasIncorrectasMedio.put(43, " 51 || 49 || 48 ");
 
@@ -682,8 +682,8 @@ public class TrivialClass {
         this.RespuestasIncorrectasMedio.put(79, " Taparrabos || Una bata || Un collar y una tobillera ");
 
 
-        this.PreguntasTrivialMedio.put(80, " El objetivo de los juicios de Nuremberg fue... ");
-        this.RespuestasTrivialMedio.put(80, " IMBECIL Llevar a juicio a los nazis responsables del Holocausto ");
+        this.PreguntasTrivialMedio.put(80, " IMBECIL El objetivo de los juicios de Nuremberg fue... ");
+        this.RespuestasTrivialMedio.put(80, " Llevar a juicio a los nazis responsables del Holocausto ");
         this.RespuestasIncorrectasMedio.put(80, " Levar a juicio a los responsables de la I Guerra Mundial || Levar a juicio a Galileo Galilei || Levar a juicio a los causantes de la revolución francesa ");
 
         /*this.PreguntasTrivialMedio.put(80, " ¿Cuál es el apellido hispano más común en EEUU? ");

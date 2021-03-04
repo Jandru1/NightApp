@@ -12,28 +12,21 @@
 
     <ScrollView
         android:id="@+id/Trivial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#00796B"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:context=".Trivial">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutASDF"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeButton"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/Respuesta4Button"
@@ -43,6 +36,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginBottom="200dp"
                 android:autoSizeMaxTextSize="20dp"
                 android:autoSizeTextType="uniform"
                 android:backgroundTint="#2196F3"
@@ -51,6 +45,7 @@
                 android:hyphenationFrequency="normal"
                 android:text="Button"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/Respuesta2Button"
                 app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
@@ -85,6 +80,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
+                android:layout_marginBottom="200dp"
                 android:autoSizeMaxTextSize="20dp"
                 android:autoSizeTextType="uniform"
                 android:backgroundTint="#2196F3"
@@ -93,6 +89,7 @@
                 android:hyphenationFrequency="normal"
                 android:text="Button"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/Respuesta4Button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
@@ -120,10 +117,12 @@
                 android:layout_width="182dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="210dp"
                 android:backgroundTint="#9F0101"
                 android:text="FALLO"
                 android:textColor="#000000"
                 android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/VButton" />
@@ -133,6 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="104dp"
                 android:gravity="center"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +149,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/jugadortv">
 
                 <TextView
                     android:id="@+id/PreguntaTVtext"
@@ -202,22 +202,20 @@
                 app:layout_constraintStart_toEndOf="@+id/Respuesta1Button"
                 app:layout_constraintTop_toBottomOf="@+id/PreguntaTV" />
 
-            <ImageView
-                android:id="@+id/BackButton"
-                android:layout_width="99dp"
-                android:layout_height="63dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="45dp"
-                android:layout_marginBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Respuesta2Button"
-                app:srcCompat="@drawable/back_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/BackButton"
+        android:layout_width="99dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/back_button" />
 
 
     <ImageView

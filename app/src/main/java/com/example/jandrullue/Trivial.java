@@ -433,6 +433,7 @@ public class Trivial extends AppCompatActivity {
                     all_visible();
                     HomeButton.setVisibility(View.VISIBLE);
                     ShotsButton.setVisibility(View.VISIBLE);
+                    BackButton.setVisibility(View.VISIBLE);
                 }
                 return presionado;
             }
@@ -440,7 +441,6 @@ public class Trivial extends AppCompatActivity {
     }
 
     private void all_invisible() {
-
         PlayerTV.setVisibility(View.INVISIBLE);
         HomeButton.setVisibility(View.INVISIBLE);
         PreguntaTV.setVisibility(View.INVISIBLE);
@@ -451,6 +451,7 @@ public class Trivial extends AppCompatActivity {
         R3Button.setVisibility(View.INVISIBLE);
         R4Button.setVisibility(View.INVISIBLE);
         RespuestaButton.setVisibility(View.INVISIBLE);
+        BackButton.setVisibility(View.INVISIBLE);
     }
 
     private void all_visible() {
