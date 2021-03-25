@@ -120,7 +120,7 @@ public class VerdadoRetoClass {
         Retos.add("Sácate la camiseta durante 3 rondas ");
         Retos.add("NEPUI reta a JUGADORX a un piedra, papel, tijeras. Si ganas te hace un verse de 3 €, si pierdes se lo haces tú ");
         Retos.add("Sube una historia del copeo a tu historia durante 24 h  con el hashtag @PottoGame  ");
-        Retos.add("NEPUI JUGADORX te explicará un chiste. Si te ríes enseñas las tetas o el culo durante 5 segundos. Si no lo hace, los repartes tú ");
+        Retos.add("NEPUI JUGADORX te explicará un chiste. Si te ríes enseñas las tetas o el culo durante 5 segundos. Si no lo haces, lo hará él/ella ");
 
         this.VerdadesFinal = Verdades;
         this.RetosFinal = Retos;

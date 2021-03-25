@@ -237,7 +237,7 @@ public class TrivialClass {
         this.RespuestasTrivialFacil.put(54, " Helsinki ");
         this.RespuestasIncorrectasFacil.put(54, " Oslo || Estocolmo || Copenhague ");
 
-        this.PreguntasTrivialFacil.put(55, " ¿Qué nombre tiene el supercontinente antiguo que agrupaba todos los continentes ahora existentes en uno solo? ");
+        this.PreguntasTrivialFacil.put(55, " IMBECIL ¿Qué nombre tiene el supercontinente antiguo que agrupaba todos los continentes ahora existentes en uno solo? ");
         this.RespuestasTrivialFacil.put(55, " Pangea ");
         this.RespuestasIncorrectasFacil.put(55, " Panem || Sealand || Elleore ");
 
@@ -249,7 +249,7 @@ public class TrivialClass {
         this.RespuestasTrivialFacil.put(57, " Un abrigo ");
         this.RespuestasIncorrectasFacil.put(57, " Unos zapatos || Unos pendientes || Un bolso ");
 
-        this.PreguntasTrivialFacil.put(58, " ¿Cuál es la comida favorita del gato Garfield  ? ");
+        this.PreguntasTrivialFacil.put(58, " IMBECIL ¿Cuál es la comida favorita del gato Garfield  ? ");
         this.RespuestasTrivialFacil.put(58, " Lasaña ");
         this.RespuestasIncorrectasFacil.put(58, " Pizza || Caviar || Hamburguesa ");
 
@@ -539,9 +539,9 @@ public class TrivialClass {
 
         this.PreguntasTrivialMedio.put(44, " ¿Cuál es la capital de Irán? ");
         this.RespuestasTrivialMedio.put(44, " Teherán ");
-        this.RespuestasIncorrectasMedio.put(44, " Riad || Abu Dabi || Baddag ");
+        this.RespuestasIncorrectasMedio.put(44, " Riad || Abu Dabi || Bagdad ");
 
-        this.PreguntasTrivialMedio.put(45, "¿Quien el autor de la novela 'Viaje al centro de la Tirra'? ");
+        this.PreguntasTrivialMedio.put(45, "¿Quien es el autor de la novela 'Viaje al centro de la Tierra'? ");
         this.RespuestasTrivialMedio.put(45, " Julio Verne ");
         this.RespuestasIncorrectasMedio.put(45, " Gabriel García Márquez || Agatha Christie || Mario Vargas Llosa ");
 
@@ -681,7 +681,6 @@ public class TrivialClass {
         this.RespuestasTrivialMedio.put(79, " Nada ");
         this.RespuestasIncorrectasMedio.put(79, " Taparrabos || Una bata || Un collar y una tobillera ");
 
-
         this.PreguntasTrivialMedio.put(80, " IMBECIL El objetivo de los juicios de Nuremberg fue... ");
         this.RespuestasTrivialMedio.put(80, " Llevar a juicio a los nazis responsables del Holocausto ");
         this.RespuestasIncorrectasMedio.put(80, " Levar a juicio a los responsables de la I Guerra Mundial || Levar a juicio a Galileo Galilei || Levar a juicio a los causantes de la revolución francesa ");
@@ -766,6 +765,8 @@ public class TrivialClass {
         this.RespuestasTrivialMedio.put(99, " Barita de Sauco, piedra de la resurrección y capa de la invisibilidad ");
         this.RespuestasIncorrectasMedio.put(99, " Barita de Sauco, piedra de la resurrección y el anillo de Marvolo Gaunt || Barita de Sauco, Copa de Hufflepuff y capa de la invisibilidad || Anillo de Marvolo Gaunt, Copa de Hufflepuff y capa de la invisibilidad ");
 
+        this.PreguntasTrivialMedio.put(100, " IMBECIL Cuál es la fórmula más famosa de Albert Einstein? ");
+        this.RespuestasTrivialMedio.put(100, " E=MC^2. La energía equivale a la masa por la velocidad de la luz al cuadrado ");
 
 
 
@@ -830,8 +831,8 @@ public class TrivialClass {
         this.PreguntasTrivialDificil.put(15, " ¿Dónde están ubicados los huesos escafoides? ");
         this.RespuestasTrivialDificil.put(15, " En la muñeca ");
 
-        this.PreguntasTrivialDificil.put(16, " Cuál es la fórmula más famosa de Albert Einstein? ");
-        this.RespuestasTrivialDificil.put(16, " E=MC^2. La energía equivale a la masa por la velocidad de la luz al cuadrado ");
+        this.PreguntasTrivialDificil.put(16, " ¿Cómo se llaman las lineas que unen los puntos de igual temperatura? ");
+        this.RespuestasTrivialDificil.put(16, " Isobaras ");
 
         this.PreguntasTrivialDificil.put(17, "¿Qué moneda se utiliza en Marruecos? ");
         this.RespuestasTrivialDificil.put(17, " El dírham ");
@@ -989,8 +990,6 @@ public class TrivialClass {
         this.PreguntasTrivialDificil.put(68, " ¿Qué significan las siglas a.m. detrás de una hora? ");
         this.RespuestasTrivialDificil.put(68, " Antes del Meridiano ");
 
-        this.PreguntasTrivialDificil.put(69, " ¿Cómo se llaman las lineas que unen los puntos de igual temperatura? ");
-        this.RespuestasTrivialDificil.put(69, " Isobaras ");
 
 
 

@@ -28,32 +28,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/Respuesta4Button"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="200dp"
-                android:autoSizeMaxTextSize="20dp"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#2196F3"
-                android:breakStrategy="balanced"
-                android:gravity="center"
-                android:hyphenationFrequency="normal"
-                android:text="Button"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Respuesta2Button"
-                app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
+
 
             <Button
                 android:id="@+id/Respuesta1Button"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
@@ -74,8 +54,8 @@
 
             <Button
                 android:id="@+id/Respuesta2Button"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
@@ -93,6 +73,50 @@
                 app:layout_constraintEnd_toStartOf="@id/Respuesta4Button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Respuesta1Button" />
+
+            <Button
+                android:id="@+id/Respuesta3Button"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="15dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/Respuesta4Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Respuesta1Button"
+                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV" />
+
+            <Button
+                android:id="@+id/Respuesta4Button"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="200dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#2196F3"
+                android:breakStrategy="balanced"
+                android:gravity="center"
+                android:hyphenationFrequency="normal"
+                android:text="Button"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Respuesta2Button"
+                app:layout_constraintTop_toBottomOf="@+id/Respuesta3Button" />
 
             <Button
                 android:id="@+id/AnswerButton"
@@ -180,27 +204,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/PreguntaTV"
                 app:rippleColor="@color/black" />
 
-            <Button
-                android:id="@+id/Respuesta3Button"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="15dp"
-                android:autoSizeMaxTextSize="20dp"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#2196F3"
-                android:breakStrategy="balanced"
-                android:gravity="center"
-                android:hyphenationFrequency="normal"
-                android:text="Button"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@id/Respuesta4Button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Respuesta1Button"
-                app:layout_constraintTop_toBottomOf="@+id/PreguntaTV" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -230,14 +233,15 @@
 
     <TextView
         android:id="@+id/shotsText"
-        android:layout_width="235dp"
-        android:layout_height="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/shotsButton"

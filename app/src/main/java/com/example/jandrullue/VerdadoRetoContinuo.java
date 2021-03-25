@@ -41,6 +41,7 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
 
     private String Verdad_o_Reto;
     private String Primer_jugador;
+    private String JugadorXDef;
 
     private Button VerdadButton;
     private Button RetoButton;
@@ -48,12 +49,11 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
     private boolean es_un_reto;
     private int i;
 
-    private String Player_X;
-
     private VerdadoRetoClass VoR = new VerdadoRetoClass();
 
     private PlayerClass PlayerClass = new PlayerClass();
 
+    private boolean hetero = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,50 +198,57 @@ public class VerdadoRetoContinuo extends AppCompatActivity {
         Log.d("El reto es ", ""+reto);
         for(int i = 0; i < reto.length();++i){
             if(reto.startsWith("JUGADORX", i)){
-                double m = Math.random()*PlayersList.size()+0;
-                int n = (int) m;
-                //String Player_X = PlayersList.get(n);
-                String Player_X = generarRandomJugadorX(jugador);
-                nuevo_reto = reto.substring(6,i) + Player_X + reto.substring(i+8);
+                generarRandomJugadorX(jugador);
+                nuevo_reto = reto.substring(6,i) + JugadorXDef + reto.substring(i+8);
                 Log.d("nuevo reto :", ""+ nuevo_reto);
             }
         }
         return nuevo_reto;
     }
 
-    public String generarRandomJugadorX(String jugador) {
-        Player_X = "ASDFF";
-        double m = Math.random()*PlayersList.size()+0;
-        int n = (int) m;
-        Log.d("El jugador jugando es:", ""+jugador);
-        Log.d("El jugadorX es:", ""+n);
-        Log.d("Con nombre:", "+"+PlayersList.get(n)+"+");
-        if(PlayersList.get(n).equals(jugador)) generarRandomJugadorX(jugador);
-        else {
-            int sexo1 = -1;
-            int sexo2 = -2;
-            boolean HayMujer = false;
-            boolean HayHombre = false;
-            for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
-                String key = entry.getKey();
-                int value = entry.getValue();
-                if(value==0) HayHombre = true;
-                if(value==1) HayMujer = true;
-                if (key.equals(PlayersList.get(n))) sexo1 = entry.getValue();
-                if (key.equals(jugador)) sexo2 = entry.getValue();
-            }
-            Log.d("sexo1",""+sexo1);
-            Log.d("sexo2",""+sexo2);
-            if(sexo1==sexo2 & HayHombre & HayMujer) generarRandomJugadorX(jugador);
+    public void generarRandomJugadorX(String jugador) {
+        String Player_X = "ASDFF";
+        if(hetero) {
+            double m = Math.random() * PlayersList.size() + 0;
+            int n = (int) m;
+            Log.d("El jugador jugando es:", "" + jugador);
+            Log.d("El jugadorX es:", "" + n);
+            Log.d("Con nombre:", "+" + PlayersList.get(n) + "+");
+            if (PlayersList.get(n).equals(jugador)) generarRandomJugadorX(jugador);
             else {
-                Log.d("jugador random ", ""+PlayersList.get(n));
-                String a = PlayersList.get(n);
-                Log.d("PlayerList en " + n + " es:", "" + Player_X);
-                Player_X = a;
-                return Player_X;
+                int sexo1 = -1;
+                int sexo2 = -2;
+                boolean HayMujer = false;
+                boolean HayHombre = false;
+                for (Map.Entry<String, Integer> entry : PlayerClass.getPlayersSex().entrySet()) {
+                    String key = entry.getKey();
+                    int value = entry.getValue();
+                    if (value == 0) HayHombre = true;
+                    else if (value == 1) HayMujer = true;
+                    if (key.equals(PlayersList.get(n))) sexo1 = entry.getValue();
+                    else if (key.equals(jugador)) sexo2 = entry.getValue();
+                }
+                Log.d("sexo1", "" + sexo1);
+                Log.d("sexo2", "" + sexo2);
+                if (sexo1 == sexo2 & HayHombre & HayMujer) generarRandomJugadorX(jugador);
+                else {
+                    Log.d("jugador random ", "" + PlayersList.get(n));
+                    String a = PlayersList.get(n);
+                    Player_X = a;
+                    JugadorXDef = Player_X;
+                    Log.d("PlayerList en " + n + " es:", "" + Player_X);
+                }
             }
         }
-        return Player_X;
+        else {
+            double m = Math.random() * PlayersList.size() + 0;
+            int n = (int) m;
+            if (PlayersList.get(n).equals(jugador)) generarRandomJugadorX(jugador);
+            else {
+                Player_X = PlayersList.get(n);
+                JugadorXDef = Player_X;
+            }
+        }
     }
 
     public void generarRandomPlayer() {

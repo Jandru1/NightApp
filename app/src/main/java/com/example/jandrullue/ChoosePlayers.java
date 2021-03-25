@@ -81,6 +81,7 @@ public class ChoosePlayers extends AppCompatActivity {
             }
         }
         else PlayerClass = new PlayerClass();
+
         if(Jugadores != null) {
             for(int i = 0; i < Jugadores.size();++i) {
                 playersList.add(Jugadores.get(i));
@@ -110,8 +111,9 @@ public class ChoosePlayers extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         PlayerClass.removePlayer(playersList.get(posicion));
-                        playersList.remove(posicion);
                         Log.d("la posicions es",""+posicion);
+                        if (!Jugadores.isEmpty()) Jugadores.remove(posicion);
+                        playersList.remove(posicion);
                         adaptador1.notifyDataSetChanged();
                     }
                 });
@@ -128,22 +130,21 @@ public class ChoosePlayers extends AppCompatActivity {
         startgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ALMENOS ENTRO AQUI","");
-                ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
-                for(int i = 0; i < playersList.size();++i) {
-                    Shots.getShotsMap().put(playersList.get(i),0);
-                }
-
                 if (modality.equals("VerdadOReto")) {
                     if (playersList.size() < 2)
                         Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 2 jugadores", Toast.LENGTH_SHORT).show();
                     else {
+                        ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+                        for(int i = 0; i < playersList.size();++i) {
+                            Shots.getShotsMap().put(playersList.get(i),0);
+                        }
                         Intent intent = new Intent(ChoosePlayers.this, VerdadoRetoCasoInicial.class);
                         intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
                         startActivity(intent);
                     }
-                } else if (modality.equals("ElCamino")) {
+                }
+                else if (modality.equals("ElCamino")) {
                     Log.d("Entro if modalidad","");
                     boolean longitudTooMuch = false;
                     for(int i = 0; i < playersList.size(); ++i) {
@@ -161,6 +162,10 @@ public class ChoosePlayers extends AppCompatActivity {
                         Toast.makeText(ChoosePlayers.this, "Máximo número de jugadores: 9", Toast.LENGTH_SHORT).show();
                     }
                     else {
+                        ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+                        for(int i = 0; i < playersList.size();++i) {
+                            Shots.getShotsMap().put(playersList.get(i),0);
+                        }
                         Intent intent = new Intent(ChoosePlayers.this, ElCamino_1_1.class);
                         intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
@@ -170,6 +175,10 @@ public class ChoosePlayers extends AppCompatActivity {
                     if (playersList.size() < 1)
                         Toast.makeText(ChoosePlayers.this, "Se necesita un mínimo de 1 jugador", Toast.LENGTH_SHORT).show();
                     else {
+                        ShotsCounter Shots = (ShotsCounter) getIntent().getSerializableExtra("Shots");
+                        for(int i = 0; i < playersList.size();++i) {
+                            Shots.getShotsMap().put(playersList.get(i),0);
+                        }
                         Intent intent = new Intent(ChoosePlayers.this, TrivialDifficulties.class);
                         intent.putExtra("Jugadores", PlayerClass);
                         intent.putExtra("Shots", Shots);
